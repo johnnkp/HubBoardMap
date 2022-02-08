@@ -1,5 +1,14 @@
 {
   "dependencies": {
-    "express": "^4.17.2"
+    "concurrently": "^7.0.0",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "client-dev": "cd client && npm run start",
+    "server-dev": "nodemon app.js",
+    "dev": "concurrently --names \"CLIENT,SERVER\" \"npm run client-dev\" \"npm run server-dev\"",
+    "build": "cd client && npm run build",
+    "start": "node app.js"
   }
 }
