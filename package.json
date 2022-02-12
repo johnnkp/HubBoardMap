@@ -9,6 +9,7 @@
     "server-dev": "nodemon app.js",
     "dev": "concurrently --names \"CLIENT,SERVER\" \"npm run client-dev\" \"npm run server-dev\"",
     "build": "cd client && npm run build",
-    "start": "node app.js"
+    "start": "node app.js",
+    "install-all": "npm install && cd client && npm install"
   }
 }

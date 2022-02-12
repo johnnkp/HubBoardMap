@@ -14,3 +14,6 @@ Run the server under nodemon.
 
 ### `npm run start` 
 Run the server under node.
+
+### `npm run install-all`
+Install all dependencies.
