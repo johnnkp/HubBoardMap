@@ -1,0 +1,22 @@
+table {
+    padding: 5% 0;
+}
+
+.App {
+    text-align: center;
+    background-color: #FDFDFD;
+    font-family: sf_pro_display_regular;
+    margin: -0.6%;
+}
+
+.logo {
+    padding: 5%;
+}
+
+.feature_title {
+    font-size: 3.5vh;
+}
+
+.coming_soon {
+    font-size: 2.5vh;
+}
