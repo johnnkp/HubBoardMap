@@ -55,6 +55,9 @@ const LoginButton = ({ children }) => {
             <Grid item xs={12} textAlign='center'>
               <TextField label="password" fullWidth/>
             </Grid> 
+            <Grid item xs={12} textAlign="center">
+              <Button variant="contained" size="medium">Log in</Button>
+            </Grid>
             <Grid item container xs={12} textAlign='center' alignItems="center">
               <Grid item xs={6} >
                 <Typography variant="h4" fontSize="1.5em">New to HubBoard?</Typography>
