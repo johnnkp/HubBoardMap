@@ -17,3 +17,6 @@ Run the server under node.
 
 ### `npm run install-all`
 Install all dependencies.
+
+### `npm run apidoc`
+Generate API documentation.
