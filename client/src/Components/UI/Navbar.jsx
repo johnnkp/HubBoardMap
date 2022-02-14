@@ -4,6 +4,7 @@ import {
   AppBar,
   Toolbar,
   Box,
+  Typography,
   IconButton,
   Button,
   Menu,
@@ -24,7 +25,10 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar
+      position="sticky"
+      sx={{ background: "transparent", boxShadow: "none" }}
+    >
       <Toolbar>
         <Box display="flex" justifyContent="space-between" width="100%">
           <>
@@ -44,14 +48,16 @@ const Navbar = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseMenu}
             >
-              {pages.map(page => (
+              {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseMenu}>
-                  <Button size="small" LinkComponent={ReactLink} to={`${page}`}>{page}</Button>
+                  <Button size="small" LinkComponent={ReactLink} to={`${page}`}>
+                    <Typography>{page}</Typography>
+                  </Button>
                 </MenuItem>
               ))}
             </Menu>
           </>
-          <Button color="inherit">Login</Button>
+          <Button color="primary">Login</Button>
         </Box>
       </Toolbar>
     </AppBar>
