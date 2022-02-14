@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "apidoc-markdown": "^7.0.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
     "concurrently": "^7.0.0",
@@ -16,6 +17,7 @@
     "dev": "concurrently --names \"CLIENT,SERVER\" \"npm run client-dev\" \"npm run server-dev\"",
     "build": "cd client && npm run build",
     "start": "node app.js",
-    "install-all": "npm install && cd client && npm install"
+    "install-all": "npm install && cd client && npm install",
+    "apidoc" : "apidoc-markdown -i server/ -o API_Documentation.md -c apidoc.config.json"
   }
 }

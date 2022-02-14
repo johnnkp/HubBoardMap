@@ -5,6 +5,20 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 require('dotenv').config();
 
+/**
+ * @api {post} /api/auth/register User registration
+ * @apiName Register
+ * @apiGroup Auth
+ *
+ * @apiBody {String} username Username
+ * @apiBody {String} email Email
+ * @apiBody {String} password Password
+ *
+ * @apiSuccess (202) {String} message Success message
+ *
+ * @apiError (409) {String} attribute_used_message Username or email already used
+ * @apiError (500) {String} internal_error Internal server error
+ */
 
 router.post('/', (req, res) => {
   const { username, email, password } = req.body;
@@ -17,14 +31,10 @@ router.post('/', (req, res) => {
             // If username or email is used
             if (result){
               if (result.username === username){
-                res.status(409).json({
-                  message: 'Username is already used'
-                });
+                res.status(409).send("Username already used");
               }
               else {
-                res.status(409).json({
-                  message: 'Email is already used'
-                });
+                res.status(409).send("Email already used");
               }
             }
             // If username or email is not used
@@ -38,16 +48,12 @@ router.post('/', (req, res) => {
               })
                   .then(() =>{
                         mailer.sendVerificationEmail(email, verificationToken);
-                        res.status(202).json({
-                          message: 'Verification email sent'
-                        });
+                        res.status(202).send("Verification email sent");
                       })
                   // Catch error when creating user
                   .catch(err =>{
                       console.log(err);
-                      res.status(500).json({
-                          message: 'Internal server error'
-                    });
+                      res.status(500).send('Internal server error');
                   });
 
             }
@@ -55,9 +61,7 @@ router.post('/', (req, res) => {
       // Catch error when finding user
       .catch(err =>{
           console.log(err);
-          res.status(500).json({
-              message: 'Internal server error'
-        });
+          res.status(500).send('Internal server error');
       });
 });
 
