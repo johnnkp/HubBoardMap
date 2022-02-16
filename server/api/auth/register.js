@@ -40,6 +40,7 @@ router.post('/', (req, res) => {
             // If username or email is not used
             else {
               const verificationToken = crypto.randomBytes(20).toString('hex');
+              // Create new user in database
               User.create({
                 username: username,
                 email: email,
@@ -47,12 +48,21 @@ router.post('/', (req, res) => {
                 verificationToken: verificationToken
               })
                   .then(() =>{
-                        mailer.sendVerificationEmail(email, verificationToken);
-                        res.status(202).send("Verification email sent");
+                      // Send verification email
+                      mailer.sendVerificationEmail(email, verificationToken)
+                          // If email is sent
+                          .then(()=>{
+                              res.status(202).send("Verification email sent");
+                          })
+                          // Catch error when sending verification email
+                          .catch(err =>{
+                              console.error(err);
+                              res.status(500).send("Internal server error");
+                          });
                       })
                   // Catch error when creating user
                   .catch(err =>{
-                      console.log(err);
+                      console.error(err);
                       res.status(500).send('Internal server error');
                   });
 
@@ -60,7 +70,7 @@ router.post('/', (req, res) => {
           })
       // Catch error when finding user
       .catch(err =>{
-          console.log(err);
+          console.error(err);
           res.status(500).send('Internal server error');
       });
 });

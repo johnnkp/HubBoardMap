@@ -4,7 +4,7 @@ require('dotenv').config();
 module.exports =
     {
         // Using gmail to send emails
-        sendMail: (data,callback) => {
+        sendMail: (data) => {
             // Using gmail account and password in .env file
             const GMAIL_ACCOUNT = process.env.GMAIL_ACCOUNT;
             const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD;
@@ -17,10 +17,22 @@ module.exports =
                     pass: GMAIL_PASSWORD
                 }
             });
-            transporter.verify().catch(console.error);
-
-            data.from = '"HubBoard" <' + GMAIL_ACCOUNT + '>';
-            return transporter.sendMail(data, callback);
+            return new Promise((resolve,reject)=>{
+                transporter.verify()
+                    .then(()=>{
+                        data.from = '"HubBoard" <' + GMAIL_ACCOUNT + '>';
+                        transporter.sendMail(data)
+                            .then(()=>{
+                                resolve();
+                            })
+                            .catch((err)=>{
+                                reject(err);
+                            });
+                    })
+                    .catch(err=> {
+                        reject(err);
+                    })
+                });
         },
         // Send a verification email to the user
         sendVerificationEmail : (email, verificationToken)=>{
