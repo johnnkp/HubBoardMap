@@ -1,10 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const router = require('express').Router();
 const User = require("../database/model/User");
 
 router.use(express.json())
-router.use(bodyParser.urlencoded({ extended: true }))
+router.use(express.urlencoded({ extended: true }))
 
 // Import the routes
 router.use('/auth', require('./auth'));
