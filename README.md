@@ -6,6 +6,9 @@ Run development mode in both client-side and server-side concurrently.
 ### `npm run build`
 Run React build command.
 
+### `npm run pwadraft`
+Run PWA draft.
+
 ### `npm run client-dev`
 Run React development mode.
 
