@@ -3,18 +3,14 @@
  * @apiName Login
  * @apiGroup Auth
  *
+ * @apiDescription API for login operation.
+ * Return cookie with token if login successfully.
+ *
  * @apiParam {String} username Username
  * @apiParam {String} password Password
  *
  * @apiSuccess (200) {Boolean} success True
  * @apiSuccess (200) {String} message Success message
- *
- * @apiSuccessExample {json} Success-Response:
- *    HTTP/1.1 200 OK
- *    {
- *      "success": true,
- *      "message": "Successfully logged in"
- *    }
  *
  * @apiError (400) {Boolean} success False
  * @apiError (400) {String} message Error message

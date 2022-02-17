@@ -10,13 +10,13 @@
  * @apiSuccess {String} message Success message
  *
  * @apiError (500) {Boolean} success false
- * @apiError (500) {String} message Error message
+ * @apiError (500) {String} message Internal server error
  *
  * @apiError (404) {Boolean} success false
- * @apiError (404) {String} message Error message
+ * @apiError (404) {String} message Email verification token not found
  *
  * @apiError (400) {Boolean} success false
- * @apiError (400) {String} message Error message
+ * @apiError (400) {String} message Email verification token not provided
  */
 
 const Router = require('express').Router();

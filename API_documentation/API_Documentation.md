@@ -43,24 +43,26 @@ GET /auth/emailVerify/:token
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false</p> |
-| message | `String` | <p>Error message</p> |
+| message | `String` | <p>Email verification token not provided</p> |
 
 #### Error response - `404`
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false</p> |
-| message | `String` | <p>Error message</p> |
+| message | `String` | <p>Email verification token not found</p> |
 
 #### Error response - `500`
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false</p> |
-| message | `String` | <p>Error message</p> |
+| message | `String` | <p>Internal server error</p> |
 
 ## <a name='Login'></a> Login
 [Back to top](#top)
+
+<p>API for login operation. Return cookie with token if login successfully.</p>
 
 ```
 POST /auth/login
@@ -80,18 +82,6 @@ POST /auth/login
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>True</p> |
 | message | `String` | <p>Success message</p> |
-
-### Success response example
-
-#### Success response example - `Success-Response:`
-
-```json
-HTTP/1.1 200 OK
-{
-  "success": true,
-  "message": "Successfully logged in"
-}
-```
 
 ### Error response
 
