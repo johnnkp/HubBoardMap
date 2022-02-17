@@ -19,7 +19,7 @@ const OrangeText = styled("span")(({theme}) => ({
 
 const Home = () => {
     return (
-        <Box className={classes.sf_pro_display_regular}>
+        <Box className={classes.homepage}>
             <Grid container mt="1em">
                 <Grid item xs={0} md={2}/>
                 <Grid
@@ -50,7 +50,7 @@ const Home = () => {
                 <Grid item xs={0} md={2}/>
             </Grid>
 
-            <Grid container className={classes.w3_slide_bottom} mt="3em" mb={32} spacing={8}>
+            <Grid container className={classes.w3_slide_bottom} mt="3em" mb={5} spacing={8}>
                 <Grid item xs={0} md={2}/>
                 <Grid
                     item

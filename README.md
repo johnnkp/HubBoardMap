@@ -23,3 +23,7 @@ Install all dependencies.
 
 ### `npm run apidoc`
 Generate API documentation.
+
+## Security Patch
+Security patches only available on Node.js 17.5.0 or newer.  
+Older versions may receive `npm WARN deprecated` warnings.
