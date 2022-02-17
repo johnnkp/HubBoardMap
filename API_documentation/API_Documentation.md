@@ -6,12 +6,108 @@ HubBoard API
 # Table of contents
 
 - [Auth](#Auth)
+  - [Email verification](#Email-verification)
+  - [Login](#Login)
   - [User registration](#User-registration)
 
 ___
 
 
 # <a name='Auth'></a> Auth
+
+## <a name='Email-verification'></a> Email verification
+[Back to top](#top)
+
+```
+GET /auth/emailVerify/:token
+```
+
+### Parameters - `Parameter`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| token | `String` | <p>Token</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `400`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
+
+#### Error response - `404`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
+
+#### Error response - `500`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Login'></a> Login
+[Back to top](#top)
+
+```
+POST /auth/login
+```
+
+### Parameters - `Parameter`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| username | `String` | <p>Username</p> |
+| password | `String` | <p>Password</p> |
+### Success response
+
+#### Success response - `200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| message | `String` | <p>Success message</p> |
+
+### Success response example
+
+#### Success response example - `Success-Response:`
+
+```json
+HTTP/1.1 200 OK
+{
+  "success": true,
+  "message": "Successfully logged in"
+}
+```
+
+### Error response
+
+#### Error response - `400`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
+
+#### Error response - `500`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Internal server error</p> |
 
 ## <a name='User-registration'></a> User registration
 [Back to top](#top)
