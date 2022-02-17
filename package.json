@@ -20,6 +20,7 @@
     "build": "cd client && npm run build",
     "start": "node app.js",
     "install-all": "npm install && cd client && npm install",
-    "apidoc": "apidoc-markdown -i server/ -o API_documentation/API_Documentation.md -c API_documentation/apidoc.config.json"
+    "apidoc": "apidoc-markdown -i server/ -o API_documentation/API_Documentation.md -c API_documentation/apidoc.config.json",
+    "pwadraft": "npm install && cd client && npm install && npm run build && npm install -g serve && serve -s build"
   }
 }
