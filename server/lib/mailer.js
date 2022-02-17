@@ -1,8 +1,7 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-module.exports =
-    {
+module.exports = {
         // Using gmail to send emails
         sendMail: (data) => {
             // Using gmail account and password in .env file
@@ -17,6 +16,7 @@ module.exports =
                     pass: GMAIL_PASSWORD
                 }
             });
+            // Error handling for sending email
             return new Promise((resolve,reject)=>{
                 transporter.verify()
                     .then(()=>{
@@ -44,7 +44,7 @@ module.exports =
                 html: '<h1>Welcome to HubBoard!</h1>' +
                     '<p>You have successfully registered to HubBoard. ' +
                     'Please click the following link to verify your email address:</p>' +
-                    '<a href="' + SERVER_HOST + ':' + SERVER_PORT + '/api/auth/verify/' + verificationToken + '">Verify Email</a>',
+                    '<a href="' + SERVER_HOST + ':' + SERVER_PORT + '/api/auth/emailVerify/' + verificationToken + '">Verify Email</a>',
             };
             return module.exports.sendMail(mailOptions);
         },

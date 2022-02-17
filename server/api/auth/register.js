@@ -1,10 +1,3 @@
-const router = require('express').Router();
-const User = require('../../database/model/User');
-const mailer = require('../../lib/mailer');
-const bcrypt = require('bcryptjs');
-const crypto = require('crypto');
-require('dotenv').config();
-
 /**
  * @api {post} /api/auth/register User registration
  * @apiName Register
@@ -19,6 +12,15 @@ require('dotenv').config();
  * @apiError (409) {String} attribute_used_message Username or email already used
  * @apiError (500) {String} internal_error Internal server error
  */
+
+
+const router = require('express').Router();
+const User = require('../../database/model/User');
+const mailer = require('../../lib/mailer');
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
+require('dotenv').config();
+
 
 router.post('/', (req, res) => {
   const { username, email, password } = req.body;

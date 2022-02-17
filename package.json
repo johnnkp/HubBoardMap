@@ -8,7 +8,8 @@
     "express-session": "^1.17.2",
     "mongoose": "^6.2.1",
     "nodemailer": "^6.7.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "require-dir": "^1.2.0"
   },
   "scripts": {
     "client-dev": "cd client && npm run start",
