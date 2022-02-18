@@ -47,7 +47,7 @@ const Register = () => {
   });
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.fade}>
+    <Container component="main" maxWidth="xs" className={classes.slide_bottom}>
       <Box
         sx={{
           marginTop: 8,
@@ -123,7 +123,7 @@ const Register = () => {
       <Typography align="center">
         <Link component={RouterLink} to="/" color="hOrange.main">Back To Home Page</Link>
       </Typography>
-      <Copyright sx={{ mt: 5 }} />
+      <Copyright className={classes.slide_bottom_07s} sx={{ mt: 5 }} />
     </Container>
   );
 };

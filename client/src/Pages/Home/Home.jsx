@@ -52,7 +52,7 @@ const Home = () => {
       </Grid>
       <Grid
         container
-        className={classes.w3_slide_bottom}
+        className={classes.slide_bottom}
         mt="3em"
         mb={32}
         spacing={8}
@@ -102,7 +102,7 @@ const Home = () => {
         </Grid>
         <Grid item xs={0} md={2} />
       </Grid>
-      <Copyright className={classes.w3_slide_bottom_07s} />
+      <Copyright className={classes.slide_bottom_07s} />
     </Wrapper>
   );
 };
