@@ -5,7 +5,7 @@
 }
 
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
-.display_bottommiddle {
+.w3_display_bottommiddle {
     position: fixed;
     left: 50%;
     bottom: 0;
@@ -14,12 +14,12 @@
 }
 
 /* import Slide from '@mui/material/Slide'; */
-.slide_bottom {
+.w3_slide_bottom {
     position: relative;
     animation: animatebottom 0.5s
 }
 
-.slide_bottom_07s {
+.w3_slide_bottom_07s {
     position: relative;
     animation: animatebottom 0.7s
 }
@@ -33,4 +33,8 @@
         bottom: 0;
         opacity: 1;
     }
+}
+
+.w3_silver {
+    color: Silver;
 }

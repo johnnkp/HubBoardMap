@@ -52,7 +52,7 @@ const Home = () => {
       </Grid>
       <Grid
         container
-        className={classes.slide_bottom}
+        className={classes.w3_slide_bottom}
         mt="3em"
         mb={32}
         spacing={8}
@@ -74,7 +74,7 @@ const Home = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h2" fontSize="2em">
+            <Typography variant="h2" fontSize="2em" variant="poster">
               Easy-to-use taks list portal
             </Typography>
           </Grid>
@@ -102,7 +102,7 @@ const Home = () => {
         </Grid>
         <Grid item xs={0} md={2} />
       </Grid>
-      <Copyright className={classes.slide_bottom_07s} />
+      <Copyright className={classes.w3_slide_bottom_07s} />
     </Wrapper>
   );
 };
