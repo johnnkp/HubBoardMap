@@ -1,14 +1,3 @@
-/* Apple San Francisco Pro font */
-@font-face {
-    font-family: sf_pro_display_regular;
-    src: url(font/SF-Pro-Display-Regular.otf);
-}
-
-@font-face {
-    font-family: sf_pro_display_medium;
-    src: url(font/SF-Pro-Display-Medium.otf);
-}
-
 * {
     box-sizing: border-box;
     padding: 0;
