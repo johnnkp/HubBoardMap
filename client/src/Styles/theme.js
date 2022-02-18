@@ -4,6 +4,7 @@ import {orange} from "@mui/material/colors";
 import SFProDisplayRegular from "./font/SF-Pro-Display-Regular.otf";
 import SFProDisplayMedium from "./font/SF-Pro-Display-Medium.otf";
 
+
 const theme = createTheme({
     typography: {
         fontFamily: 'sf_pro_display_regular, sf_pro_display_medium',

@@ -1,5 +1,6 @@
 // Responsive 4K homepage
 import React from "react";
+import Wrapper from "../../Components/Helpers/Wrapper"
 import {Link as RouterLink} from "react-router-dom";
 import {Box, Button, Grid, Typography} from "@mui/material";
 import {styled} from "@mui/system";
@@ -19,8 +20,8 @@ const OrangeText = styled("span")(({theme}) => ({
 
 const Home = () => {
     return (
-        <Box className={classes.homepage}>
-            <Grid container mt="1em">
+        <Wrapper>
+            <Grid container mt="1em" sx={{fontFamily: "sf_pro_display_regular"}}>
                 <Grid item xs={0} md={2}/>
                 <Grid
                     item
@@ -97,7 +98,7 @@ const Home = () => {
                 <Grid item xs={0} md={2}/>
             </Grid>
             <Copyright className={classes.w3_slide_bottom_07s}/>
-        </Box>
+        </Wrapper>
     );
 };
 
