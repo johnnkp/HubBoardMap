@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
+require('dotenv').config();
 
-router.get('/',(req,res)=> {
+const CLIENT_ADDRESS = process.env.SERVER_ADDRESS + ':' + process.env.CLIENT_PORT;
+router.post('/',(req,res)=> {
     passport.authenticate('google', {
         scope: ['profile', 'email']
     },(err,user,info)=> {
@@ -28,9 +30,10 @@ router.get('/',(req,res)=> {
     })(req,res);
 });
 
+// TODO: redirect to client
 router.get('/callback',(req,res)=> {
     passport.authenticate('google', {
-        failureRedirect: '/login'
+        failureRedirect: CLIENT_ADDRESS + '/login',
     },(err,user,info)=> {
         if(err) {
             console.error(err);
@@ -39,9 +42,8 @@ router.get('/callback',(req,res)=> {
             });
         }
         if(!user) {
-            return res.status(401).json({
-                message: 'User not found'
-            });
+            res.session.googldID = info.profile.id;
+            return res.redirect(CLIENT_ADDRESS + '/register');
         }
         req.login(user,(err)=> {
             if(err) {
@@ -50,7 +52,7 @@ router.get('/callback',(req,res)=> {
                     message: 'Internal Server Error'
                 });
             }
-            return res.status(200).json(req.user);
+            return res.redirect(CLIENT_ADDRESS + '/user');
         });
     })(req,res);
 });

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const database = require('./server/database')
-const passport = require('./server/lib/passport')
+const passport = require('passport')
 const session = require('express-session')
 require('dotenv').config()
 
@@ -14,7 +14,9 @@ app.use(session({
     resave : false,
     saveUninitialized : false
 }))
-passport.init()
+app.use(passport.initialize())
+app.use(passport.session())
+require('./server/lib/passport').init()
 
 // Api routing
 app.use('/api', require('./server/api'))

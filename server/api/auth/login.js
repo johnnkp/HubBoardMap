@@ -1,5 +1,5 @@
 /**
- * @api {post} /auth/login Login
+ * @api {post} /api/auth/login Login
  * @apiName Login
  * @apiGroup Auth
  *
@@ -24,14 +24,12 @@ const passport = require('passport');
 
 
 router.post('/', (req, res) => {
-
     const {username, password} = req.body
     if (!username || !password) {
         return res.status(400).json({
             message: 'Please fill out all fields'
         })
     }
-
     // Using local strategy for authentication
     passport.authenticate('local',
         {

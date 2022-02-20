@@ -42,12 +42,14 @@ router.post('/', (req, res) => {
             // If username or email is not used
             else {
               const verificationToken = crypto.randomBytes(20).toString('hex');
+              const googleID = req.session.googleID ? req.session.googleID : null;
               // Create new user in database
               User.create({
                 username: username,
                 email: email,
                 password: bcrypt.hashSync(password, Number(process.env.SALT)),
-                verificationToken: verificationToken
+                verificationToken: verificationToken,
+                googleID: googleID
               })
                   .then(() =>{
                       // Send verification email
