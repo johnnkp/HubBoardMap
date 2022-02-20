@@ -9,6 +9,8 @@ HubBoard API
   - [Email verification](#Email-verification)
   - [Login](#Login)
   - [User registration](#User-registration)
+- [User](#User)
+  - [Logout](#Logout)
 
 ___
 
@@ -19,14 +21,14 @@ ___
 [Back to top](#top)
 
 ```
-GET /auth/emailVerify/:token
+GET /api/auth/emailVerify/:token
 ```
 
 ### Parameters - `Parameter`
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| token | `String` | <p>Token</p> |
+| token | `String` | <p>Token for verifying email</p> |
 ### Success response
 
 #### Success response - `Success 200`
@@ -65,7 +67,7 @@ GET /auth/emailVerify/:token
 <p>API for login operation. Return cookie with token if login successfully.</p>
 
 ```
-POST /auth/login
+POST /api/auth/login
 ```
 
 ### Parameters - `Parameter`
@@ -134,4 +136,29 @@ POST /api/auth/register
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | internal_error | `String` | <p>Internal server error</p> |
+
+# <a name='User'></a> User
+
+## <a name='Logout'></a> Logout
+[Back to top](#top)
+
+```
+POST /api/user/logout
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true.</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `401`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| message | `String` | <p>&quot;Unauthorized&quot;.</p> |
 
