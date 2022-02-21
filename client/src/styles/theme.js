@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {createTheme} from "@mui/material/styles";
 import {orange} from "@mui/material/colors";
 /* Apple San Francisco Pro font */
@@ -75,6 +76,16 @@ const theme = createTheme({
                 },
             },
 =======
+=======
+import { createTheme } from "@mui/material/styles";
+import { orange } from "@mui/material/colors";
+/* Apple San Francisco Pro font */
+import SFProDisplayRegular from "./fonts/SF-Pro-Display-Regular.woff2";
+// import SFProDisplayMedium from "./fonts/SF-Pro-Display-Medium.woff2";
+// import FilsonSoftRegular from "./fonts/Filson-Soft-W03-Regular.woff2";
+
+const theme = createTheme({
+>>>>>>> main
   typography: {
     // add font-family name in array
     fontFamily: ["sf_pro_display_regular", "Roboto"].join(","),
@@ -134,9 +145,16 @@ const theme = createTheme({
               borderColor: orange[500],
             },
           },
+<<<<<<< HEAD
 >>>>>>> main:client/src/styles/theme.js
         },
     },
+=======
+        },
+      },
+    },
+  },
+>>>>>>> main
 });
 
 export default theme;
