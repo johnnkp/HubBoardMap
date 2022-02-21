@@ -4,7 +4,7 @@
  * @apiGroup Auth
  *
  * @apiDescription API for login operation.
- * Return cookie with token if login successfully.
+ * Return cookie if success.
  *
  * @apiParam {String} username Username
  * @apiParam {String} password Password

@@ -1,5 +1,5 @@
 <a name="top"></a>
-# HubBoard API v0.1.0
+# HubBoard API v0.2.0
 
 HubBoard API
 
@@ -62,7 +62,7 @@ GET /auth/emailVerify/:token
 ## <a name='Login'></a> Login
 [Back to top](#top)
 
-<p>API for login operation. Return cookie with token if login successfully.</p>
+<p>API for login operation. Return cookie if success.</p>
 
 ```
 POST /auth/login
@@ -119,7 +119,8 @@ POST /api/auth/register
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| message | `String` | <p>Success message</p> |
+| success | `Boolean` | <p>True</p> |
+| message | `String` | <p>Verification email sent</p> |
 
 ### Error response
 
@@ -127,11 +128,14 @@ POST /api/auth/register
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| attribute_used_message | `String` | <p>Username or email already used</p> |
+| success | `Boolean` | <p>False</p> |
+| error_attr | `String` | <p>Attribute that cause error</p> |
+| message | `String` | <p>Error message</p> |
 
 #### Error response - `500`
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| internal_error | `String` | <p>Internal server error</p> |
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Internal server error</p> |
 
