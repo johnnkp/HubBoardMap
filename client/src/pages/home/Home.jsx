@@ -23,12 +23,14 @@ const Home = () => {
     <Wrapper>
       <Box height="100%">
         <Grid container mt="1em">
-          <Grid item xs={0} md={2} />
+          <Grid item xs={0} md={1} lg={1} xl={2}/>
           <Grid
             item
             container
             xs={12}
-            md={8}
+            md={10}
+            lg={10}
+            xl={8}
             display="flex"
             justifyContent="space-between"
             alignItems="center"
@@ -39,7 +41,7 @@ const Home = () => {
               alignItems="center"
               sx={{
                 transition: "all 0.4s ease-out",
-                "&:hover": { transform: "scale(1.1)" },
+                "&:hover": { transform: "scale(1.2)" },
               }}
             >
               <img src={HubBoardIcon} height="75px" alt="HubBoard Icon" />
@@ -49,25 +51,23 @@ const Home = () => {
             </Box>
             <LoginButton sx={{ mr: [2, 2, 0] }} />
           </Grid>
-          <Grid item xs={0} md={2} />
+          <Grid item xs={0} md={1} lg={1} xl={2}/>
         </Grid>
         <Grid
           container
           className={classes.w3_slide_bottom}
-          mt="3em"
-          mb={32}
-          spacing={8}
+          gap={2}
+          mt={16}
+          mb={16}
         >
-          <Grid item xs={0} md={2} />
+          <Grid item xs={0} md={2} lg={2} />
           <Grid
             item
             container
             xs={12}
             md={5}
-            spacing={2}
+            lg={5}
             textAlign={["center", "center", "start"]}
-            ml={[0, 0, 0, 0, 4]}
-            pr={2}
           >
             <Grid item xs={12}>
               <Typography variant="h1" fontSize="4em">
@@ -90,23 +90,20 @@ const Home = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid item container xs={12} md={3} spacing={2}>
-            <Grid item container xs={12} md={12} justifyContent="space-evenly">
-              <Grid item md={6} textAlign="center">
-                <img src={MessageIcon} height="100px" alt="Message Icon" />
-              </Grid>
-              <Grid item md={6} textAlign="center">
-                <img src={TodoIcon} height="100px" alt="Todo Icon" />
-              </Grid>
+          <Grid item container xs={12} md={3} lg={3}  marginLeft={[0, 0, 0, 2]} marginTop={[6, 6, 6, 0, 0]}>
+            <Grid item xs={6} md={6} textAlign="center">
+              <img src={MessageIcon} height="100px" alt="Message Icon"/>
+            </Grid>
+            <Grid item xs={6} md={6} textAlign='center'>
+              <img src={TodoIcon} height="100px" alt="Todo Icon"/>
             </Grid>
             <Grid item xs={12} md={12} textAlign="center">
-              <CloudOutlined sx={{ fontSize: "100px" }} />
+              <CloudOutlined sx={{fontSize: "100px"}}/>
             </Grid>
           </Grid>
-          <Grid item xs={0} md={2} />
+          <Grid item xs={0} md={2} lg={2} />
         </Grid>
         <Copyright className={classes.w3_slide_bottom_07s} />
-        <Typography color="silver">CSCI3100 Software Engineering Group Project</Typography>
       </Box>
     </Wrapper>
   );
