@@ -16,7 +16,11 @@ module.exports.init = () => {
                 .then(user => {
                     if (user) {
                         if (bcrypt.compareSync(password, user.password)) {
-                            return done(null, user)
+                            if (user.isEmailVerified) {
+                                return done(null, user);
+                            } else {
+                                return done(null, false, {message: 'Please verify your email first'});
+                            }
                         } else {
                             return done(null, false, {message: 'Incorrect password'})
                         }
