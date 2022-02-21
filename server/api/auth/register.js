@@ -7,10 +7,15 @@
  * @apiBody {String} email Email
  * @apiBody {String} password Password
  *
- * @apiSuccess (202) {String} message Success message
+ * @apiSuccess (202) {Boolean} success True
+ * @apiSuccess (202) {String} message Verification email sent
  *
- * @apiError (409) {String} attribute_used_message Username or email already used
- * @apiError (500) {String} internal_error Internal server error
+ * @apiError (409) {Boolean} success False
+ * @apiError (409) {String} error_attr Attribute that cause error
+ * @apiError (409) {String} message Error message
+ *
+ * @apiError (500) {Boolean} success False
+ * @apiError (500) {String} message Internal server error
  */
 
 
@@ -31,41 +36,57 @@ router.post('/', (req, res) => {
   User.findOne({$or:[{username: username}, {email: email}]})
       .then(result =>{
             // If username or email is used
-            if (result){
-              if (result.username === username){
-                res.status(409).send("Username already used");
+          if (result) {
+              if (result.username === username) {
+                  res.status(409).json({
+                      success: false,
+                      error_attr : "username",
+                      message: "Username already used"
+                  });
+              } else {
+                  res.status(409).json({
+                      success: false,
+                      error_attr : "email",
+                      message: "Email already used"
+                  });
               }
-              else {
-                res.status(409).send("Email already used");
-              }
-            }
+          }
             // If username or email is not used
-            else {
+          else {
               const verificationToken = crypto.randomBytes(20).toString('hex');
               // Create new user in database
               User.create({
-                username: username,
-                email: email,
-                password: bcrypt.hashSync(password, Number(process.env.SALT)),
-                verificationToken: verificationToken
+                  username: username,
+                  email: email,
+                  password: bcrypt.hashSync(password, Number(process.env.SALT)),
+                  verificationToken: verificationToken
               })
                   .then(() =>{
                       // Send verification email
                       mailer.sendVerificationEmail(email, verificationToken)
                           // If email is sent
                           .then(()=>{
-                              res.status(202).send("Verification email sent");
+                              res.status(202).json({
+                                  success: true,
+                                  message: "Verification email sent"
+                              });
                           })
                           // Catch error when sending verification email
                           .catch(err =>{
                               console.error(err);
-                              res.status(500).send("Internal server error");
+                              res.status(500).json({
+                                  success: false,
+                                  message: "Internal server error"
+                              });
                           });
                       })
                   // Catch error when creating user
                   .catch(err =>{
                       console.error(err);
-                      res.status(500).send('Internal server error');
+                      res.status(500).json({
+                          success: false,
+                          message: "Internal server error"
+                      });
                   });
 
             }
@@ -73,7 +94,10 @@ router.post('/', (req, res) => {
       // Catch error when finding user
       .catch(err =>{
           console.error(err);
-          res.status(500).send('Internal server error');
+          res.status(500).json({
+              success: false,
+              message: "Internal server error"
+          });
       });
 });
 
