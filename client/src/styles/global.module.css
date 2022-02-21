@@ -4,16 +4,6 @@
     margin: 0;
 }
 
-.homepage {
-    background-color: #FDFDFD;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
-}
-
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
 .w3_display_bottommiddle {
     position: fixed;
@@ -45,6 +35,3 @@
     }
 }
 
-.w3_silver {
-    color: Silver;
-}
