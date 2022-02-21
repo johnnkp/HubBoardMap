@@ -1,25 +1,18 @@
-/* Apple San Francisco Pro font */
-@font-face {
-    font-family: sf_pro_display_regular;
-    src: url(font/SF-Pro-Display-Regular.otf);
-}
-
-@font-face {
-    font-family: sf_pro_display_medium;
-    src: url(font/SF-Pro-Display-Medium.otf);
-}
-
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-.sf_pro_display_regular {
-    font-family: sf_pro_display_regular;
+/* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
+.w3_display_bottommiddle {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%)
 }
 
-/* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
 /* import Slide from '@mui/material/Slide'; */
 .w3_slide_bottom {
     position: relative;
