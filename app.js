@@ -3,6 +3,8 @@ const app = express()
 const database = require('./server/database')
 const passport = require('passport')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
+
 require('dotenv').config()
 
 // Connect to database
@@ -12,7 +14,12 @@ database.connect()
 app.use(session({
     secret : process.env.SESSION_SECRET,
     resave : false,
-    saveUninitialized : false
+    saveUninitialized : false,
+    store : MongoStore.create({
+        mongoUrl : process.env.MONGODB_URI,
+        dbName : "HubBoard",
+        collectionName : 'sessions'
+    })
 }))
 app.use(passport.initialize())
 app.use(passport.session())
