@@ -88,7 +88,6 @@ router.post('/', (req, res) => {
                           message: "Internal server error"
                       });
                   });
-
             }
           })
       // Catch error when finding user
