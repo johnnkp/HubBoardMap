@@ -75,7 +75,7 @@ const Home = () => {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h2" fontSize="2em" variant="poster">
+              <Typography variant="h2" fontSize="2em">
                 Easy-to-use taks list portal
               </Typography>
             </Grid>
