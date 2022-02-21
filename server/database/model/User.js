@@ -25,6 +25,8 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     verificationToken: String,
+    profilePhoto: String,
+    googleId: String,
 })
 
 module.exports = mongoose.model('User', UserSchema);

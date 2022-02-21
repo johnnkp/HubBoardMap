@@ -1,10 +1,10 @@
 /**
- * @api {get} /auth/emailVerify/:token Email verification
+ * @api {get} /api/auth/emailVerify/:token Email verification
  *
  * @apiName Email verification
  * @apiGroup Auth
  *
- * @apiParam {String} token Token
+ * @apiParam {String} token Token for verifying email
  *
  * @apiSuccess {Boolean} success true
  * @apiSuccess {String} message Success message

@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import theme from "./Styles/theme";
+import theme from "./styles/theme";
 import App from "./App";
-import "./Styles/global.module.css";
+import "./styles/global.module.css";
 
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
