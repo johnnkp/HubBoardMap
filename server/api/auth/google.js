@@ -6,7 +6,7 @@ const CLIENT_ADDRESS = process.env.SERVER_ADDRESS + ':' + process.env.CLIENT_POR
 router.post('/',(req,res)=> {
     passport.authenticate('google', {
         scope: ['profile', 'email']
-    },(err,user,info)=> {
+    },(err,user)=> {
         if(err) {
             console.log(err);
             return res.status(500).json({
@@ -52,6 +52,7 @@ router.get('/callback',(req,res)=> {
                     message: 'Internal Server Error'
                 });
             }
+            // TODO: redirect to client when user exists
             return res.redirect(CLIENT_ADDRESS + '/user');
         });
     })(req,res);
