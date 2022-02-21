@@ -37,14 +37,14 @@ module.exports = {
         // Send a verification email to the user
         sendVerificationEmail : (email, verificationToken)=>{
             const SERVER_HOST = process.env.SERVER_HOST;
-            const SERVER_PORT = process.env.SERVER_PORT;
+            const CLIENT_PORT = process.env.CLIENT_PORT;
             const mailOptions = {
                 to: email,
                 subject: 'Welcome to HubBoard',
                 html: '<h1>Welcome to HubBoard!</h1>' +
                     '<p>You have successfully registered to HubBoard. ' +
                     'Please click the following link to verify your email address:</p>' +
-                    '<a href="' + SERVER_HOST + ':' + SERVER_PORT + '/api/auth/emailVerify/' + verificationToken + '">Verify Email</a>',
+                    '<a href="' + SERVER_HOST + ':' + CLIENT_PORT + '/auth/emailVerify/' + verificationToken + '">Verify Email</a>',
             };
             return module.exports.sendMail(mailOptions);
         },
