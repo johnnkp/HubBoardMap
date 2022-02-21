@@ -1,5 +1,5 @@
 /**
- * @api {post} /auth/login Login
+ * @api {post} /api/auth/login Login
  * @apiName Login
  * @apiGroup Auth
  *

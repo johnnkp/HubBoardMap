@@ -65,7 +65,7 @@ GET /auth/emailVerify/:token
 <p>API for login operation. Return cookie if success.</p>
 
 ```
-POST /auth/login
+POST /api/auth/login
 ```
 
 ### Request Body
