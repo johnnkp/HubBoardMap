@@ -6,8 +6,8 @@
  * @apiDescription API for login operation.
  * Return cookie if success.
  *
- * @apiParam {String} username Username
- * @apiParam {String} password Password
+ * @apiBody {String} username Username
+ * @apiBody {String} password Password
  *
  * @apiSuccess (200) {Boolean} success True
  * @apiSuccess (200) {String} message Success message

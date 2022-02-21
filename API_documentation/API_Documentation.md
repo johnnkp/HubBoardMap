@@ -1,5 +1,5 @@
 <a name="top"></a>
-# HubBoard API v0.2.0
+# HubBoard API v0.1.0
 
 HubBoard API
 
@@ -68,7 +68,7 @@ GET /auth/emailVerify/:token
 POST /auth/login
 ```
 
-### Parameters - `Parameter`
+### Request Body
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
