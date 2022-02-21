@@ -50,7 +50,7 @@ const LoginButton = (props) => {
   const isOpen = Boolean(anchorEl);
 
   return (
-    <Box {...props}>
+    <Box>
       <Button
         sx={{ maxHeight: "50%", boxShadow: 1 }}
         size="medium"

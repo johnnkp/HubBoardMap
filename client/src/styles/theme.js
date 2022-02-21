@@ -14,6 +14,10 @@ const theme = createTheme({
     //   color: "red",
     //   fontFamily: "filson_soft_regular",
     // },
+    button: {
+      fontWeight: 600,
+      fontSize: "1em",
+    },
   },
   breakpoints: {
     values: {
