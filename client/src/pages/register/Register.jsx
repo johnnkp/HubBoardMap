@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import Copyright from "../../Components/UI/Copyright.jsx";
-import classes from "../../Styles/global.module.css";
+import Copyright from "../../components/UI/Copyright.jsx";
+import classes from "../../styles/global.module.css";
 
 // create validation schema
 const validationSchema = Yup.object({

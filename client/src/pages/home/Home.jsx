@@ -1,17 +1,17 @@
 // Responsive 4K homepage
 import React from "react";
-import Wrapper from "../../Components/Helpers/Wrapper";
+import Wrapper from "../../components/Helpers/Wrapper";
 import { Link as RouterLink } from "react-router-dom";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import LoginButton from "../../Components/UI/LoginButton";
-import HubBoardIcon from "../../Image/HubBoard.svg";
-import MessageIcon from "../../Image/message_google.svg";
-import TodoIcon from "../../Image/to-do-iOS.svg";
+import LoginButton from "../../components/UI/LoginButton";
+import HubBoardIcon from "../../image/HubBoard.svg";
+import MessageIcon from "../../image/message_google.svg";
+import TodoIcon from "../../image/to-do-iOS.svg";
 import { CloudOutlined } from "@mui/icons-material";
-import Copyright from "../../Components/UI/Copyright";
+import Copyright from "../../components/UI/Copyright";
 
-import classes from "../../Styles/global.module.css";
+import classes from "../../styles/global.module.css";
 
 const OrangeText = styled("span")(({ theme }) => ({
   color: theme.palette.hOrange.main,
@@ -39,7 +39,7 @@ const Home = () => {
               alignItems="center"
               sx={{
                 transition: "all 0.4s ease-out",
-                "&:hover": { transform: "scale(1.2)" },
+                "&:hover": { transform: "scale(1.1)" },
               }}
             >
               <img src={HubBoardIcon} height="75px" alt="HubBoard Icon" />
@@ -66,7 +66,7 @@ const Home = () => {
             md={5}
             spacing={2}
             textAlign={["center", "center", "start"]}
-            ml={[0, 0, 4]}
+            ml={[0, 0, 0, 0, 4]}
             pr={2}
           >
             <Grid item xs={12}>
@@ -91,11 +91,13 @@ const Home = () => {
             </Grid>
           </Grid>
           <Grid item container xs={12} md={3} spacing={2}>
-            <Grid item xs={12} md={6} textAlign="center">
-              <img src={MessageIcon} height="100px" alt="Message Icon" />
-            </Grid>
-            <Grid item xs={12} md={6} textAlign="center">
-              <img src={TodoIcon} height="100px" alt="Todo Icon" />
+            <Grid item container xs={12} md={12} justifyContent="space-evenly">
+              <Grid item md={6} textAlign="center">
+                <img src={MessageIcon} height="100px" alt="Message Icon" />
+              </Grid>
+              <Grid item md={6} textAlign="center">
+                <img src={TodoIcon} height="100px" alt="Todo Icon" />
+              </Grid>
             </Grid>
             <Grid item xs={12} md={12} textAlign="center">
               <CloudOutlined sx={{ fontSize: "100px" }} />
@@ -104,6 +106,7 @@ const Home = () => {
           <Grid item xs={0} md={2} />
         </Grid>
         <Copyright className={classes.w3_slide_bottom_07s} />
+        <Typography color="silver">CSCI3100 Software Engineering Group Project</Typography>
       </Box>
     </Wrapper>
   );

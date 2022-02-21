@@ -134,6 +134,8 @@ const LoginButton = (props) => {
             <Grid item xs={6} textAlign="start">
               <Button
                 color="hOrange"
+                variant="outlined"
+                sx={{boxShadow: 2}}
                 LinkComponent={RouterLink}
                 to="/register"
                 startIcon={

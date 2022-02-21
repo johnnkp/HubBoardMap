@@ -15,6 +15,14 @@ const theme = createTheme({
     //   fontFamily: "filson_soft_regular",
     // },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 670,
+      md: 1080,
+      lg: 1300,
+    },
+  },
   palette: {
     hOrange: {
       main: orange[500],
@@ -23,8 +31,7 @@ const theme = createTheme({
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides:
-        (`        
+      styleOverrides: `        
       @font-face {
           font-family: 'sf_pro_display_regular';
           font-style: normal;
@@ -32,7 +39,7 @@ const theme = createTheme({
           font-weight: 400;
           src: url(${SFProDisplayRegular}) format('woff2');
           unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-        }`
+        }`,
       // sample code to add font-family
       // , `
       // @font-face {
@@ -43,7 +50,6 @@ const theme = createTheme({
       //     src: url(${FilsonSoftRegular}) format('woff2');
       //     unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
       //   }`
-      ),
     },
     MuiTextField: {
       styleOverrides: {
