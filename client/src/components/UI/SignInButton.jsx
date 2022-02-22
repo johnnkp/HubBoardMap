@@ -50,7 +50,7 @@ const LoginButton = (props) => {
   const isOpen = Boolean(anchorEl);
 
   return (
-    <Box>
+    <Box {...props}>
       <Button
         sx={{ maxHeight: "50%", boxShadow: 1 }}
         size="medium"
@@ -135,7 +135,7 @@ const LoginButton = (props) => {
               <Button
                 color="hOrange"
                 variant="outlined"
-                sx={{boxShadow: 2}}
+                sx={{ boxShadow: 2 }}
                 LinkComponent={RouterLink}
                 to="/auth/register"
                 startIcon={

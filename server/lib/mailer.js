@@ -44,7 +44,7 @@ module.exports = {
                 html: '<h1>Welcome to HubBoard!</h1>' +
                     '<p>You have successfully registered to HubBoard. ' +
                     'Please click the following link to verify your email address:</p>' +
-                    '<a href="' + SERVER_HOST + ':' + CLIENT_PORT + '/auth/emailVerify/' + verificationToken + '">Verify Email</a>',
+                    '<a href="' + SERVER_HOST + ':' + CLIENT_PORT + '/auth/' + verificationToken + '">Verify Email</a>',
             };
             return module.exports.sendMail(mailOptions);
         },
