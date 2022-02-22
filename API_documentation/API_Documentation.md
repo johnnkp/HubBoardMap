@@ -11,8 +11,10 @@ HubBoard API
   - [Resend verification email](#Resend-verification-email)
   - [User registration](#User-registration)
 - [User](#User)
+  - [Get profile photo](#Get-profile-photo)
   - [Logout](#Logout)
   - [Modify password](#Modify-password)
+  - [Upload profile photo](#Upload-profile-photo)
 
 ___
 
@@ -175,6 +177,35 @@ POST /api/auth/register
 
 # <a name='User'></a> User
 
+## <a name='Get-profile-photo'></a> Get profile photo
+[Back to top](#top)
+
+```
+GET /api/user/profilePhoto/:username
+```
+
+### Parameters - `Parameter`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| username | `String` | **optional** <p>Username of user that you want to get profile photo. If not provided, will return profile photo of current user.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| file | `File` | <p>Profile photo</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
+
 ## <a name='Logout'></a> Logout
 [Back to top](#top)
 
@@ -211,6 +242,36 @@ POST /api/user/passwordModify
 |----------|------------|---------------------------------------|
 | oldPassword | `String` | <p>Old password</p> |
 | newPassword | `String` | <p>New password</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Upload-profile-photo'></a> Upload profile photo
+[Back to top](#top)
+
+```
+POST /api/user/profilePhoto
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| profilePhoto | `File` | <p>Profile photo</p> |
 ### Success response
 
 #### Success response - `Success 200`

@@ -1,5 +1,5 @@
 /*
-    Handling /api/user requests (user operations)
+    Handling /api/user requests (only for logged-in users)
 */
 const router = require('express').Router();
 const dir = require("require-dir")();

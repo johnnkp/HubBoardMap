@@ -18,7 +18,7 @@ const User = require('../../database/model/User')
 const bcrypt = require('bcryptjs')
 require("dotenv").config();
 
-
+// TODO: check if new password is a valid password
 router.post('/',(req,res)=>{
     const {oldPassword,newPassword} = req.body;
     User.findOne({_id:req.user._id})

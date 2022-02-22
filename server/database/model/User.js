@@ -25,7 +25,10 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     verificationToken: String,
-    profilePhoto: String,
+    profilePhoto: {
+        buffer: Buffer,
+        contentType: String
+    },
     googleId: String
 })
 
