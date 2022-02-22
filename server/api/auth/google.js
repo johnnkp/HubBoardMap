@@ -32,7 +32,7 @@ router.get('/callback',(req,res)=> {
                 });
             }
             // TODO: redirect to client when user exists
-            return res.redirect(CLIENT_ADDRESS + '/user');
+            return res.send('TODO: redirect to' + CLIENT_ADDRESS + '/...');
         });
     })(req,res);
 });

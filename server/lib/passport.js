@@ -56,7 +56,7 @@ module.exports.init = () => {
                             {omitUndefined: false})
                             .then(result => {
                                 if (result) {
-                                    return done(null, false, {user: result})
+                                    return done(null, result)
                                 } else {
                                     // Case: new user using google
                                     return done(null, false, {message: 'One more step to go'})
