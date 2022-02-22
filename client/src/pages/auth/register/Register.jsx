@@ -11,7 +11,6 @@ import {
   CircularProgress,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import CheckIcon from "@mui/icons-material/Check";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -50,14 +49,14 @@ const Register = () => {
         // axios post request
         const res = await axios.post("/api/auth/register", values);
         console.log(res.data);
-        // push the route if success
+        // push the route if success after some delay
         setTimeout(() => {
           navigate("/auth/mailsuccess");
         }, 2000);
       } catch (err) {
         setIsLoading(false);
-        console.log(err.toJSON());
-        alert("Username or email have been used");
+        const { message } = err.response.data;
+        alert(message);
         actions.resetForm();
       }
     },
