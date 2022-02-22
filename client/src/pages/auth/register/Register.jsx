@@ -42,7 +42,7 @@ const Register = () => {
     // submition handler
     onSubmit: async (values, actions) => {
       try {
-        // axios post request 
+        // axios post request
         const res = await axios.post("/api/auth/register", values);
         console.log(res.data);
         // push the route if success

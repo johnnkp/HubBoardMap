@@ -49,7 +49,7 @@ const Home = () => {
                 HubBoard
               </Typography>
             </Box>
-              <SignInButton/>
+            <SignInButton sx={{ ml: [2, 2, 0] }} />
           </Grid>
           <Grid item xs={0} md={1} lg={1} xl={2} />
         </Grid>
