@@ -62,7 +62,7 @@ const Home = () => {
                 HubBoard
               </Typography>
             </Box>
-            <SignInButton />
+            <SignInButton sx={{ mr: [2, 2, 0] }} />
           </Grid>
           <Grid item xs={0} md={1} lg={1} xl={2} />
         </Grid>
@@ -188,13 +188,13 @@ const Home = () => {
             <Grid item xs={0} md={2} lg={2} />
           </Grid>
         )}
-
         <Copyright className={classes.w3_slide_bottom_07s} />
         <Typography
           textAlign="center"
           color="silver"
           variant="h6"
           fontSize="0.875em"
+          className={classes.w3_slide_bottom_07s}
         >
           CSCI3100 2021-2022 Spring Group Project
         </Typography>
