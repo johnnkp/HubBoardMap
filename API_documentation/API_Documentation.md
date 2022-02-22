@@ -8,6 +8,7 @@ HubBoard API
 - [Auth](#Auth)
   - [Email verification](#Email-verification)
   - [Login](#Login)
+  - [Resend verification email](#Resend-verification-email)
   - [User registration](#User-registration)
 - [User](#User)
   - [Logout](#Logout)
@@ -100,6 +101,36 @@ POST /api/auth/login
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Internal server error</p> |
+
+## <a name='Resend-verification-email'></a> Resend verification email
+[Back to top](#top)
+
+```
+POST /api/auth/emailResend
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| email | `String` | <p>Email address to resend a verification email.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True.</p> |
+| message | `String` | <p>Success message.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false.</p> |
+| message | `String` | <p>Error message.</p> |
 
 ## <a name='User-registration'></a> User registration
 [Back to top](#top)
