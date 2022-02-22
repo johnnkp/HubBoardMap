@@ -11,8 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import LoginButton from "../../components/UI/LoginButton";
-
+import SignInButton from "../../components/UI/SignInButton";
 import HubBoardIcon from "../../image/HubBoard.svg";
 // https://play-lh.googleusercontent.com/OY4rxeNTPaHwyOTZ-RUooqJvPnO5QUYmQcw0dhD90Mu6UWItOSZfQv7ks_FscbBow0M
 import MessageIcon from "../../image/message_google.svg";
@@ -20,7 +19,6 @@ import MessageIcon from "../../image/message_google.svg";
 import TodoIcon from "../../image/to-do-iOS.svg";
 import { CloudOutlined } from "@mui/icons-material";
 import Copyright from "../../components/UI/Copyright";
-
 import classes from "../../styles/global.module.css";
 
 const OrangeText = styled("span")(({ theme }) => ({
@@ -63,7 +61,7 @@ const Home = () => {
                 HubBoard
               </Typography>
             </Box>
-            <LoginButton sx={{ mr: [2, 2, 0] }} />
+            <SignInButton sx={{ mr: [2, 2, 0] }} />
           </Grid>
           <Grid item xs={0} md={1} lg={1} xl={2} />
         </Grid>
@@ -133,6 +131,7 @@ const Home = () => {
           color="silver"
           variant="h6"
           fontSize="0.875em"
+          className={classes.w3_slide_bottom_07s}
         >
           CSCI3100 2021-2022 Spring Group Project
         </Typography>
