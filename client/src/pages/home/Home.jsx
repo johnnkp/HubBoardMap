@@ -19,8 +19,7 @@ const OrangeText = styled("span")(({ theme }) => ({
 }));
 
 const Home = () => {
-  return (
-    <Wrapper>
+  return ( <Wrapper>
       <Box height="100%">
         <Grid container mt="1em">
           <Grid item xs={0} md={1} lg={1} xl={2} />

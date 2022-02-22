@@ -17,17 +17,20 @@ const MailVerification = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFailed, setIsFailed] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
     console.log(token);
-    try {
-      const res = await axios.get(`/api/auth/emailVerify/${token}`);
-      console.log(res.data);
-      setIsLoading(false);
-    } catch (err) {
-      console.log(err.response);
-      setIsLoading(false);
-      setIsFailed(true);
-    }
+    const verificationHandler = async () => {
+      try {
+        const res = await axios.get(`/api/auth/emailVerify/${token}`);
+        console.log(res.data);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err.response);
+        setIsLoading(false);
+        setIsFailed(true);
+      }
+    };
+    verificationHandler();
   }, [token]);
 
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Container,
@@ -8,7 +8,10 @@ import {
   Grid,
   Typography,
   Link,
+  CircularProgress,
 } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import CheckIcon from "@mui/icons-material/Check";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -30,6 +33,7 @@ const validationSchema = Yup.object({
 
 const Register = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   // formik initialization
   const formik = useFormik({
@@ -41,17 +45,21 @@ const Register = () => {
     validationSchema: validationSchema,
     // submition handler
     onSubmit: async (values, actions) => {
+      setIsLoading(true);
       try {
         // axios post request
         const res = await axios.post("/api/auth/register", values);
         console.log(res.data);
         // push the route if success
-        navigate("/auth/mailsuccess");
+        setTimeout(() => {
+          navigate("/auth/mailsuccess");
+        }, 2000);
       } catch (err) {
+        setIsLoading(false);
         console.log(err.toJSON());
+        alert("Username or email have been used");
+        actions.resetForm();
       }
-      // alert(JSON.stringify(values, null, 2));
-      actions.resetForm();
     },
   });
 
@@ -128,8 +136,13 @@ const Register = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             color="hOrange"
+            endIcon={isLoading ? null : <SendIcon />}
           >
-            Sign Up
+            {isLoading ? (
+              <CircularProgress color="grey" size="1.5em" />
+            ) : (
+              "Sign up"
+            )}
           </Button>
         </Box>
       </Box>
