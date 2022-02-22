@@ -1,10 +1,10 @@
 // Responsive 4K homepage
 import React from "react";
 import Wrapper from "../../components/Helpers/Wrapper";
+import SignInButton from "../../components/UI/SignInButton";
 import { Link as RouterLink } from "react-router-dom";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import LoginButton from "../../components/UI/LoginButton";
 import HubBoardIcon from "../../image/HubBoard.svg";
 import MessageIcon from "../../image/message_google.svg";
 import TodoIcon from "../../image/to-do-iOS.svg";
@@ -23,7 +23,7 @@ const Home = () => {
     <Wrapper>
       <Box height="100%">
         <Grid container mt="1em">
-          <Grid item xs={0} md={1} lg={1} xl={2}/>
+          <Grid item xs={0} md={1} lg={1} xl={2} />
           <Grid
             item
             container
@@ -49,9 +49,9 @@ const Home = () => {
                 HubBoard
               </Typography>
             </Box>
-            <LoginButton sx={{ mr: [2, 2, 0] }} />
+              <SignInButton/>
           </Grid>
-          <Grid item xs={0} md={1} lg={1} xl={2}/>
+          <Grid item xs={0} md={1} lg={1} xl={2} />
         </Grid>
         <Grid
           container
@@ -82,7 +82,7 @@ const Home = () => {
             <Grid item xs={12}>
               <Button
                 LinkComponent={RouterLink}
-                to="/register"
+                to="/auth/register"
                 color="hOrange"
                 variant="contained"
               >
@@ -90,21 +90,37 @@ const Home = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid item container xs={12} md={3} lg={3}  marginLeft={[0, 0, 0, 2]} marginTop={[6, 6, 6, 0, 0]}>
+          <Grid
+            item
+            container
+            xs={12}
+            md={3}
+            lg={3}
+            marginLeft={[0, 0, 0, 2]}
+            marginTop={[6, 6, 6, 0, 0]}
+          >
             <Grid item xs={6} md={6} textAlign="center">
-              <img src={MessageIcon} height="100px" alt="Message Icon"/>
+              <img src={MessageIcon} height="100px" alt="Message Icon" />
             </Grid>
-            <Grid item xs={6} md={6} textAlign='center'>
-              <img src={TodoIcon} height="100px" alt="Todo Icon"/>
+            <Grid item xs={6} md={6} textAlign="center">
+              <img src={TodoIcon} height="100px" alt="Todo Icon" />
             </Grid>
             <Grid item xs={12} md={12} textAlign="center">
-              <CloudOutlined sx={{fontSize: "100px"}}/>
+              <CloudOutlined sx={{ fontSize: "100px" }} />
             </Grid>
           </Grid>
           <Grid item xs={0} md={2} lg={2} />
         </Grid>
         <Copyright className={classes.w3_slide_bottom_07s} />
-        <Typography textAlign="center" color="silver" variant="h6" fontSize="0.875em">CSCI3100 2021-2022 Spring Group Project</Typography>
+        <Typography
+          className={classes.w3_slide_bottom_07s}
+          textAlign="center"
+          color="silver"
+          variant="h6"
+          fontSize="0.875em"
+        >
+          CSCI3100 2021-2022 Spring Group Project
+        </Typography>
       </Box>
     </Wrapper>
   );

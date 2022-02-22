@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Container,
   Button,
@@ -11,26 +11,26 @@ import {
 } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import Copyright from "../../components/UI/Copyright.jsx";
-import classes from "../../styles/global.module.css";
+import axios from "axios";
+import Copyright from "../../../components/UI/Copyright";
+import classes from "../../../styles/global.module.css";
 
 // create validation schema
 const validationSchema = Yup.object({
-  username: Yup
-    .string("Enter your username")
+  username: Yup.string("Enter your username")
     .min(3, "Username should be of minimum 3 character")
     .required("Username is required"),
-  email: Yup
-    .string("Enter your email")
+  email: Yup.string("Enter your email")
     .email("Enter a valid email")
     .required("Email is required"),
-  password: Yup
-    .string("Enter your password")
+  password: Yup.string("Enter your password")
     .min(6, "Password should be of minimum 6 character")
     .required("Password is required"),
 });
 
 const Register = () => {
+  const navigate = useNavigate();
+
   // formik initialization
   const formik = useFormik({
     initialValues: {
@@ -40,14 +40,27 @@ const Register = () => {
     },
     validationSchema: validationSchema,
     // submition handler
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.resetForm({ username: "", email: "", password: ""})
+    onSubmit: async (values, actions) => {
+      try {
+        // axios post request 
+        const res = await axios.post("/api/auth/register", values);
+        console.log(res.data);
+        // push the route if success
+        navigate("/auth/mailsuccess");
+      } catch (err) {
+        console.log(err.toJSON());
+      }
+      // alert(JSON.stringify(values, null, 2));
+      actions.resetForm();
     },
   });
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.w3_slide_bottom}>
+    <Container
+      component="main"
+      maxWidth="xs"
+      className={classes.w3_slide_bottom}
+    >
       <Box
         sx={{
           marginTop: 8,
@@ -121,7 +134,9 @@ const Register = () => {
         </Box>
       </Box>
       <Typography align="center">
-        <Link component={RouterLink} to="/" color="hOrange.main">Back To Home Page</Link>
+        <Link component={RouterLink} to="/" color="hOrange.main">
+          Back To Home Page
+        </Link>
       </Typography>
       <Copyright className={classes.w3_slide_bottom_07s} sx={{ mt: 5 }} />
     </Container>
