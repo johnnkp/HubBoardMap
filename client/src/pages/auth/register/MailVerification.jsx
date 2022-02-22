@@ -18,7 +18,7 @@ const MailVerification = () => {
   const [isFailed, setIsFailed] = useState(false);
 
   useEffect(() => {
-    console.log(token);
+    // console.log(token);
     const verificationHandler = async () => {
       try {
         const res = await axios.get(`/api/auth/emailVerify/${token}`);
@@ -41,26 +41,36 @@ const MailVerification = () => {
       alignItems="center"
     >
       <Stack direction="column" justifyContent="center">
-        <Typography textAlign="center" variant="h1">
-          <Box display={isLoading ? "inline" : "none"}>
-            <Typography>Waiting for verification</Typography>
-            <Typography>
-              <CircularProgress color="hOrange" sx={{ fontSize: "3em" }} />
-            </Typography>
-          </Box>
-          <Box display={!isLoading && isFailed ? "inline-block" : "none"}>
-            <Typography>Email verification token not found!</Typography>
-            <Typography>
-              <CancelIcon color="hOrange" sx={{ fontSize: "3em" }} />
-            </Typography>
-          </Box>
-          <Box display={!isLoading && isFailed ? "none" : "inline-block"}>
-            <Typography>Verification success</Typography>
-            <Typography>
-              <CheckCircleIcon color="hOrange" sx={{ fontSize: "3em" }} />
-            </Typography>
-          </Box>
-        </Typography>
+        <Box
+          display={isLoading ? "flex" : "none"}
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Typography variant="h1" fontSize="2em">
+            Waiting for verification
+          </Typography>
+          <CircularProgress color="hOrange" sx={{ fontSize: "3em" }} />
+        </Box>
+        <Box
+          display={!isLoading && isFailed ? "flex" : "none"}
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Typography variant="h1" fontSize="2em">
+            Email verification token not found!
+          </Typography>
+          <CancelIcon color="hOrange" sx={{ fontSize: "3em" }} />
+        </Box>
+        <Box
+          display={!isLoading && isFailed ? "none" : "flex"}
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Typography variant="h1" fontSize="2em">
+            Verification success
+          </Typography>
+          <CheckCircleIcon color="hOrange" sx={{ fontSize: "3em" }} />
+        </Box>
         <Button to="/" LinkComponent={RouterLink} color="hOrange">
           Return to homepage
         </Button>

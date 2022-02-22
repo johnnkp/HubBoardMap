@@ -55,8 +55,9 @@ const Register = () => {
         }, 2000);
       } catch (err) {
         setIsLoading(false);
-        console.log(err.toJSON());
-        alert("Username or email have been used");
+        console.log(err.response.data);
+        const errorMsg = err.response.data.message;
+        alert(errorMsg);
         actions.resetForm();
       }
     },
