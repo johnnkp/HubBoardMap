@@ -97,6 +97,9 @@ module.exports.ensureAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next()
     } else {
-        res.status(401).send({message: 'Unauthorized'})
+        res.status(401).send({
+            success: false,
+            message: 'Unauthorized'
+        })
     }
 }
