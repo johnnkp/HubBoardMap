@@ -42,12 +42,29 @@ module.exports.init = () => {
         callbackURL: SERVER_HOST + ':' + SERVER_PORT + '/api/auth/google/callback',
     },
         (accessToken, refreshToken, profile, done) => {
-            User.findOne({googleId: profile.id})
+            const profileId = profile.id;
+            // Find user by google id
+            User.findOne({googleId: profileId})
                 .then(user => {
+                    // If user found
                     if (user) {
                         return done(null, user)
                     } else {
-                        return done(null, false, {message: 'User not found'})
+                        // Find for user with the same gmail, if yes then update user info
+                        User.findOneAndUpdate({email: profile.emails[0].value},
+                            {googleId: profileId,isEmailVerified: true, verificationToken: null, },
+                            {omitUndefined: false})
+                            .then(result => {
+                                if (result) {
+                                    return done(null, false, {user: result})
+                                } else {
+                                    // Case: new user using google
+                                    return done(null, false, {message: 'One more step to go'})
+                                }
+                            })
+                            .catch(err => {
+                                return done(err)
+                            })
                     }
                 })
                 .catch(err => {
