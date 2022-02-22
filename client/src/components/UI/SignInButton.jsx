@@ -137,7 +137,7 @@ const LoginButton = (props) => {
                 variant="outlined"
                 sx={{boxShadow: 2}}
                 LinkComponent={RouterLink}
-                to="/register"
+                to="/auth/register"
                 startIcon={
                   <FontAwesomeIcon className="fa-bounce" icon={faUserPlus} />
                 }
