@@ -30,6 +30,7 @@ module.exports = {
             .catch((err) => {
               reject(err);
             });
+<<<<<<< HEAD
         })
         .catch((err) => {
           reject(err);
@@ -58,3 +59,39 @@ module.exports = {
     return module.exports.sendMail(mailOptions);
   },
 };
+=======
+            // Error handling for sending email
+            return new Promise((resolve,reject)=>{
+                transporter.verify()
+                    .then(()=>{
+                        data.from = '"HubBoard" <' + GMAIL_ACCOUNT + '>';
+                        transporter.sendMail(data)
+                            .then(()=>{
+                                resolve();
+                            })
+                            .catch((err)=>{
+                                reject(err);
+                            });
+                    })
+                    .catch(err=> {
+                        reject(err);
+                    })
+                });
+        },
+        // Send a verification email to the user
+        sendVerificationEmail : (email, verificationToken)=>{
+            const SERVER_HOST = process.env.SERVER_HOST;
+            const CLIENT_PORT = process.env.CLIENT_PORT;
+            const mailOptions = {
+                to: email,
+                subject: 'Welcome to HubBoard',
+                html: '<h1>Welcome to HubBoard!</h1>' +
+                    '<p>You have successfully registered to HubBoard. ' +
+                    'Please click the following link to verify your email address:</p>' +
+                    '<a href="' + SERVER_HOST + ':' + CLIENT_PORT + '/auth/emailVerify/' + verificationToken + '">Verify Email</a>',
+            };
+            return module.exports.sendMail(mailOptions);
+        },
+    }
+
+>>>>>>> main
