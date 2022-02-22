@@ -12,10 +12,13 @@ module.exports.init = () => {
             passwordField: 'password',
         },
         (username, password, done) => {
+            // Find user by username
             User.findOne({username: username})
                 .then(user => {
                     if (user) {
+                        // Check password
                         if (bcrypt.compareSync(password, user.password)) {
+                            // Check if email is verified
                             if (user.isEmailVerified) {
                                 return done(null, user);
                             } else {

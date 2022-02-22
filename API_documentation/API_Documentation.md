@@ -12,6 +12,7 @@ HubBoard API
   - [User registration](#User-registration)
 - [User](#User)
   - [Logout](#Logout)
+  - [Modify password](#Modify-password)
 
 ___
 
@@ -196,4 +197,35 @@ POST /api/user/logout
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | message | `String` | <p>&quot;Unauthorized&quot;.</p> |
+
+## <a name='Modify-password'></a> Modify password
+[Back to top](#top)
+
+```
+POST /api/user/passwordModify
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| oldPassword | `String` | <p>Old password</p> |
+| newPassword | `String` | <p>New password</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
 
