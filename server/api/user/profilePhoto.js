@@ -24,7 +24,9 @@ const upload = multer({
  * @apiName UploadProfilePhoto
  * @apiGroup User
  *
- * @apiBody {File} profilePhoto Profile photo
+ * @apiBody {File} profilePhoto Profile photo.
+ * A file with a file extension of .jpg, .jpeg, or .png and a size of less than 1 MB.
+ *
  *
  * @apiSuccess {Boolean} success True
  * @apiSuccess {String} message Success message
@@ -73,7 +75,8 @@ router.post('/',(req, res) => {
  * @apiParam {String} [username] Username of user that you want to get profile photo.
  * If not provided, will return profile photo of current user.
  *
- * @apiSuccess {File} file Profile photo
+ * @apiSuccess {File} file Profile photo.
+ * If no profile photo exists, will return a default profile photo.
  *
  * @apiError {Boolean} success False
  * @apiError {String} message Error message

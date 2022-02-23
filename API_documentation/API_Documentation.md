@@ -195,7 +195,7 @@ GET /api/user/profilePhoto/:username
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| file | `File` | <p>Profile photo</p> |
+| file | `File` | <p>Profile photo. If no profile photo exists, will return a default profile photo.</p> |
 
 ### Error response
 
@@ -271,7 +271,7 @@ POST /api/user/profilePhoto
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| profilePhoto | `File` | <p>Profile photo</p> |
+| profilePhoto | `File` | <p>Profile photo. A file with a file extension of .jpg, .jpeg, or .png and a size of less than 1 MB.</p> |
 ### Success response
 
 #### Success response - `Success 200`
