@@ -24,7 +24,8 @@ const theme = createTheme({
             xs: 0,
             sm: 535,
             md: 670,
-            lg: 1300,
+            lg: 870,
+            xl: 1300,
         },
     },
     palette: {
