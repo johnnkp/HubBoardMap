@@ -5,6 +5,8 @@ HubBoard API
 
 # Table of contents
 
+- [Admin](#Admin)
+  - [Get all user](#Get-all-user)
 - [Auth](#Auth)
   - [Email verification](#Email-verification)
   - [Google Authentication](#Google-Authentication)
@@ -20,6 +22,32 @@ HubBoard API
 
 ___
 
+
+# <a name='Admin'></a> Admin
+
+## <a name='Get-all-user'></a> Get all user
+[Back to top](#top)
+
+```
+GET /api/admin/getAllUser
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True.</p> |
+| users | `Object` | <p>User data.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False.</p> |
+| message | `String` | <p>Error message.</p> |
 
 # <a name='Auth'></a> Auth
 

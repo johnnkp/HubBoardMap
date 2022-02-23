@@ -96,11 +96,28 @@ module.exports.init = () => {
 
 module.exports.ensureAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
-        return next()
+        if (req.user.isEmailVerified)
+            return next();
+        else
+            return res.status(403).json({
+                success: false,
+                message: 'Please verify your email first'
+            });
     } else {
         res.status(401).send({
             success: false,
             message: 'Unauthorized'
+        })
+    }
+}
+
+module.exports.ensureAdmin = (req, res, next) => {
+    if (req.user.isAdmin) {
+        return next()
+    } else {
+        res.status(403).send({
+            success: false,
+            message: 'Not admin user'
         })
     }
 }
