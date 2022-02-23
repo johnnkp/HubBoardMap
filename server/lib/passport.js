@@ -38,11 +38,11 @@ module.exports.init = () => {
     ))
 
     // Use google strategy
-    const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SERVER_HOST ,SERVER_PORT } = process.env;
+    const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SERVER_HOST ,CLIENT_PORT  } = process.env;
     passport.use('google', new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: SERVER_HOST + ':' + SERVER_PORT + '/api/auth/google/callback',
+        callbackURL: SERVER_HOST + ':' + CLIENT_PORT + '/googlecb',
     },
         (accessToken, refreshToken, profile, done) => {
             const profileId = profile.id;
@@ -54,7 +54,8 @@ module.exports.init = () => {
                         return done(null, user)
                     } else {
                         // Find for user with the same gmail, if yes then update user info
-                        User.findOneAndUpdate({email: profile.emails[0].value},
+                        const gmail = profile.emails[0].value;
+                        User.findOneAndUpdate({email: gmail},
                             {googleId: profileId,isEmailVerified: true, verificationToken: null, },
                             {omitUndefined: false})
                             .then(result => {
@@ -62,7 +63,7 @@ module.exports.init = () => {
                                     return done(null, result)
                                 } else {
                                     // Case: new user using google
-                                    return done(null, false, {message: 'One more step to go'})
+                                    return done(null, false, {email: gmail})
                                 }
                             })
                             .catch(err => {

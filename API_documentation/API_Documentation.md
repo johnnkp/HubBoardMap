@@ -7,6 +7,8 @@ HubBoard API
 
 - [Auth](#Auth)
   - [Email verification](#Email-verification)
+  - [Google Authentication](#Google-Authentication)
+  - [Google Authentication Callback](#Google-Authentication-Callback)
   - [Login](#Login)
   - [Resend verification email](#Resend-verification-email)
   - [User registration](#User-registration)
@@ -64,6 +66,52 @@ GET /api/auth/emailVerify/:token
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false</p> |
 | message | `String` | <p>Internal server error</p> |
+
+## <a name='Google-Authentication'></a> Google Authentication
+[Back to top](#top)
+
+<p>redirects to google authentication page</p>
+
+```
+POST /auth/google
+```
+
+## <a name='Google-Authentication-Callback'></a> Google Authentication Callback
+[Back to top](#top)
+
+<p>Handle callback from Google authentication</p>
+
+```
+POST /auth/google/callback
+```
+
+### Query Parameters
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| code | `String` |  |
+| scope | `String` |  |
+| authuser | `String` |  |
+| promote | `String` |  |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| redirectPage | `String` | <p>Page to redirect</p> |
+| message | `String` | <p>Success message</p> |
+| email | `String` | <p>User email from Google profile for registration, undefined if login successful.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
 
 ## <a name='Login'></a> Login
 [Back to top](#top)
