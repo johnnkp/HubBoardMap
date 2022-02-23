@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Button,
   Grid,
@@ -7,25 +7,31 @@ import {
   Typography,
   Popover,
   Box,
+  CircularProgress,
 } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import axios from "axios";
 import { LoginRounded } from "@mui/icons-material";
+import CheckIcon from "@mui/icons-material/Check";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 // create yup validation schema
 const validationSchema = Yup.object({
-  email: Yup.string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
+  username: Yup.string("Enter your username").required("Email is required"),
   password: Yup.string("Enter your password")
     .min(6, "Password should be of minimum 6 character")
     .required("Password is required"),
 });
 
-const LoginButton = (props) => {
+const SignInButton = (props) => {
+  // initialize navigator
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -37,13 +43,29 @@ const LoginButton = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.resetForm({ email: "", password: "" });
+    onSubmit: async (values, actions) => {
+      setIsLoading(true);
+      try {
+        const res = await axios.post("/api/auth/login", values);
+        console.log(res);
+        setIsSuccess(true);
+        setIsLoading(false);
+        setTimeout(() => {
+          navigate("/hubboard");
+        }, 2000);
+      } catch (err) {
+        setIsLoading(false);
+        setIsSuccess(false);
+        console.log(err.response.data);
+        const errorMsg = err.response.data.message;
+        alert(errorMsg);
+        actions.resetForm();
+      }
+      // alert(JSON.stringify(values, null, 2));
     },
   });
 
@@ -89,22 +111,23 @@ const LoginButton = (props) => {
               <TextField
                 required
                 fullWidth
-                autoComplete="email"
-                id="email"
-                label="Email"
-                name="email"
-                value={formik.values.email}
+                id="username"
+                label="Username"
+                name="username"
+                value={formik.values.username}
                 onChange={formik.handleChange}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
+                error={
+                  formik.touched.username && Boolean(formik.errors.username)
+                }
+                helperText={formik.touched.username && formik.errors.username}
               />
             </Grid>
             <Grid item xs={12} textAlign="center">
               <TextField
                 required
                 fullWidth
-                id="password"
                 label="Password"
+                type="password"
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
@@ -121,7 +144,13 @@ const LoginButton = (props) => {
                 size="medium"
                 type="submit"
               >
-                Log in
+                {isLoading ? (
+                  <CircularProgress color="grey" size="1.5em" />
+                ) : isSuccess ? (
+                  <CheckIcon />
+                ) : (
+                  "Log in"
+                )}
               </Button>
             </Grid>
           </Grid>
@@ -152,4 +181,4 @@ const LoginButton = (props) => {
   );
 };
 
-export default LoginButton;
+export default SignInButton;

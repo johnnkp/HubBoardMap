@@ -7,6 +7,7 @@ import Auth from "./pages/auth/Auth";
 import Register from "./pages/auth/register/Register";
 import MailSuccess from "./pages/auth/register/MailSuccess";
 import MailVerification from "./pages/auth/register/MailVerification";
+import HubboardMain from "./pages/hubboard/HubboardMain";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="mailsuccess" element={<MailSuccess />} />
           <Route path=":token" element={<MailVerification />} />
         </Route>
+        <Route path="/hubboard" element={<HubboardMain />}></Route>
       </Routes>
     </Router>
   );
