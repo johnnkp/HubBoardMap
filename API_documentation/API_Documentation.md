@@ -6,7 +6,7 @@ HubBoard API
 # Table of contents
 
 - [Admin](#Admin)
-  - [Get all user](#Get-all-user)
+  - [Get all user data](#Get-all-user-data)
 - [Auth](#Auth)
   - [Email verification](#Email-verification)
   - [Google Authentication](#Google-Authentication)
@@ -25,7 +25,7 @@ ___
 
 # <a name='Admin'></a> Admin
 
-## <a name='Get-all-user'></a> Get all user
+## <a name='Get-all-user-data'></a> Get all user data
 [Back to top](#top)
 
 ```
@@ -309,7 +309,7 @@ POST /api/user/logout
 [Back to top](#top)
 
 ```
-POST /api/user/passwordModify
+PUT /api/user/passwordModify
 ```
 
 ### Request Body
@@ -340,7 +340,7 @@ POST /api/user/passwordModify
 [Back to top](#top)
 
 ```
-POST /api/user/profilePhoto
+PUT /api/user/profilePhoto
 ```
 
 ### Request Body

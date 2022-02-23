@@ -20,7 +20,7 @@ const upload = multer({
 });
 
 /**
- * @api {post} /api/user/profilePhoto Upload profile photo
+ * @api {put} /api/user/profilePhoto Upload profile photo
  * @apiName UploadProfilePhoto
  * @apiGroup User
  *
@@ -34,7 +34,7 @@ const upload = multer({
  * @apiError {Boolean} success False
  * @apiError {String} message Error message
  */
-router.post('/',(req, res) => {
+router.put('/',(req, res) => {
     upload.single('profilePhoto')(req, res, (err) => {
         // Check for errors
         if (err) {

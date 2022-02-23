@@ -1,5 +1,5 @@
 /**
- * @api {post} /api/user/passwordModify Modify password
+ * @api {put} /api/user/passwordModify Modify password
  * @apiName ModifyPassword
  * @apiGroup User
  *
@@ -19,7 +19,7 @@ const bcrypt = require('bcryptjs')
 require("dotenv").config();
 
 // TODO: check if new password is a valid password
-router.post('/',(req,res)=>{
+router.put('/',(req,res)=>{
     const {oldPassword,newPassword} = req.body;
     User.findOne({_id:req.user._id})
         .then(user=> {

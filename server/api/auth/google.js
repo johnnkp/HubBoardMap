@@ -9,7 +9,7 @@ const CLIENT_ADDRESS = process.env.SERVER_HOST + ':' + process.env.CLIENT_PORT;
  * @apiName GoogleAuth
  * @apiGroup Auth
  */
-router.get('/',(req,res)=> {
+router.post('/',(req,res)=> {
     passport.authenticate('google', {
         scope: ['profile', 'email']
     })(req,res);
