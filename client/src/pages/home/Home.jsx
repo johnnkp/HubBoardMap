@@ -28,9 +28,11 @@ const OrangeText = styled("span")(({theme}) => ({
 }));
 
 const Home = () => {
-    const isQHD = useMediaQuery(useTheme().breakpoints.up("xl"), {noSsr: true});
-    // useMediaQuery: min-width = window.innerWidth
     // branch protection: unnoticed-delete protection against demo merge
+    const isQHD = useMediaQuery(useTheme().breakpoints.up("xl"), {noSsr: true});
+    const isHD = useMediaQuery(useTheme().breakpoints.down("lg"), {noSsr: true});
+    const isMobile = useMediaQuery(useTheme().breakpoints.down("md"), {noSsr: true});
+    // useMediaQuery: min-width = window.innerWidth
     const intViewportWidth = window.innerWidth;
 
     return (
@@ -68,12 +70,11 @@ const Home = () => {
                     <Grid item xs={0} md={1} lg={1} xl={2}/>
                 </Grid>
 
-                <Grid
-                    container
-                    className={classes.w3_slide_bottom}
-                    gap={2}
-                    mt={isQHD ? 16 : 13}
-                    mb={isQHD ? 16 : 13}
+                <Grid container className={classes.w3_slide_bottom} gap={2}
+                      mt={isQHD ? 16 :
+                          (isHD ? 11 : 12)}
+                      mb={isQHD ? 16 :
+                          (isHD ? 10 : 12)}
                 >
                     <Grid item xs={0} md={2} lg={2}/>
                     <Grid
@@ -90,7 +91,7 @@ const Home = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h2" fontSize="2em">
+                            <Typography fontSize={isHD ? "180%" : "2em"}>
                                 Easy-to-use task list portal
                             </Typography>
                         </Grid>
@@ -105,6 +106,7 @@ const Home = () => {
                             </Button>
                         </Grid>
                     </Grid>
+
                     <Grid
                         item
                         container
@@ -117,7 +119,7 @@ const Home = () => {
                         <Grid item xs={6} md={6} textAlign="center">
                             <img src={MessageIcon} height="100px" alt="Message Icon"/>
                         </Grid>
-                        <Grid item xs={6} md={6} textAlign="center">
+                        <Grid item xs={6} md={6} textAlign="center" pl={isHD && !isMobile ? (2) : "initial"}>
                             <img src={TodoIcon} height="100px" alt="Todo Icon"/>
                         </Grid>
                         <Grid item xs={12} md={12} textAlign="center" pt="5%">

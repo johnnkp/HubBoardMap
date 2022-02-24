@@ -22,10 +22,10 @@ const theme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
-            sm: 535,
-            md: 670,
-            lg: 870,
-            xl: 1300,
+            sm: 670,
+            md: 785, // Mobile
+            lg: 870, // FHD
+            xl: 1300, // QHD
         },
     },
     palette: {
