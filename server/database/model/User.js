@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
 
 // Define the User schema
 const UserSchema = new mongoose.Schema({
@@ -31,5 +32,11 @@ const UserSchema = new mongoose.Schema({
     },
     googleId: String
 })
+
+UserSchema.methods.changePassword = function(newPassword) {
+    // Store the hashed new password in the database
+    this.password = bcrypt.hashSync(newPassword, Number(process.env.SALT));
+    return this.save();
+}
 
 module.exports = mongoose.model('User', UserSchema);

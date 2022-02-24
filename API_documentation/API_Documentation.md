@@ -1,5 +1,5 @@
 <a name="top"></a>
-# HubBoard API v0.1.0
+# HubBoard API v0.0.0
 
 HubBoard API
 
@@ -7,6 +7,7 @@ HubBoard API
 
 - [Admin](#Admin)
   - [Get all user data](#Get-all-user-data)
+  - [Reset User Password](#Reset-User-Password)
 - [Auth](#Auth)
   - [Email verification](#Email-verification)
   - [Google Authentication](#Google-Authentication)
@@ -48,6 +49,37 @@ GET /api/admin/getAllUser
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False.</p> |
 | message | `String` | <p>Error message.</p> |
+
+## <a name='Reset-User-Password'></a> Reset User Password
+[Back to top](#top)
+
+```
+PUT /api/admin/resetUserPassword
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| username | `String` | <p>Username of the user to reset password</p> |
+| password | `String` | <p>New password to set</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
 
 # <a name='Auth'></a> Auth
 

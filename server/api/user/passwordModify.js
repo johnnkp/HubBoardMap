@@ -29,8 +29,7 @@ router.put('/',(req,res)=>{
                     message: "User not found"
                 })
             } else if (bcrypt.compareSync(oldPassword, user.password)) {
-                user.password = bcrypt.hashSync(newPassword, Number(process.env.SALT));
-                user.save()
+                user.changePassword(newPassword)
                     .then(() => {
                         res.status(200).json({
                             success: true,
