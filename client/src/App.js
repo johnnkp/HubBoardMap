@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // import Pages
 import Home from "./pages/home/Home";
@@ -11,7 +11,6 @@ import HubboardMain from "./pages/hubboard/HubboardMain";
 
 const App = () => {
   return (
-    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />}>
@@ -20,8 +19,8 @@ const App = () => {
           <Route path=":token" element={<MailVerification />} />
         </Route>
         <Route path="/hubboard" element={<HubboardMain />}></Route>
+        <Route path="*" element={<h1>404 Not found</h1>} />
       </Routes>
-    </Router>
   );
 };
 
