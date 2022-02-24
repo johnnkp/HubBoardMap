@@ -1,4 +1,4 @@
-// Responsive 4K homepage
+// Responsive homepage
 import React from "react";
 import Wrapper from "../../components/Helpers/Wrapper";
 import {Link as RouterLink} from "react-router-dom";
@@ -28,12 +28,22 @@ const OrangeText = styled("span")(({theme}) => ({
 }));
 
 const Home = () => {
-    // branch protection: unnoticed-delete protection against demo merge
+    let logoAnimation = {
+        transition: "all 0.4s ease-out",
+        "&:hover": {transform: "scale(1.2)"},
+    };
     const isQHD = useMediaQuery(useTheme().breakpoints.up("xl"), {noSsr: true});
     const isHD = useMediaQuery(useTheme().breakpoints.down("lg"), {noSsr: true});
     const isMobile = useMediaQuery(useTheme().breakpoints.down("md"), {noSsr: true});
     // useMediaQuery: min-width = window.innerWidth
-    const intViewportWidth = window.innerWidth;
+    // const intViewportWidth = window.innerWidth;
+
+    if (isMobile === true) {
+        logoAnimation = {
+            transition: "all 0.5s ease-out",
+            "&:hover": {transform: "scale(1.15)"},
+        }
+    }
 
     return (
         <Wrapper>
@@ -55,10 +65,7 @@ const Home = () => {
                             ml={[2, 2, 0]}
                             display="flex"
                             alignItems="center"
-                            sx={{
-                                transition: "all 0.4s ease-out",
-                                "&:hover": {transform: "scale(1.2)"},
-                            }}
+                            sx={logoAnimation}
                         >
                             <img src={HubBoardIcon} height="75px" alt="HubBoard Icon"/>
                             <Typography fontSize="1.7em" ml={isQHD ? 4 : 2}>
@@ -139,10 +146,10 @@ const Home = () => {
                         CSCI3100 Software Engineering Group Project
                     </Typography>
                 </Link>
-                <p>intViewportWidth: {intViewportWidth}</p>
             </Box>
         </Wrapper>
     );
+    // <p>intViewportWidth: {intViewportWidth}</p>
 };
 
 export default Home;
