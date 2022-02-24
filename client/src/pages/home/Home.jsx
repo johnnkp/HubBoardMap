@@ -105,7 +105,7 @@ const Home = () => {
                         <Grid item xs={12} pt="3%">
                             <Button
                                 LinkComponent={RouterLink}
-                                to="/auth/register"
+                                to="/signup"
                                 color="hOrange"
                                 variant="contained"
                             >

@@ -11,16 +11,16 @@ import HubboardMain from "./pages/hubboard/HubboardMain";
 
 const App = () => {
   return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<Auth />}>
-          <Route path="register" element={<Register />} />
-          <Route path="mailsuccess" element={<MailSuccess />} />
-          <Route path=":token" element={<MailVerification />} />
-        </Route>
-        <Route path="/hubboard" element={<HubboardMain />}></Route>
-        <Route path="*" element={<h1>404 Not found</h1>} />
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="signup" element={<Register />} />
+      <Route path="/auth" element={<Auth />}>
+        <Route path="mailsuccess" element={<MailSuccess />} />
+        <Route path=":token" element={<MailVerification />} />
+      </Route>
+      <Route path="/hubboard" element={<HubboardMain />}></Route>
+      <Route path="*" element={<h1>404 Not found</h1>} />
+    </Routes>
   );
 };
 
