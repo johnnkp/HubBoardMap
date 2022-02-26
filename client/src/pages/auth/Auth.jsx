@@ -1,16 +1,8 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-
-import MailSuccess from "./register/MailSuccess";
-import MailVerification from "./register/MailVerification";
+import { Outlet } from "react-router-dom";
 
 const Auth = () => {
-  return (
-    <Routes>
-      <Route path="mailsuccess" element={<MailSuccess />} />
-      <Route path=":token" element={<MailVerification />} />
-    </Routes>
-  );
+  return <Outlet />;
 };
 
 export default Auth;
