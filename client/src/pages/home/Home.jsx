@@ -21,7 +21,6 @@ import TodoIcon from "../../image/to-do-iOS.svg";
 import { CloudOutlined } from "@mui/icons-material";
 import Copyright from "../../components/UI/Copyright";
 import classes from "../../styles/global.module.css";
-import { useSelector } from "react-redux";
 
 const OrangeText = styled("span")(({ theme }) => ({
   color: theme.palette.hOrange.main,
