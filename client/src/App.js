@@ -26,7 +26,7 @@ const App = () => {
         path="/hubboard"
         element={<Hubboard isAuthenticated={isAuthenticated} />}
       >
-        <Route path="" element={<h1>You in Mainpage</h1>} />
+        <Route path="" element={<Mainpage />} />
         <Route path="profile" element={<h1>You in profile page</h1>} />
       </Route>
       <Route path="*" element={<h1>404 Not found</h1>} />
