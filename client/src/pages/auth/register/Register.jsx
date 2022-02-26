@@ -11,6 +11,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import GoogleIcon from "@mui/icons-material/Google";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -34,7 +35,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
-  // formik initialization
+  // INFO: formik initialization
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -42,14 +43,14 @@ const Register = () => {
       password: "",
     },
     validationSchema: validationSchema,
-    // submition handler
+    // INFO: sign up submition handler
     onSubmit: async (values, actions) => {
       setIsLoading(true);
       try {
-        // axios post request
+        // INFO: axios post request
         const res = await axios.post("/api/auth/register", values);
         console.log(res.data);
-        // push the route if success
+        // INFO: push the route if success
         setTimeout(() => {
           navigate("/auth/mailsuccess");
         }, 2000);
@@ -58,10 +59,13 @@ const Register = () => {
         console.log(err.response.data);
         const errorMsg = err.response.data.message;
         alert(errorMsg);
-        actions.resetForm();
       }
     },
   });
+
+  const googleLoginHandler = async () => {
+    // TODO: google login handler
+  };
 
   return (
     <Container
@@ -130,20 +134,34 @@ const Register = () => {
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            color="hOrange"
-            endIcon={isLoading ? null : <SendIcon />}
-          >
-            {isLoading ? (
-              <CircularProgress color="grey" size="1.5em" />
-            ) : (
-              "Sign up"
-            )}
-          </Button>
+          <Grid item container spacing={1} sx={{ mt: 1, md: 1 }}>
+            <Grid item xs={12} md={6}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="hOrange"
+                endIcon={isLoading ? null : <SendIcon />}
+              >
+                {isLoading ? (
+                  <CircularProgress color="grey" size="1.5em" />
+                ) : (
+                  "Sign up"
+                )}
+              </Button>
+            </Grid>
+            <Grid item sm={12} md={6}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="hOrange"
+                endIcon={<GoogleIcon />}
+                onClick={googleLoginHandler}
+              >
+                Google Login
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
       </Box>
       <Typography align="center">
