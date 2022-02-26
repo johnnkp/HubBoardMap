@@ -16,6 +16,8 @@ import { LoginRounded } from "@mui/icons-material";
 import CheckIcon from "@mui/icons-material/Check";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/slice/auth";
 
 // create yup validation schema
 const validationSchema = Yup.object({
@@ -32,6 +34,7 @@ const SignInButton = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -54,6 +57,8 @@ const SignInButton = (props) => {
         console.log(res);
         setIsSuccess(true);
         setIsLoading(false);
+        dispatch(authActions.login());
+        sessionStorage.setItem("isAuthenticated", true);
         setTimeout(() => {
           navigate("/hubboard");
         }, 2000);

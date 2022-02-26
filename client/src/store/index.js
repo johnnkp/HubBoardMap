@@ -1,12 +1,22 @@
-import { createStore } from "redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 // INFO: import reducers
-// import reducers from "./reducers/index"
+import { authReducer } from "./slice";
 
-const sampleReducer = (state = {}, action) => {
-  return state;
-};
+// INFO: sample code to create slice
+// const sampleSlice = createSlice({
+//   name: "testing",
+//   initialState: {},
+//   reducers: {
+//     test1(state, action) {},
+//     test2(state, action) {},
+//     test3(state, action) {},
+//     // ...
+//   },
+// });
 
-const store = createStore(sampleReducer);
+const store = configureStore({
+  reducer: { auth: authReducer },
+});
 
 export default store;
