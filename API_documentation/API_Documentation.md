@@ -20,6 +20,7 @@ HubBoard API
   - [Logout](#Logout)
   - [Modify password](#Modify-password)
   - [Upload profile photo](#Upload-profile-photo)
+  - [Verify if user is authenticated](#Verify-if-user-is-authenticated)
 
 ___
 
@@ -331,11 +332,12 @@ POST /api/user/logout
 
 ### Error response
 
-#### Error response - `401`
+#### Error response - `Error 4xx`
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| message | `String` | <p>&quot;Unauthorized&quot;.</p> |
+| success | `Boolean` | <p>false.</p> |
+| message | `String` | <p>Error message.</p> |
 
 ## <a name='Modify-password'></a> Modify password
 [Back to top](#top)
@@ -397,4 +399,28 @@ PUT /api/user/profilePhoto
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Error message</p> |
+
+## <a name='Verify-if-user-is-authenticated'></a> Verify if user is authenticated
+[Back to top](#top)
+
+```
+POST /api/user/authVerify
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true if user is authenticated</p> |
+| message | `String` | <p>message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false if user is not authenticated</p> |
+| message | `String` | <p>message</p> |
 

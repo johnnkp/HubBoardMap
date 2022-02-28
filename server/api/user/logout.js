@@ -6,14 +6,15 @@
  * @apiSuccess {Boolean} success true.
  * @apiSuccess {String} message Success message
  *
- * @apiError (401) {String} message "Unauthorized".
+ * @apiError {Boolean} success false.
+ * @apiError {String} message Error message.
  */
 
 const router = require('express').Router();
 
 router.post('/',(req, res) => {
     req.logout();
-    res.send({
+    res.json({
         success: true,
         message: 'Logged out successfully'
     });
