@@ -58,7 +58,6 @@ const SignInButton = (props) => {
         setIsSuccess(true);
         setIsLoading(false);
         dispatch(authActions.login());
-        sessionStorage.setItem("isAuthenticated", true);
         setTimeout(() => {
           navigate("/hubboard");
         }, 2000);

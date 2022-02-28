@@ -7,10 +7,9 @@ const Mainpage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutHandler = () => {
-    dispatch(authActions.logout);
-    sessionStorage.removeItem("isAuthenticated");
+    dispatch(authActions.logout());
     setTimeout(() => {
-      navigate("/", { replace: false });
+      navigate("/", { replace: true });
     }, 2000);
   };
   return (

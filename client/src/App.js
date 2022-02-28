@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // console.log(isAuthenticated);
   return (
     <Routes>
       <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />
