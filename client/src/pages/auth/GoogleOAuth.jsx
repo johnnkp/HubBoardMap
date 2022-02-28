@@ -11,7 +11,6 @@ const GoogleOAuth = () => {
   for (let pair of searchParams.entries()) {
     queryParams[pair[0]] = pair[1];
   }
-
   useEffect(() => {
     const googleCallback = async () => {
       try {
