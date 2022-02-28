@@ -63,12 +63,6 @@ const Register = () => {
     },
   });
 
-  const googleLoginHandler = () => {
-    // TODO: google login handler
-    // INFO: axios post request to goole
-    // navigate("/api/auth/goole");
-  };
-
   return (
     <Container
       component="main"
@@ -158,7 +152,7 @@ const Register = () => {
                 variant="contained"
                 color="hOrange"
                 endIcon={<GoogleIcon />}
-                onClick={googleLoginHandler}
+                href="localhost:3001/api/auth/google"
               >
                 Google Login
               </Button>
