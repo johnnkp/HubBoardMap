@@ -1,7 +1,7 @@
 // Responsive homepage
-import React, { useEffect } from "react";
+import React from "react";
 import Wrapper from "../../components/Helpers/Wrapper";
-import { Link as RouterLink, Navigate, useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Button,
@@ -21,9 +21,6 @@ import TodoIcon from "../../image/to-do-iOS.svg";
 import { CloudOutlined } from "@mui/icons-material";
 import Copyright from "../../components/UI/Copyright";
 import classes from "../../styles/global.module.css";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../store/slice/auth";
 
 const OrangeText = styled("span")(({ theme }) => ({
   color: theme.palette.hOrange.main,

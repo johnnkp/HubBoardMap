@@ -54,7 +54,7 @@ const SignInButton = (props) => {
       setIsLoading(true);
       try {
         const res = await axios.post("/api/auth/login", values);
-        console.log(res.data);
+        // console.log(res.data);
         setIsSuccess(true);
         setIsLoading(false);
         dispatch(authActions.login());
@@ -64,7 +64,7 @@ const SignInButton = (props) => {
       } catch (err) {
         setIsLoading(false);
         setIsSuccess(false);
-        console.log(err.response.data);
+        // console.log(err.response.data);
         const errorMsg = err.response.data.message;
         alert(errorMsg);
         actions.resetForm();
