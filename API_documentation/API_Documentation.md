@@ -133,7 +133,7 @@ GET /api/auth/emailVerify/:token
 <p>redirects to google authentication page</p>
 
 ```
-POST /auth/google
+POST /api/auth/google
 ```
 
 ## <a name='Google-Authentication-Callback'></a> Google Authentication Callback
@@ -142,7 +142,7 @@ POST /auth/google
 <p>Handle callback from Google authentication</p>
 
 ```
-POST /auth/google/callback
+POST /api/auth/google/callback
 ```
 
 ### Query Parameters

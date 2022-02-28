@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const CLIENT_ADDRESS = process.env.SERVER_HOST + ':' + process.env.CLIENT_PORT;
 /**
- * @api {post} /auth/google Google Authentication
+ * @api {post} /api/auth/google Google Authentication
  * @apiDescription redirects to google authentication page
  * @apiName GoogleAuth
  * @apiGroup Auth
@@ -16,7 +16,7 @@ router.post('/',(req,res)=> {
 });
 
 /**
- * @api {post} /auth/google/callback Google Authentication Callback
+ * @api {post} /api/auth/google/callback Google Authentication Callback
  * @apiDescription Handle callback from Google authentication
  * @apiName GoogleAuthCallback
  * @apiGroup Auth
