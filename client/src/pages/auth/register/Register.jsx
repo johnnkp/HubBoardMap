@@ -66,7 +66,7 @@ const Register = () => {
   const googleLoginHandler = () => {
     // TODO: google login handler
     // INFO: axios post request to goole
-    navigate("/api/auth/goole");
+    // navigate("/api/auth/goole");
   };
 
   return (

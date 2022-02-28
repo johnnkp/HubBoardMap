@@ -1,5 +1,9 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import axios from "axios";
+// INFO: import useSelector to get the state from redux
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "./store/slice/auth";
 
 // INFO: import Pages
 import Home from "./pages/home/Home";
@@ -8,10 +12,21 @@ import Hubboard from "./pages/hubboard/Hubboard";
 import { MailSuccess, MailVerification, Register } from "./pages/auth/register";
 import { Mainpage } from "./pages/hubboard/main";
 
-// INFO: import useSelector to get the state from redux
-import { useSelector } from "react-redux";
-
 const App = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate;
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const res = await axios.post("/api/user/authVerify");
+        if (res.data.success) {
+          dispatch(authActions.login());
+          navigate("/hubboard");
+        }
+      } catch (err) {}
+    };
+    verify();
+  });
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   // console.log(isAuthenticated);
   return (
