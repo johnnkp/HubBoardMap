@@ -10,6 +10,7 @@ import Home from "./pages/home/Home";
 import Auth from "./pages/auth/Auth";
 import Hubboard from "./pages/hubboard/Hubboard";
 import { MailSuccess, MailVerification, Register } from "./pages/auth/register";
+import GoogleOAuth from "./pages/auth/GoogleOAuth";
 import { Mainpage } from "./pages/hubboard/main";
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="mailsuccess" element={<MailSuccess />} />
         <Route path=":token" element={<MailVerification />} />
       </Route>
+      <Route path="/googlecb" element={<GoogleOAuth />} />
       <Route
         path="/hubboard"
         element={<Hubboard isAuthenticated={isAuthenticated} />}
