@@ -8,6 +8,7 @@ HubBoard API
 - [Admin](#Admin)
   - [Get all user data](#Get-all-user-data)
   - [Reset User Password](#Reset-User-Password)
+  - [Verify if user is admin](#Verify-if-user-is-admin)
 - [Auth](#Auth)
   - [Email verification](#Email-verification)
   - [Google Authentication](#Google-Authentication)
@@ -81,6 +82,30 @@ PUT /api/admin/resetUserPassword
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false</p> |
 | message | `String` | <p>Error message</p> |
+
+## <a name='Verify-if-user-is-admin'></a> Verify if user is admin
+[Back to top](#top)
+
+```
+POST /api/admin/adminVerify
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true if user is admin</p> |
+| message | `String` | <p>message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false if user is not admin</p> |
+| message | `String` | <p>message</p> |
 
 # <a name='Auth'></a> Auth
 
