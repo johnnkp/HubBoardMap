@@ -17,6 +17,7 @@ import { useFormik } from "formik";
 import axios from "axios";
 import Copyright from "../../../components/UI/Copyright";
 import classes from "../../../styles/global.module.css";
+import { useSelector } from "react-redux";
 
 // create validation schema
 const validationSchema = Yup.object({
@@ -32,6 +33,8 @@ const validationSchema = Yup.object({
 });
 
 const Register = () => {
+  const useremail = useSelector((state) => state.auth.useremail);
+  // console.log(useremail);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,7 +42,7 @@ const Register = () => {
   const formik = useFormik({
     initialValues: {
       username: "",
-      email: "",
+      email: useremail ? useremail : "",
       password: "",
     },
     validationSchema: validationSchema,
@@ -152,7 +155,7 @@ const Register = () => {
                 variant="contained"
                 color="hOrange"
                 endIcon={<GoogleIcon />}
-                href="localhost:3001/api/auth/google"
+                href="http://localhost:3001/api/auth/google"
               >
                 Google Login
               </Button>

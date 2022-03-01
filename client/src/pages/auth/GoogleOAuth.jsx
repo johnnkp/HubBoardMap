@@ -1,10 +1,13 @@
-import React from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Box, CircularProgress } from "@mui/material";
-import { useEffect } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/slice/auth";
 
 const GoogleOAuth = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = {};
   // console.log(searchParams);
@@ -17,13 +20,21 @@ const GoogleOAuth = () => {
         const res = await axios.post("/api/auth/google/callback", null, {
           params: queryParams,
         });
-        console.log(res.data);
+        // console.log(res.data);
+        if (res.data.success) {
+          if (res.data.redirectPage === "hubboard") {
+            dispatch(authActions.login());
+          } else {
+            dispatch(authActions.googleLogin({ useremail: res.data.email }));
+          }
+          navigate(`/${res.data.redirectPage}`, { replace: true });
+        }
       } catch (err) {
         console.log(err.response);
       }
     };
     googleCallback();
-  });
+  }, []);
 
   return (
     <Box

@@ -51,7 +51,7 @@ router.post("/callback", (req, res) => {
       if (!user) {
         return res.status(200).json({
           success: true,
-          redirectPage: "register",
+          redirectPage: "signup",
           message: "New user using google to login",
           email: info.email,
         });

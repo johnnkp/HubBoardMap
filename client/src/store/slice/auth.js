@@ -2,13 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "authenticate",
-  initialState: { isAuthenticated: false },
+  initialState: { isAuthenticated: false, useremail: null },
   reducers: {
     login(state, action) {
       state.isAuthenticated = true;
     },
     logout(state, action) {
       state.isAuthenticated = false;
+    },
+    googleLogin(state, action) {
+      state.useremail = action.payload.useremail;
     },
   },
 });
