@@ -54,7 +54,7 @@ const ResendEmail = () => {
           flexDirection="column"
         >
           <Typography fontSize="1.5em">
-            verification letter has been resend, please check again your email
+            Verification letter has been resend, please check again your email
           </Typography>
           <Button to="/" LinkComponent={RouterLink} color="hOrange">
             Return to homepage

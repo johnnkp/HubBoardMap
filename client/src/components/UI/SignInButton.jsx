@@ -65,10 +65,10 @@ const SignInButton = (props) => {
       } catch (err) {
         setIsLoading(false);
         setIsSuccess(false);
-        const errorMsg = err.response.data.message;
-        // FIX: not hard code the error message
+        const { message: errorMsg, error_code: errorCode} = err.response.data;
+        console.log(errorMsg, errorCode)
         alert(errorMsg);
-        if (errorMsg === "Please verify your email first")
+        if (errorCode === 2)
           navigate("/auth/resendemail")
         actions.resetForm();
       }
