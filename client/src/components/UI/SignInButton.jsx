@@ -74,10 +74,6 @@ const SignInButton = (props) => {
 
   const isOpen = Boolean(anchorEl);
 
-  const forgotPasswordHandler = async () => {
-    // TODO: forgot password
-  };
-
   return (
     <Box {...props}>
       <Button
@@ -182,7 +178,7 @@ const SignInButton = (props) => {
               </Button>
             </Grid>
             <Grid item xs={6}>
-              <Link color="hOrange.main" onClick={forgotPasswordHandler}>
+              <Link color="hOrange.main" component={RouterLink} to="/forgotpw">
                 <Typography variant="h6" fontSize="1em">
                   Forgot password?
                 </Typography>

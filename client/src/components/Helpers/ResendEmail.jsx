@@ -11,7 +11,6 @@ import { Link as RouterLink } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 
 const validationSchema = Yup.object({
   email: Yup.string("Enter your email")
@@ -19,9 +18,14 @@ const validationSchema = Yup.object({
     .required("Email is required"),
 });
 
-const ResendEmail = () => {
+const ResendEmail = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // INFO: operation type
+  // 1 => resend verification letter
+  // 2 => forgot password
+  const type = props.type;
 
   const formik = useFormik({
     initialValues: {
@@ -30,13 +34,13 @@ const ResendEmail = () => {
     validationSchema: validationSchema,
     onSubmit: async (values, action) => {
       setIsLoading(true);
-      try {
-        const res = await axios.post("/api/auth/emailResend", values);
-        setIsLoading(false);
+      const res = await props.resendEmailHandler(values, action);
+      console.log(res);
+      setIsLoading(false);
+      if (res.success) {
         setIsSuccess(true);
-      } catch (err) {
-        setIsLoading(false);
-        const errorMsg = err.response.data.message
+      } else {
+        const errorMsg = res.message;
         alert(errorMsg);
         action.resetForm();
       }
@@ -53,9 +57,7 @@ const ResendEmail = () => {
           alignItems="center"
           flexDirection="column"
         >
-          <Typography fontSize="1.5em">
-            Verification letter has been resend, please check again your email
-          </Typography>
+          <Typography fontSize="1.5em">{props.children}</Typography>
           <Button to="/" LinkComponent={RouterLink} color="hOrange">
             Return to homepage
           </Button>
@@ -74,7 +76,9 @@ const ResendEmail = () => {
     >
       <Stack spacing={2}>
         <Typography color="hOrange.main" fontSize="1.5em">
-          Please enter your email to resend verification link
+          {type === 1
+            ? "Please enter your email address to send the verification email"
+            : "Please enter your email address to get the reset password token"}
         </Typography>
         <Box
           component="form"
@@ -103,8 +107,10 @@ const ResendEmail = () => {
           >
             {isLoading ? (
               <CircularProgress color="grey" size="1.5em" />
-            ) : (
+            ) : type === 1 ? (
               "Resend"
+            ) : (
+              "Send"
             )}
           </Button>
         </Box>{" "}
