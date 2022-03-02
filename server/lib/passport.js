@@ -22,13 +22,13 @@ module.exports.init = () => {
                             if (user.isEmailVerified) {
                                 return done(null, user);
                             } else {
-                                return done(null, false, {message: 'Please verify your email first'});
+                                return done(null, false, {message: 'Please verify your email first', error_code: 2});
                             }
                         } else {
-                            return done(null, false, {message: 'Incorrect password'})
+                            return done(null, false, {message: 'Incorrect password', error_code: 3});
                         }
                     } else {
-                        return done(null, false, {message: 'User not found'})
+                        return done(null, false, {message: 'User not found', error_code: 4});
                     }
                 })
                 .catch(err => {
