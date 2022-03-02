@@ -60,7 +60,7 @@ const MailVerification = () => {
             Email verification token not found!
           </Typography>
           <CancelIcon color="hOrange" sx={{ fontSize: "3em" }} />
-          <Button to="/" LinkComponent={RouterLink} color="hOrange" fullWidth>
+          <Button to="/auth/resendemail" LinkComponent={RouterLink} color="hOrange" fullWidth>
             Resend verification
           </Button>
         </Box>

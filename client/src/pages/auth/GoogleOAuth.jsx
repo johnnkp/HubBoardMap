@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Box, CircularProgress } from "@mui/material";
 import axios from "axios";
@@ -9,11 +9,20 @@ const GoogleOAuth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const queryParams = {};
-  // console.log(searchParams);
-  for (let pair of searchParams.entries()) {
-    queryParams[pair[0]] = pair[1];
-  }
+
+  // INFO: useMemo hook to prevent for loop every time
+  const queryParams = useMemo(() => {
+    const getQueryParams = (params) => {
+      const tempParams = {};
+      for (let pair of params.entries()) {
+        tempParams[pair[0]] = pair[1];
+      }
+      return tempParams;
+    };
+    return getQueryParams(searchParams);
+  }, [searchParams]);
+  // console.log(queryParams)
+
   // INFO: fetch /api/auth/google/callback on component mount
   useEffect(() => {
     const googleCallback = async () => {
@@ -35,7 +44,7 @@ const GoogleOAuth = () => {
       }
     };
     googleCallback();
-  }, []);
+  }, [dispatch, navigate, queryParams]);
 
   return (
     <Box
