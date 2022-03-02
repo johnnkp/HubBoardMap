@@ -26,6 +26,7 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     verificationToken: String,
+    resetPasswordToken: String,
     profilePhoto: {
         buffer: Buffer,
         contentType: String

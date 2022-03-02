@@ -15,6 +15,7 @@ HubBoard API
   - [Google Authentication Callback](#Google-Authentication-Callback)
   - [Login](#Login)
   - [Resend verification email](#Resend-verification-email)
+  - [Reset Password](#Reset-Password)
   - [User registration](#User-registration)
 - [User](#User)
   - [Get profile photo](#Get-profile-photo)
@@ -268,6 +269,37 @@ POST /api/auth/emailResend
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false.</p> |
 | message | `String` | <p>Error message.</p> |
+
+## <a name='Reset-Password'></a> Reset Password
+[Back to top](#top)
+
+```
+POST /api/auth/resetPassword
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| resetPasswordToken | `String` | <p>&quot;resetPasswordToken&quot; of the user</p> |
+| newPassword | `String` | <p>New password of the user</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
 
 ## <a name='User-registration'></a> User registration
 [Back to top](#top)
