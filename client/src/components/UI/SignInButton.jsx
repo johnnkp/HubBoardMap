@@ -55,7 +55,6 @@ const SignInButton = (props) => {
       setIsLoading(true);
       try {
         const res = await axios.post("/api/auth/login", values);
-        // console.log(res.data);
         setIsSuccess(true);
         setIsLoading(false);
         dispatch(authActions.login());
@@ -65,11 +64,9 @@ const SignInButton = (props) => {
       } catch (err) {
         setIsLoading(false);
         setIsSuccess(false);
-        const { message: errorMsg, error_code: errorCode} = err.response.data;
-        console.log(errorMsg, errorCode)
+        const { message: errorMsg, error_code: errorCode } = err.response.data;
         alert(errorMsg);
-        if (errorCode === 2)
-          navigate("/auth/resendemail")
+        if (errorCode === 2) navigate("/auth/resendemail");
         actions.resetForm();
       }
     },
@@ -79,7 +76,7 @@ const SignInButton = (props) => {
 
   const forgotPasswordHandler = async () => {
     // TODO: forgot password
-  }
+  };
 
   return (
     <Box {...props}>
