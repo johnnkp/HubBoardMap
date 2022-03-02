@@ -9,7 +9,7 @@ import { authActions } from "./store/slice/auth";
 import Home from "./pages/home/Home";
 import Auth from "./pages/auth/Auth";
 import Hubboard from "./pages/hubboard/Hubboard";
-import { MailSuccess, MailVerification, Register } from "./pages/auth/register";
+import { MailSuccess, MailVerification, Register, ResendEmail } from "./pages/auth/register";
 import GoogleOAuth from "./pages/auth/GoogleOAuth";
 import { Mainpage } from "./pages/hubboard/main";
 
@@ -37,6 +37,7 @@ const App = () => {
       <Route path="/auth" element={<Auth />}>
         <Route path="*" element={<h1>404 Not Found</h1>} />
         <Route path="mailsuccess" element={<MailSuccess />} />
+        <Route path="resendEmail" element={<ResendEmail/>} / >
         <Route path=":token" element={<MailVerification />} />
       </Route>
       <Route path="/googlecb" element={<GoogleOAuth />} />

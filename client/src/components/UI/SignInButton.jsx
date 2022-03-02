@@ -8,6 +8,7 @@ import {
   Popover,
   Box,
   CircularProgress,
+  Link,
 } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -64,16 +65,21 @@ const SignInButton = (props) => {
       } catch (err) {
         setIsLoading(false);
         setIsSuccess(false);
-        // console.log(err.response.data);
         const errorMsg = err.response.data.message;
+        // FIX: not hard code the error message
         alert(errorMsg);
+        if (errorMsg === "Please verify your email first")
+          navigate("/auth/resendemail")
         actions.resetForm();
       }
-      // alert(JSON.stringify(values, null, 2));
     },
   });
 
   const isOpen = Boolean(anchorEl);
+
+  const forgotPasswordHandler = async () => {
+    // TODO: forgot password
+  }
 
   return (
     <Box {...props}>
@@ -164,7 +170,7 @@ const SignInButton = (props) => {
                 New to HubBoard?
               </Typography>
             </Grid>
-            <Grid item xs={6} textAlign="start">
+            <Grid item xs={6}>
               <Button
                 color="hOrange"
                 variant="outlined"
@@ -177,6 +183,13 @@ const SignInButton = (props) => {
               >
                 Register
               </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Link color="hOrange.main" onClick={forgotPasswordHandler}>
+                <Typography variant="h6" fontSize="1em">
+                  Forgot password?
+                </Typography>
+              </Link>
             </Grid>
           </Grid>
         </Grid>

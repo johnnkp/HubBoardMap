@@ -22,10 +22,10 @@ const MailVerification = () => {
     const verificationHandler = async () => {
       try {
         const res = await axios.get(`/api/auth/emailVerify/${token}`);
-        console.log(res.data);
+        // console.log(res.data);
         setIsLoading(false);
       } catch (err) {
-        console.log(err.response);
+        // console.log(err.response);
         setIsLoading(false);
         setIsFailed(true);
       }
@@ -60,6 +60,9 @@ const MailVerification = () => {
             Email verification token not found!
           </Typography>
           <CancelIcon color="hOrange" sx={{ fontSize: "3em" }} />
+          <Button to="/" LinkComponent={RouterLink} color="hOrange" fullWidth>
+            Resend verification
+          </Button>
         </Box>
         <Box
           display={!isLoading && isFailed ? "none" : "flex"}
