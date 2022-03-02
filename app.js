@@ -9,7 +9,6 @@ require('dotenv').config()
 
 // Connect to database
 database.connect()
-
 // Session and passport initialization
 app.use(session({
     secret : process.env.SESSION_SECRET,
@@ -35,3 +34,4 @@ app.use('/api', require('./server/api'))
 const PORT = process.env.PORT || 3001
 app.listen(PORT);
 console.log("Server is listening to port", PORT)
+
