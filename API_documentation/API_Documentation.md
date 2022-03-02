@@ -232,6 +232,7 @@ POST /api/auth/login
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Error message</p> |
+| error_code | `Number` | <p>Error code: 1 : empty username or password, 2 : email not verified, 3 : wrong username or password, 4 : user not found</p> |
 
 #### Error response - `500`
 

@@ -14,6 +14,12 @@
  *
  * @apiError (400) {Boolean} success False
  * @apiError (400) {String} message Error message
+ * @apiError (400) {Number} error_code Error code:
+ * 1 : empty username or password,
+ * 2 : email not verified,
+ * 3 : wrong username or password,
+ * 4 : user not found
+ *
  *
  * @apiError (500) {Boolean} success False
  * @apiError (500) {String} message Internal server error
@@ -27,7 +33,9 @@ router.post('/', (req, res) => {
     const {username, password} = req.body
     if (!username || !password) {
         return res.status(400).json({
-            message: 'Please fill out all fields'
+            success: false,
+            message: 'Please fill out all fields',
+            error_code: 1
         })
     }
     // Using local strategy for authentication
@@ -48,7 +56,8 @@ router.post('/', (req, res) => {
             if (!user) {
                 return res.status(400).json({
                     success: false,
-                    message: info.message
+                    message: info.message,
+                    error_code : info.error_code
                 })
             }
             // Case: Success
