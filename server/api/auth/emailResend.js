@@ -20,6 +20,7 @@ const mailer = require("../../lib/mailer");
 
 router.post('/',(req,res)=>{
     const email = req.body.email;
+    // Check if email is valid
     User.findOne({email: email})
         .then(user=>{
             if(!user){
@@ -33,10 +34,12 @@ router.post('/',(req,res)=>{
                     message:'Email already verified'
                 })
             } else {
+                // Generate a random token
                 const verificationToken = crypto.randomBytes(20).toString('hex');
                 user.verificationToken = verificationToken;
                 user.save()
                     .then(()=>{
+                        // Send verification email
                         mailer.sendVerificationEmail(email, verificationToken)
                             .then(()=>{
                                 res.status(200).json({
@@ -53,6 +56,7 @@ router.post('/',(req,res)=>{
                             })
                     })
                     .catch(err=>{
+                        console.error(err);
                         res.status(500).json({
                             success:false,
                             message:'Internal server error'

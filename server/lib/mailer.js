@@ -48,5 +48,19 @@ module.exports = {
             };
             return module.exports.sendMail(mailOptions);
         },
+        // Send a password reset email to the user
+        sendPasswordResetEmail : (email, resetPasswordToken)=>{
+            const SERVER_HOST = process.env.SERVER_HOST;
+            const CLIENT_PORT = process.env.CLIENT_PORT;
+            const mailOptions = {
+                to: email,
+                subject: 'Password Reset',
+                html: '<h1>Password Reset</h1>' +
+                    '<p>You have successfully requested a password reset. ' +
+                    'Please click the following link to reset your password:</p>' +
+                    '<a href="' + SERVER_HOST + ':' + CLIENT_PORT + '/auth/forgotpw/' + resetPasswordToken + '">Reset Password</a>',
+            };
+            return module.exports.sendMail(mailOptions);
+        }
     }
 
