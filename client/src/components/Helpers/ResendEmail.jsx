@@ -11,6 +11,7 @@ import { Link as RouterLink } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ReturnToHome from "../UI/ReturnToHome";
 
 const validationSchema = Yup.object({
   email: Yup.string("Enter your email")
@@ -18,6 +19,11 @@ const validationSchema = Yup.object({
     .required("Email is required"),
 });
 
+// INFO: reuseable resend email component, accept 2 props
+// 1. operation type
+//    1 => resend verification email
+//    2 => send reset password email
+// 2. submit handler function
 const ResendEmail = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -47,25 +53,12 @@ const ResendEmail = (props) => {
     },
   });
 
+  // INFO: if success render success page
   if (isSuccess) {
-    return (
-      <React.Fragment>
-        <Box
-          display="flex"
-          height="100vh"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-        >
-          <Typography fontSize="1.5em">{props.children}</Typography>
-          <Button to="/" LinkComponent={RouterLink} color="hOrange">
-            Return to homepage
-          </Button>
-        </Box>
-      </React.Fragment>
-    );
+    return <ReturnToHome>{props.children}</ReturnToHome>;
   }
 
+  // INFO: otherwise return normal input field to let user type information again
   return (
     <Box
       display="flex"

@@ -7,6 +7,7 @@ import {
   Stack,
   CircularProgress,
 } from "@mui/material";
+import ReturnToHome from "../../components/UI/ReturnToHome";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
@@ -19,7 +20,7 @@ const validationSchema = Yup.object({
     .required("new Password is required"),
 });
 
-const ResetPassword = (props) => {
+const ResetPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -47,25 +48,9 @@ const ResetPassword = (props) => {
     },
   });
 
+  // INFO: if success return to success page
   if (isSuccess) {
-    return (
-      <React.Fragment>
-        <Box
-          display="flex"
-          height="100vh"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-        >
-          <Typography fontSize="1.5em">
-            Your password has been changed
-          </Typography>
-          <Button to="/" LinkComponent={RouterLink} color="hOrange">
-            Return to homepage
-          </Button>
-        </Box>
-      </React.Fragment>
-    );
+    return <ReturnToHome>Your password has been changed</ReturnToHome>;
   }
 
   return (

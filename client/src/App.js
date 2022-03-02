@@ -34,6 +34,7 @@ const App = () => {
   });
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   // console.log(isAuthenticated);
+  // INFO: different routing path
   return (
     <Routes>
       <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />

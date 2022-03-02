@@ -8,12 +8,13 @@ import { authActions } from "../../store/slice/auth";
 const GoogleOAuth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const queryParams = {};
   // console.log(searchParams);
   for (let pair of searchParams.entries()) {
     queryParams[pair[0]] = pair[1];
   }
+  // INFO: fetch /api/auth/google/callback on component mount
   useEffect(() => {
     const googleCallback = async () => {
       try {
