@@ -13,7 +13,7 @@ const ReturnToHome = (props) => {
         alignItems="center"
         flexDirection="column"
       >
-        <Typography fontSize="1.5em">{props.children}Your password has been changed</Typography>
+        <Typography fontSize="1.5em">{props.children}</Typography>
         <Button to="/" LinkComponent={RouterLink} color="hOrange">
           Return to homepage
         </Button>

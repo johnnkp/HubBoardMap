@@ -98,7 +98,7 @@ const ResetPassword = () => {
               "Send"
             )}
           </Button>
-        </Box>{" "}
+        </Box>
         <Button to="/" LinkComponent={RouterLink} color="hOrange">
           Return to homepage
         </Button>
