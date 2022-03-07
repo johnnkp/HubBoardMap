@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {AppBar, Container, Toolbar} from "@mui/material";
 import { authActions } from "../../../store/slice/auth";
 
 const Mainpage = () => {
@@ -22,8 +23,17 @@ const Mainpage = () => {
   };
   return (
     <div>
-      <h1>You in mainpage</h1>
-      <button onClick={logoutHandler}>Logout</button>
+      <AppBar color="hOrange">
+        <Container>
+          <Toolbar>
+
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Container sx={{position: "relative", top: 50}}>
+        <h1>You in mainpage</h1>
+        <button onClick={logoutHandler}>Logout</button>
+	  </Container>
     </div>
   );
 };
