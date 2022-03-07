@@ -1,32 +1,17 @@
 const express = require('express')
 const app = express()
 const database = require('./server/database')
-const passport = require('passport')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')
+const passport = require('./server/lib/passport')
+const session = require('./server/lib/session')
 
 require('dotenv').config()
 
 // Connect to database
 database.connect()
-// Session and passport initialization
-app.use(session({
-    secret : process.env.SESSION_SECRET,
-    resave : false,
-    saveUninitialized : false,
-    cookie: {
-        maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
-    },
-    // Store session in database:
-    store : MongoStore.create({
-        mongoUrl : process.env.MONGODB_URI,
-        dbName : "HubBoard",
-        collectionName : 'sessions'
-    })
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-require('./server/lib/passport').init()
+// Session initialization
+session.init(app)
+// Passport initialization
+passport.init(app)
 
 // Api routing
 app.use('/api', require('./server/api'))

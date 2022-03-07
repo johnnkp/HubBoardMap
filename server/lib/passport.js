@@ -5,7 +5,10 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
-module.exports.init = () => {
+module.exports.init = (app) => {
+    // Basic setup
+    app.use(passport.initialize())
+    app.use(passport.session())
     // Use local strategy
     passport.use('local', new LocalStrategy({
             usernameField: 'username',
