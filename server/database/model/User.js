@@ -31,7 +31,23 @@ const UserSchema = new mongoose.Schema({
         buffer: Buffer,
         contentType: String
     },
-    googleId: String
+    googleId: String,
+    todolists: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Todolist'
+    }],
+    friends: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    notifications : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Notification'
+    }],
+    privateMessages : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'PrivateMessage'
+    }]
 })
 
 UserSchema.methods.changePassword = function(newPassword) {
