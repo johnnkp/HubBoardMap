@@ -20,6 +20,12 @@ const mailer = require("../../lib/mailer");
 
 router.post('/',(req,res)=>{
     const email = req.body.email;
+    if (!email) {
+        return res.status(400).json({
+            success: false,
+            message: "Email is required"
+        });
+    }
     // Check if email is valid
     User.findOne({email: email})
         .then(user=>{

@@ -3,9 +3,9 @@
  * @apiName Register
  * @apiGroup Auth
  *
- * @apiBody {String} username Username
+ * @apiBody {String} username Username (min. 3 characters)
  * @apiBody {String} email Email
- * @apiBody {String} password Password
+ * @apiBody {String} password Password (min. 6 characters)
  *
  * @apiSuccess (202) {Boolean} success True
  * @apiSuccess (202) {String} message Verification email sent

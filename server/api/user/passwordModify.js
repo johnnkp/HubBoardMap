@@ -4,7 +4,7 @@
  * @apiGroup User
  *
  * @apiBody {String} oldPassword Old password
- * @apiBody {String} newPassword New password
+ * @apiBody {String} newPassword New password (min. 6 characters)
  *
  * @apiSuccess {Boolean} success True
  * @apiSuccess {String} message Success message
@@ -18,9 +18,24 @@ const User = require('../../database/model/User')
 const bcrypt = require('bcryptjs')
 require("dotenv").config();
 
-// TODO: check if new password is a valid password
 router.put('/',(req,res)=>{
     const {oldPassword,newPassword} = req.body;
+    if (!oldPassword) {
+        return res.status(400).json({
+            success: false,
+            message: 'Old password is required'
+        })
+    } else if (!newPassword) {
+        return res.status(400).json({
+            success: false,
+            message: 'New password is required'
+        })
+    } else if (newPassword.length < 6) {
+        return res.status(400).json({
+            success: false,
+            message: 'New password must be at least 6 characters long'
+        })
+    }
     User.findOne({_id:req.user._id})
         .then(user=> {
             if (!user) {
