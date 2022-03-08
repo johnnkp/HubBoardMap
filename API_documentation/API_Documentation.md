@@ -16,6 +16,7 @@ HubBoard API
   - [Login](#Login)
   - [Resend verification email](#Resend-verification-email)
   - [Reset Password](#Reset-Password)
+  - [Send Reset Password Email](#Send-Reset-Password-Email)
   - [User registration](#User-registration)
 - [User](#User)
   - [Get profile photo](#Get-profile-photo)
@@ -213,8 +214,8 @@ POST /api/auth/login
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| username | `String` | <p>Username</p> |
-| password | `String` | <p>Password</p> |
+| username | `String` | <p>Username (min 3 characters).</p> |
+| password | `String` | <p>Password (min 6 characters).</p> |
 ### Success response
 
 #### Success response - `200`
@@ -232,7 +233,7 @@ POST /api/auth/login
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Error message</p> |
-| error_code | `Number` | <p>Error code: 1 : empty username or password, 2 : email not verified, 3 : wrong username or password, 4 : user not found</p> |
+| error_code | `Number` | <p>Error code: 1 : Invalid username or password, 2 : Email not verified, 3 : Wrong username or password, 4 : User not found</p> |
 
 #### Error response - `500`
 
@@ -283,7 +284,7 @@ POST /api/auth/resetPassword
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | resetPasswordToken | `String` | <p>&quot;resetPasswordToken&quot; of the user</p> |
-| newPassword | `String` | <p>New password of the user</p> |
+| newPassword | `String` | <p>New password of the user (min. 6 characters)</p> |
 ### Success response
 
 #### Success response - `Success 200`
@@ -302,6 +303,36 @@ POST /api/auth/resetPassword
 | success | `Boolean` | <p>false</p> |
 | message | `String` | <p>Error message</p> |
 
+## <a name='Send-Reset-Password-Email'></a> Send Reset Password Email
+[Back to top](#top)
+
+```
+POST /api/auth/resetPasswordEmail
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| email | `String` | <p>Email address of the user to reset the password.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True if the email was sent successfully.</p> |
+| message | `String` | <p>Success message.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False if the email was not sent successfully.</p> |
+| message | `String` | <p>Error message.</p> |
+
 ## <a name='User-registration'></a> User registration
 [Back to top](#top)
 
@@ -313,9 +344,9 @@ POST /api/auth/register
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| username | `String` | <p>Username</p> |
+| username | `String` | <p>Username (min. 3 characters)</p> |
 | email | `String` | <p>Email</p> |
-| password | `String` | <p>Password</p> |
+| password | `String` | <p>Password (min. 6 characters)</p> |
 ### Success response
 
 #### Success response - `202`
@@ -409,7 +440,7 @@ PUT /api/user/passwordModify
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | oldPassword | `String` | <p>Old password</p> |
-| newPassword | `String` | <p>New password</p> |
+| newPassword | `String` | <p>New password (min. 6 characters)</p> |
 ### Success response
 
 #### Success response - `Success 200`

@@ -1,6 +1,6 @@
 /**
- * @api {post} /api/auth/resetPasswordEmail Reset Password
- * @apiName ResetPassword
+ * @api {post} /api/auth/resetPasswordEmail Send Reset Password Email
+ * @apiName ResetPasswordEmail
  * @apiGroup Auth
  *
  * @apiBody {String} email Email address of the user to reset the password.
@@ -21,6 +21,12 @@ const mailer = require("../../lib/mailer");
 
 router.post('/', (req, res) => {
     const { email } = req.body;
+    if (!email) {
+        return res.status(400).json({
+            success: false,
+            message: "Email is required"
+        });
+    }
     User.findOne({email:email})
         .then(user => {
             if(!user) {

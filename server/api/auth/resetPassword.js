@@ -4,7 +4,7 @@
  * @apiGroup Auth
  *
  * @apiBody {String} resetPasswordToken "resetPasswordToken" of the user
- * @apiBody {String} newPassword New password of the user
+ * @apiBody {String} newPassword New password of the user (min. 6 characters)
  *
  * @apiSuccess {Boolean} success true
  * @apiSuccess {String} message Success message
@@ -21,6 +21,16 @@ router.post('/', (req, res) => {
         return res.status(400).json({
             success: false,
             message: 'Reset password token is required'
+        });
+    } else if (!newPassword) {
+        return res.status(400).json({
+            success: false,
+            message: 'New password is required'
+        });
+    } else if (newPassword.length < 6) {
+        return res.status(400).json({
+            success: false,
+            message: 'New password must be at least 6 characters long'
         });
     } else {
         User.findOne({resetPasswordToken : resetPasswordToken})
