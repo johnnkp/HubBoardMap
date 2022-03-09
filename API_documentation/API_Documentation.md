@@ -18,6 +18,8 @@ HubBoard API
   - [Reset Password](#Reset-Password)
   - [Send Reset Password Email](#Send-Reset-Password-Email)
   - [User registration](#User-registration)
+- [Socket](#Socket)
+  - [Notifications of user](#Notifications-of-user)
 - [User](#User)
   - [Get profile photo](#Get-profile-photo)
   - [Logout](#Logout)
@@ -377,6 +379,52 @@ POST /api/auth/register
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Internal server error</p> |
+
+# <a name='Socket'></a> Socket
+
+## <a name='Notifications-of-user'></a> Notifications of user
+[Back to top](#top)
+
+<p>This socket is used to get notifications of user</p>
+
+```
+SOCKET notifications
+```
+
+### Examples
+
+Example usage:
+
+```json
+ws.on('notifications', (notifications) => {
+     // Do something
+})
+```
+
+
+### Success response example
+
+#### Success response example - `// Array of notifications`
+
+```json
+// Array of notifications
+[
+    {
+        "_id": "62289d1c7f3f8b9b913c7672", // Notification id
+        "content": { // Notification content
+            "_id": "62289d1c7f3f8b9b913c7670",
+            "fromUser": {
+                "_id": "621f6f49849ea9671627004e",
+                "username": "user"
+            },
+            "time": "2022-03-09T12:49:41.321Z"
+        },
+        "owner": "621f6f49849ea9671627004e",
+        "__t": "FriendRequestNotification", // Notification type
+        "__v": 0
+    }
+]
+```
 
 # <a name='User'></a> User
 
