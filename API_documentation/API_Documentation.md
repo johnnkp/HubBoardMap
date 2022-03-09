@@ -574,7 +574,7 @@ POST /api/user/authVerify
 <p>Send a friend request to target user.</p>
 
 ```
-POST /user/interaction/friendRequest
+POST /api/user/interaction/friendRequest
 ```
 
 ### Request Body

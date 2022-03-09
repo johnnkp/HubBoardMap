@@ -1,5 +1,5 @@
 /**
- * @api {post} /user/interaction/friendRequest Friend request
+ * @api {post} /api/user/interaction/friendRequest Friend request
  * @apiName Friend Request
  * @apiGroup User Interaction
  * @apiDescription Send a friend request to target user.
