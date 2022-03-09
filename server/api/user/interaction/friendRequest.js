@@ -15,7 +15,10 @@
 
 const router = require('express').Router();
 const User = require('../../../database/model/User');
-const friendRequest = require('../../../database/model/friendRequest');
+const FriendRequest = require('../../../database/model/FriendRequest');
+const { FriendRequestNotification } = require('../../../database/model/Notification');
+const { emitNotification } = require('../../../socket/');
+
 
 router.post('/',(req,res)=>{
     const { targetUsername } = req.body;
@@ -27,7 +30,7 @@ router.post('/',(req,res)=>{
         });
     }
     // Find the target user
-    User.findOne({username:targetUsername},'_id username friendRequestsReceived')
+    User.findOne({username:targetUsername},'_id username friendRequestsReceived notifications')
         .then(targetUser=>{
             // If the target user is not found
             if (!targetUser) {
@@ -44,7 +47,7 @@ router.post('/',(req,res)=>{
                 });
             } else {
                 // Check friend request already exist
-                friendRequest.findOne({
+                FriendRequest.findOne({
                     fromUser: req.user._id,
                     toUser: targetUser._id
                 })
@@ -54,6 +57,7 @@ router.post('/',(req,res)=>{
                             request.time = Date.now();
                             request.save()
                                 .then(()=>{
+                                    emitNotification(targetUser._id);
                                     return res.status(200).json({
                                         success: true,
                                         message: 'Friend request sent'
@@ -68,22 +72,40 @@ router.post('/',(req,res)=>{
                                 });
                         } else {
                             // Create a new friend request
-                            friendRequest.create({
+                            FriendRequest.create({
                                 fromUser: req.user._id,
                                 toUser: targetUser._id,
                                 time: Date.now()
                             })
-                                .then(request=>{
-                                    // Referencing the friend request
-                                    req.user.friendRequestsSent.push(request._id)
-                                    targetUser.friendRequestsReceived.push(request._id);
-                                    Promise.all([req.user.save(),targetUser.save()])
-                                        .then(()=>{
-                                            // TODO: Send notification to targetUser
-                                            return res.status(200).json({
-                                                success: true,
-                                                message: 'Friend request sent'
-                                            });
+                                .then(friendRequest=>{
+                                    // Create a notification for the target user
+                                    FriendRequestNotification.create({
+                                        owner: targetUser._id,
+                                        content: friendRequest._id
+                                    })
+                                        .then(notification=>{
+                                            // Referencing the friend request
+                                            req.user.friendRequestsSent.push(friendRequest._id)
+                                            targetUser.friendRequestsReceived.push(friendRequest._id);
+
+                                            // Push the notification to targetUser's notifications
+                                            targetUser.notifications.push(notification._id);
+                                            Promise.all([req.user.save(),targetUser.save()])
+                                                .then(()=>{
+                                                    // Emit the notification to the target user
+                                                    emitNotification(targetUser._id);
+                                                    return res.status(200).json({
+                                                        success: true,
+                                                        message: 'Friend request sent'
+                                                    });
+                                                })
+                                                .catch(error=>{
+                                                    console.error(error);
+                                                    return res.status(500).json({
+                                                        success: false,
+                                                        message: 'Internal server error'
+                                                    });
+                                                });
                                         })
                                         .catch(error=>{
                                             console.error(error);

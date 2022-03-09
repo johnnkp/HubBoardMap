@@ -14,7 +14,7 @@
  */
 
 const router = require('express').Router();
-const friendRequest = require('../../../database/model/friendRequest');
+const friendRequest = require('../../../database/model/FriendRequest');
 
 router.post('/',(req,res)=>{
     const {requestId,isAccepted} = req.body;
