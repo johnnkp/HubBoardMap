@@ -19,6 +19,12 @@ const User = require('../../database/model/User');
 
 router.put('/',(req,res)=>{
     const {username,newPassword} = req.body;
+    if (!username || !newPassword) {
+        return res.status(400).json({
+            success: false,
+            message: 'Please provide username and newPassword'
+        });
+    }
     // Find user by username
     User.findOne({username:username},(err,user)=>{
         if(err){
