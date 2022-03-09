@@ -395,7 +395,7 @@ SOCKET notifications
 
 Example usage:
 
-```json
+```js
 ws.on('notifications', (notifications) => {
      // Do something
 })
@@ -406,7 +406,7 @@ ws.on('notifications', (notifications) => {
 
 #### Success response example - `Example return:`
 
-```json
+```js
 // Array of notifications
 [
     {

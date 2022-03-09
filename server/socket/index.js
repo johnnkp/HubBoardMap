@@ -21,12 +21,12 @@ const notificationPopulateOption = {
  * @apiGroup Socket
  * @apiDescription This socket is used to get notifications of user
  *
- * @apiExample Example usage:
+ * @apiExample {js} Example usage:
  * ws.on('notifications', (notifications) => {
  *      // Do something
  * })
  *
- * @apiSuccessExample Example return:
+ * @apiSuccessExample {js} Example return:
  * // Array of notifications
  * [
  *     {
