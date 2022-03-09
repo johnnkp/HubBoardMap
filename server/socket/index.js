@@ -15,6 +15,37 @@ const notificationPopulateOption = {
     }
 }
 
+/**
+ * @api {socket} notifications Notifications of user
+ * @apiName notifications
+ * @apiGroup Socket
+ * @apiDescription This socket is used to get notifications of user
+ *
+ * @apiExample Example usage:
+ * ws.on('notifications', (notifications) => {
+ *      // Do something
+ * })
+ *
+ * @apiSuccessExample
+ * // Array of notifications
+ * [
+ *     {
+ *         "_id": "62289d1c7f3f8b9b913c7672", // Notification id
+ *         "content": { // Notification content
+ *             "_id": "62289d1c7f3f8b9b913c7670",
+ *             "fromUser": {
+ *                 "_id": "621f6f49849ea9671627004e",
+ *                 "username": "user"
+ *             },
+ *             "time": "2022-03-09T12:49:41.321Z"
+ *         },
+ *         "owner": "621f6f49849ea9671627004e",
+ *         "__t": "FriendRequestNotification", // Notification type
+ *         "__v": 0
+ *     }
+ * ]
+ *
+ */
 module.exports.init = (server)=>{
     io = require('socket.io')(server);
     // wrap connect middleware to socket.io middleware
