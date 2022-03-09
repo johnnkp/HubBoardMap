@@ -24,6 +24,11 @@ HubBoard API
   - [Modify password](#Modify-password)
   - [Upload profile photo](#Upload-profile-photo)
   - [Verify if user is authenticated](#Verify-if-user-is-authenticated)
+- [User_Interaction](#User_Interaction)
+  - [Friend request](#Friend-request)
+  - [Friend Request Response](#Friend-Request-Response)
+  - [Get friends list](#Get-friends-list)
+  - [Unfriend](#Unfriend)
 
 ___
 
@@ -512,4 +517,123 @@ POST /api/user/authVerify
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false if user is not authenticated</p> |
 | message | `String` | <p>message</p> |
+
+# <a name='User_Interaction'></a> User_Interaction
+
+## <a name='Friend-request'></a> Friend request
+[Back to top](#top)
+
+<p>Send a friend request to target user.</p>
+
+```
+POST /user/interaction/friendRequest
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| targetUsername | `String` | <p>The username of target user.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True.</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False.</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Friend-Request-Response'></a> Friend Request Response
+[Back to top](#top)
+
+```
+POST /api/user/interaction/friendRequestResponse
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| requestId | `String` | <p>The id of the friend request.</p> |
+| isAccepted | `Boolean` | <p>If the request is accepted.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True.</p> |
+| message | `String` | <p>Success message.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False.</p> |
+| message | `String` | <p>The error message.</p> |
+
+## <a name='Get-friends-list'></a> Get friends list
+[Back to top](#top)
+
+```
+GET /api/user/interaction/getFriendsList
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| friendsList | `Object[]` | <p>List of friends' username</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Unfriend'></a> Unfriend
+[Back to top](#top)
+
+```
+POST /api/user/interaction/unfriend
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| targetUsername | `String` | <p>The username of the user to unfriend.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True.</p> |
+| message | `String` | <p>The message to display to the user.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False.</p> |
+| message | `String` | <p>The error message.</p> |
 

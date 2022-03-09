@@ -6,9 +6,16 @@ const PrivateMassageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    message: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Message'
+    messages: [{
+        sender: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        content: {
+            type: String,
+            required: true
+        },
     }]
 });
 
