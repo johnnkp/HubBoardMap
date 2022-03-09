@@ -404,7 +404,7 @@ ws.on('notifications', (notifications) => {
 
 ### Success response example
 
-#### Success response example - `// Array of notifications`
+#### Success response example - `Example return:`
 
 ```json
 // Array of notifications

@@ -26,7 +26,7 @@ const notificationPopulateOption = {
  *      // Do something
  * })
  *
- * @apiSuccessExample
+ * @apiSuccessExample Example return:
  * // Array of notifications
  * [
  *     {
