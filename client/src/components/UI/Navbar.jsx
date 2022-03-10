@@ -1,57 +1,60 @@
-import React, { useState } from "react";
-import { Link as ReactLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
   Box,
-  IconButton,
-  Button,
-  Menu,
-  MenuItem,
+  Typography,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import HuboardIcon from "../../image/HubBoard.svg";
+import axios from "axios";
+import { DropDownMenu } from ".";
+
+const pages = ["Profile", "Dashboard", "Setting", "Logout"];
 
 const Navbar = () => {
-  const pages = ["Item1", "Item2", "Item3"];
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [profilePhoto, setProfilePhoto] = useState();
 
-  const handleOpenMenu = (e) => {
-    setAnchorElNav(e.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorElNav(null);
-  };
+  useEffect(() => {
+    const getUserProfilePic = async () => {
+      try {
+        const res = await axios.get("/api/user/profilePhoto", {
+          responseType: "blob",
+        });
+        setProfilePhoto(URL.createObjectURL(res.data));
+      } catch (err) {
+        console.log(err.response);
+      }
+    };
+    getUserProfilePic();
+  }, []);
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" color="hOrange">
       <Toolbar>
-        <Box display="flex" justifyContent="space-between" width="100%">
-          <>
-            <IconButton
-              size="large"
-              onClick={handleOpenMenu}
-              sx={{ mr: "1em" }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-navbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              keepMounted
-              transformOrigin={{ vertical: "top", horizontal: "left" }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseMenu}
-            >
-              {pages.map(page => (
-                <MenuItem key={page} onClick={handleCloseMenu}>
-                  <Button size="small" LinkComponent={ReactLink} to={`${page}`}>{page}</Button>
-                </MenuItem>
-              ))}
-            </Menu>
-          </>
-          <Button color="inherit">Login</Button>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          width="100%"
+        >
+          <Box
+            display="flex"
+            minWidth="200px"
+            alignItems="center"
+            justifyContent="space-evenly"
+          >
+            <img src={HuboardIcon} height="50px" alt="Huboard Icon" />
+            <Typography>HubBoard</Typography>
+          </Box>
+          <Box
+            display="flex"
+            minWidth="200px"
+            alignItems="center"
+            justifyContent="space-evenly"
+          >
+            <Typography>Toolbar</Typography>
+            <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
+          </Box>
         </Box>
       </Toolbar>
     </AppBar>

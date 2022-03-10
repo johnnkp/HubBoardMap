@@ -1,19 +1,31 @@
 import React from "react";
-import { AppBar, Container, Toolbar } from "@mui/material";
+import { MainLayout } from "../../../components/Layout/index"
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { authActions } from "../../../store/slice/auth";
 
 const Mainpage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post("/api/user/logout");
+      if (res.data.success) {
+        dispatch(authActions.logout());
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      }
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
   return (
-    <div>
-      <AppBar color="hOrange">
-        <Container>
-          <Toolbar></Toolbar>
-        </Container>
-      </AppBar>
-      <Container sx={{ position: "relative", top: 50 }}>
-        <h1>You in mainpage</h1>
-        <button onClick={logoutHandler}>Logout</button>
-      </Container>
-    </div>
+    <MainLayout>
+      <button onClick={handleLogout}>logout</button>
+    </MainLayout>
   );
 };
 

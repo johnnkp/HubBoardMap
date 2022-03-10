@@ -7,7 +7,7 @@ import {
   Stack,
   CircularProgress,
 } from "@mui/material";
-import ReturnToHome from "../../components/UI/ReturnToHome";
+import { ReturnToHome} from "../../components/UI";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
@@ -34,7 +34,7 @@ const ResetPassword = () => {
     onSubmit: async (values, action) => {
       setIsLoading(true);
       try {
-        const res = await axios.post("/api/auth/resetPassword", {
+          await axios.post("/api/auth/resetPassword", {
           newPassword: values.newPassword,
           resetPasswordToken: params.token,
         });
