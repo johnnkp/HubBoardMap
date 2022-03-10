@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { MainLayout } from "../../../components/Layout";
-import { TodoItems } from "../../../components/UI";
+import { Todo } from "../../../components/UI";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,7 @@ const Mainpage = () => {
   };
   return (
     <MainLayout>
-      <TodoItems />
+      <Todo />
       <button onClick={handleLogout}>logout</button>
     </MainLayout>
   );
