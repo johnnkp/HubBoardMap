@@ -1,7 +1,7 @@
 import { configureStore, /*createSlice*/ } from "@reduxjs/toolkit";
 
 // INFO: import reducers
-import { authReducer } from "./slice";
+import { authReducer, todoListReducer } from "./slice";
 
 // INFO: sample code to create slice
 // const sampleSlice = createSlice({
@@ -16,7 +16,7 @@ import { authReducer } from "./slice";
 // });
 
 const store = configureStore({
-  reducer: { auth: authReducer },
+  reducer: { auth: authReducer, todoList: todoListReducer},
 });
 
 export default store;

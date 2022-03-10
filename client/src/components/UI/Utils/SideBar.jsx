@@ -11,7 +11,9 @@ import { EventNoteRounded, TagRounded, SyncRounded } from "@mui/icons-material";
 import React from "react";
 import { Wrapper } from "../../Helpers";
 
+// INFO: width for the sidebar
 const sidebarWidth = 240;
+// INFO: Icon array easy for index access
 const icon = [<EventNoteRounded/>, <TagRounded/>, <SyncRounded/>];
 
 const SideBar = () => {

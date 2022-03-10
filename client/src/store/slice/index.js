@@ -1,1 +1,2 @@
-export { default as authReducer } from "./auth.js";
+export { default as authReducer } from "./auth";
+export { default as todoListReducer } from "./todo";

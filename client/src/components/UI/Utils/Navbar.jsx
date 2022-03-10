@@ -9,11 +9,13 @@ import HuboardIcon from "../../../image/HubBoard.svg";
 import axios from "axios";
 import { DropDownMenu } from "../";
 
+// INFO: actual page need to set navigation
 const pages = ["Profile", "Dashboard", "Setting", "Logout"];
 
 const Navbar = () => {
   const [profilePhoto, setProfilePhoto] = useState();
 
+  // INFO: get user profile photo on component mount
   useEffect(() => {
     const getUserProfilePic = async () => {
       try {
