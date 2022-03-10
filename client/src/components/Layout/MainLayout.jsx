@@ -1,11 +1,12 @@
 import React from "react";
 import { Wrapper } from "../Helpers"
-import { Navbar } from "../UI";
+import { Navbar, SideBar } from "../UI";
 
 const Layout = ({ children }) => {
   return (
     <Wrapper>
       <Navbar />
+      <SideBar/>
       {children}
     </Wrapper>
   );

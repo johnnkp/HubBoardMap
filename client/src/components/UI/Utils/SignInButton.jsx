@@ -18,7 +18,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../store/slice/auth";
+import { authActions } from "../../../store/slice/auth";
 
 // create yup validation schema
 const validationSchema = Yup.object({

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Wrapper } from "../Helpers";
+import { Wrapper } from "../../Helpers";
 import {
   Tooltip,
   IconButton,

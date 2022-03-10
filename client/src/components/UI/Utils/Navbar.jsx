@@ -5,9 +5,9 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import HuboardIcon from "../../image/HubBoard.svg";
+import HuboardIcon from "../../../image/HubBoard.svg";
 import axios from "axios";
-import { DropDownMenu } from ".";
+import { DropDownMenu } from "../";
 
 const pages = ["Profile", "Dashboard", "Setting", "Logout"];
 
@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <AppBar position="sticky" color="hOrange">
+    <AppBar position="sticky" color="hOrange" sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}>
       <Toolbar>
         <Box
           display="flex"
