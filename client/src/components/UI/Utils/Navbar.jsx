@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { AppBar, Toolbar, Box, Typography, IconButton } from "@mui/material";
-import HuboardIcon from "../../../image/HubBoard.svg";
+import React, {useEffect, useState} from "react";
+import {AppBar, Toolbar, Box, Typography, IconButton} from "@mui/material";
 import axios from "axios";
-import { DropDownMenu } from "../";
-import { MenuRounded } from "@mui/icons-material";
+import {DropDownMenu} from "../";
+import classes from "../../../styles/global.module.css";
+import HuboardIcon from "../../../image/HubBoard.svg";
+import menuIcon from "../../../image/ic_menu_en.svg";
 
 // INFO: actual page need to set navigation
 const pages = ["Profile", "Dashboard", "Setting", "Logout"];
@@ -30,7 +31,7 @@ const Navbar = (props) => {
     <AppBar
       position="sticky"
       color="hOrange"
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
     >
       <Toolbar>
         <Box
@@ -48,12 +49,12 @@ const Navbar = (props) => {
             <IconButton
               color="inherit"
               onClick={props.handleDrawerToggle}
-              sx={{ display: ["block", "none"] }}
+              sx={{display: "block"}}
             >
-              <MenuRounded />
+              <img src={menuIcon} className={classes.w3_svg_white} height="45vw" alt="Menu" title="Menu"/>
             </IconButton>
-            <img src={HuboardIcon} height="50px" alt="Huboard Icon" />
-            <Typography>HubBoard</Typography>
+            <img src={HuboardIcon} height="50px" alt="HubBoard" title="HubBoard"/>
+            <Typography variant="h5">HubBoard</Typography>
           </Box>
           <Box
             display="flex"
@@ -62,7 +63,7 @@ const Navbar = (props) => {
             minWidth="150px"
           >
             <Typography>Toolbar</Typography>
-            <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
+            <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
           </Box>
         </Box>
       </Toolbar>
