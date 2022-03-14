@@ -96,7 +96,7 @@ PUT /api/admin/resetUserPassword
 [Back to top](#top)
 
 ```
-POST /api/admin/adminVerify
+GET /api/admin/adminVerify
 ```
 ### Success response
 
@@ -546,7 +546,7 @@ PUT /api/user/profilePhoto
 [Back to top](#top)
 
 ```
-POST /api/user/authVerify
+GET /api/user/authVerify
 ```
 ### Success response
 

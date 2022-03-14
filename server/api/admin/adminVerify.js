@@ -1,5 +1,5 @@
 /**
- * @api {post} /api/admin/adminVerify Verify if user is admin
+ * @api {get} /api/admin/adminVerify Verify if user is admin
  * @apiName adminVerify
  * @apiGroup Admin
  *
@@ -12,7 +12,7 @@
 
 const router = require('express').Router();
 
-router.post('/',(req,res)=>{
+router.get('/',(req,res)=>{
     res.status(200).json({
         success: true,
         message: 'Admin Verified'

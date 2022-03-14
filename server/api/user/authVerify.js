@@ -1,5 +1,5 @@
 /**
- * @api {post} /api/user/authVerify Verify if user is authenticated
+ * @api {get} /api/user/authVerify Verify if user is authenticated
  * @apiName AuthVerify
  * @apiGroup User
  *
@@ -12,7 +12,7 @@
 
 const router = require('express').Router();
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).json({
         success: true,
         message: 'User is authenticated'
