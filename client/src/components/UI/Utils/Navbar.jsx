@@ -33,7 +33,7 @@ const Navbar = (props) => {
       color="hOrange"
       sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
     >
-      <Toolbar>
+      <Toolbar sx={{px: ["0.7%", "0.7%"]}}>
         <Box
           display="flex"
           justifyContent="space-between"
@@ -43,8 +43,8 @@ const Navbar = (props) => {
           <Box
             display="flex"
             alignItems="center"
-            justifyContent="space-evenly"
-            minWidth="150px"
+            justifyContent="space-between"
+            minWidth="230px"
           >
             <IconButton
               color="inherit"
