@@ -1,28 +1,45 @@
+import React from "react";
 import {
   Box,
   Drawer,
-  Toolbar,
+  Icon,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  IconButton,
+  Toolbar
 } from "@mui/material";
 import {
   EventNoteRounded,
-  TagRounded,
   SyncRounded,
-  MenuRounded,
+  TagRounded,
+  Key
 } from "@mui/icons-material";
-import React from "react";
-import { Wrapper } from "../../Helpers";
+import classes from "../../../styles/global.module.css";
+// KDE Breeze Icons 5.90
+// import userInfoIcon from "../../../image/user_info_100.svg";
+// import adminIcon from "../../../image/system-users-50.svg";
 
 // INFO: width for the sidebar
 const sidebarWidth = 240;
-// INFO: Icon array easy for index access
-const icon = [<EventNoteRounded />, <TagRounded />, <SyncRounded />];
 
 const SideBar = (props) => {
+  // INFO: Icon array easy for index access
+  let item = ["Note", "Tag", "Sync"];
+  let icon = [<EventNoteRounded/>, <TagRounded/>, <SyncRounded/>];
+
+  if (props.items === "account") {
+    item = ["Profile", "Change Password", "Admin Management"];
+    icon = [<Icon>
+      <img height="100%" src={userInfoIcon} alt="Profile" title="Profile"/>
+    </Icon>,
+      <Key/>,
+      <Icon>
+        <img height="100%" src={adminIcon} alt="Admin Management" title="Admin Management"/>
+      </Icon>
+    ];
+  }
+
   return (
     <Box>
       <Drawer
@@ -35,21 +52,21 @@ const SideBar = (props) => {
             boxSizing: "border-box",
           },
         }}
-        ModalProps={{ keepMounted: true }}
+        ModalProps={{keepMounted: true}}
         open={props.drawerOpen}
         onClose={props.handleDrawerOpen}
         variant="temporary"
         anchor="left"
       >
-        <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
+        <Toolbar/>
+        <Box sx={{overflow: "auto"}}>
           <List>
             {["Note", "Tag", "Sync"].map((text, index) => (
-              <ListItemButton key={text} sx={{ color: "hOrange.main" }}>
-                <ListItemIcon sx={{ color: "hOrange.main" }}>
+              <ListItemButton key={text} sx={{color: "hOrange.main"}}>
+                <ListItemIcon sx={{color: "hOrange.main"}}>
                   {icon[index]}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ color: "black" }} />
+                <ListItemText primary={text} sx={{color: "black"}}/>
               </ListItemButton>
             ))}
           </List>
@@ -65,21 +82,21 @@ const SideBar = (props) => {
             boxSizing: "border-box",
           },
         }}
-        ModalProps={{ keepMounted: true }}
+        ModalProps={{keepMounted: true}}
         open={props.drawerOpen}
         onClose={props.handleDrawerOpen}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
+        <Toolbar/>
+        <Box sx={{overflow: "auto"}}>
           <List>
-            {["Note", "Tag", "Sync"].map((text, index) => (
-              <ListItemButton key={text} sx={{ color: "hOrange.main" }}>
-                <ListItemIcon sx={{ color: "hOrange.main" }}>
+            {item.map((text, index) => (
+              <ListItemButton key={text} sx={{color: "hOrange.main"}}>
+                <ListItemIcon sx={{color: "hOrange.main"}}>
                   {icon[index]}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ color: "black" }} />
+                <ListItemText primary={text} sx={{color: "black"}}/>
               </ListItemButton>
             ))}
           </List>
