@@ -23,7 +23,7 @@ const App = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.post("/api/user/authVerify");
+        const res = await axios.get("/api/user/authVerify");
         if (res.data.success) {
           dispatch(authActions.login());
           navigate("/hubboard");

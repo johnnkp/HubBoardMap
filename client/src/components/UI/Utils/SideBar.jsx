@@ -28,17 +28,17 @@ const SideBar = (props) => {
   let item = ["Note", "Tag", "Sync"];
   let icon = [<EventNoteRounded/>, <TagRounded/>, <SyncRounded/>];
 
-  if (props.items === "account") {
-    item = ["Profile", "Change Password", "Admin Management"];
-    icon = [<Icon>
-      <img height="100%" src={userInfoIcon} alt="Profile" title="Profile"/>
-    </Icon>,
-      <Key/>,
-      <Icon>
-        <img height="100%" src={adminIcon} alt="Admin Management" title="Admin Management"/>
-      </Icon>
-    ];
-  }
+  // if (props.items === "account") {
+  //   item = ["Profile", "Change Password", "Admin Management"];
+  //   icon = [<Icon>
+  //     <img height="100%" src={userInfoIcon} alt="Profile" title="Profile"/>
+  //   </Icon>,
+  //     <Key/>,
+  //     <Icon>
+  //       <img height="100%" src={adminIcon} alt="Admin Management" title="Admin Management"/>
+  //     </Icon>
+  //   ];
+  // }
 
   return (
     <Box>
