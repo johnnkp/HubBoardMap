@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {AppBar, Toolbar, Box, Typography, IconButton} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { AppBar, Toolbar, Box, Typography, IconButton } from "@mui/material";
+import SearchBar from "./SearchBar";
 import axios from "axios";
-import {DropDownMenu} from "../";
+import { DropDownMenu } from "../";
 import classes from "../../../styles/global.module.css";
 import HuboardIcon from "../../../image/HubBoard.svg";
 import menuIcon from "../../../image/ic_menu_en.svg";
@@ -31,9 +32,9 @@ const Navbar = (props) => {
     <AppBar
       position="sticky"
       color="hOrange"
-      sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
     >
-      <Toolbar sx={{px: ["0.7%", "0.7%"]}}>
+      <Toolbar sx={{ px: ["0.7%", "0.7%"] }}>
         <Box
           display="flex"
           justifyContent="space-between"
@@ -49,14 +50,28 @@ const Navbar = (props) => {
             <IconButton
               color="inherit"
               onClick={props.handleDrawerToggle}
-              sx={{display: "block"}}
+              sx={{ display: "block" }}
             >
-              <img src={menuIcon} className={classes.w3_svg_white} height="45vw" alt="Menu" title="Menu"/>
+              <img
+                src={menuIcon}
+                className={classes.w3_svg_white}
+                height="45vw"
+                alt="Menu"
+                title="Menu"
+              />
             </IconButton>
-            <img src={HuboardIcon} height="50px" alt="HubBoard" title="HubBoard"/>
+            <img
+              src={HuboardIcon}
+              height="50px"
+              alt="HubBoard"
+              title="HubBoard"
+            />
             <Typography variant="h5">HubBoard</Typography>
           </Box>
-          {props.ToolbarButton ?
+          <Box>
+            <SearchBar />
+          </Box>
+          {props.ToolbarButton ? (
             <Box
               display="flex"
               alignItems="center"
@@ -64,10 +79,11 @@ const Navbar = (props) => {
               minWidth="150px"
             >
               <Typography>Toolbar</Typography>
-              <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
-            </Box> :
-            <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
-          }
+              <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
+            </Box>
+          ) : (
+            <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
+          )}
         </Box>
       </Toolbar>
     </AppBar>

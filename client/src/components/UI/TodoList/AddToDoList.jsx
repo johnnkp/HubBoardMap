@@ -1,20 +1,27 @@
 import React from "react";
-import { Card, Checkbox, Stack, TextField, IconButton } from "@mui/material";
+import {
+  Box,
+  Card,
+  Checkbox,
+  Stack,
+  TextField,
+  IconButton,
+  CardContent,
+} from "@mui/material";
 import { useFormik } from "formik";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import DoNotTouchIcon from "@mui/icons-material/DoNotTouch";
-import CheckBoxOutlineBlankRoundedIcon from "@mui/icons-material/CheckBoxOutlineBlankRounded";
-import CheckBoxRoundedIcon from "@mui/icons-material/CheckBoxRounded";
-import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const AddToDoItem = () => {
   const formik = useFormik({
     initialValues: {
       todoTitle: "",
-      pin: false,
       todoDeatils: "",
+      isPin: false,
+      contributor: [],
+      isTodoList: true,
     },
     onSubmit: (values, action) => {
       alert(JSON.stringify(values, null, 2));
@@ -28,9 +35,11 @@ const AddToDoItem = () => {
       onSubmit={formik.handleSubmit}
       variant="outlined"
       sx={{
-        paddingX: 4,
-        paddingY: 2,
-        boxShadow: (theme) => `0px 0px 15px -5px ${theme.palette.hOrange.main}`,
+        padding: 2,
+        borderRadius: 5,
+        borderColor: "hOrange.main",
+        borderWidth: 2,
+        // boxShadow: (theme) => `0px 0px 15px -5px ${theme.palette.hOrange.main}`,
       }}
     >
       <Stack>
@@ -50,11 +59,11 @@ const AddToDoItem = () => {
             color="hOrange"
             icon={<PushPinOutlinedIcon />}
             checkedIcon={<PushPinIcon />}
-            id="pin"
-            name="pin"
+            id="isPin"
+            name="isPin"
             onChange={formik.handleChange}
-            value={formik.values.pin}
-            checked={formik.values.pin}
+            value={formik.values.isPin}
+            checked={formik.values.isPin}
           />
         </Stack>
         <TextField
@@ -68,13 +77,25 @@ const AddToDoItem = () => {
           onChange={formik.handleChange}
           value={formik.values.todoDeatils}
         />
-        <Stack direction="row">
-          <IconButton />
-          <Checkbox color="hOrange" />
-          <Checkbox color="hOrange" />
+        <Stack direction="row" display="flex" justifyContent="space-between">
+          <Box>
+            <IconButton color="hOrange">
+              <PersonAddIcon />
+            </IconButton>
+            <Checkbox
+              color="hOrange"
+              id="isTodoList"
+              name="isTodoList"
+              onChange={formik.handleChange}
+              value={formik.values.isTodoList}
+              checked={formik.values.isTodoList}
+            />
+          </Box>
+          <IconButton color="hOrange" type="submit">
+            <AddCircleIcon />
+          </IconButton>
         </Stack>
       </Stack>
-      <button type="submit">submit</button>
     </Card>
   );
 };
