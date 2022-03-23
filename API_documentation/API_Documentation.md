@@ -34,7 +34,7 @@ HubBoard API
 - [User_Todolist](#User_Todolist)
   - [](#)
   - [Create todolist](#Create-todolist)
-  - [Get all todolists](#Get-all-todolists)
+  - [Get all todolists of current user](#Get-all-todolists-of-current-user)
 
 ___
 
@@ -773,7 +773,7 @@ POST /api/user/todolist/createTodolist
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Error message</p> |
 
-## <a name='Get-all-todolists'></a> Get all todolists
+## <a name='Get-all-todolists-of-current-user'></a> Get all todolists of current user
 [Back to top](#top)
 
 ```

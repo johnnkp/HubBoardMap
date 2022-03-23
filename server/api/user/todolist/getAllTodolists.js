@@ -1,5 +1,5 @@
 /**
- * @api {get} /user/todolist/getAllTodolists Get all todolists
+ * @api {get} /user/todolist/getAllTodolists Get all todolists of current user
  * @apiName GetAllTodolists
  * @apiGroup User_Todolist
  *
