@@ -7,17 +7,27 @@ const TodolistSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    contributors: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }],
     title: {
         type: String,
         required: true
     },
-    content: {
-        type: String,
+    description: String,
+    checkboxes: [{
+        active: Boolean,
+        content: String
+    }],
+    active: {
+        type: Boolean,
+        default: true
     },
+    createTime : {
+        type: Date,
+        default: Date.now
+    },
+    contributors: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment'

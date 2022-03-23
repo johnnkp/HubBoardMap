@@ -31,6 +31,10 @@ HubBoard API
   - [Friend Request Response](#Friend-Request-Response)
   - [Get friends list](#Get-friends-list)
   - [Unfriend](#Unfriend)
+- [User_Todolist](#User_Todolist)
+  - [](#)
+  - [Create todolist](#Create-todolist)
+  - [Get all todolists](#Get-all-todolists)
 
 ___
 
@@ -684,4 +688,112 @@ POST /api/user/interaction/unfriend
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False.</p> |
 | message | `String` | <p>The error message.</p> |
+
+# <a name='User_Todolist'></a> User_Todolist
+
+## <a name=''></a> 
+[Back to top](#top)
+
+```
+DELETE /api/user/todolist/deleteTodolist
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>id of the todolist to delete.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Create-todolist'></a> Create todolist
+[Back to top](#top)
+
+```
+POST /api/user/todolist/createTodolist
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| title | `String` | <p>Title of the todolist</p> |
+| description | `String` | <p>Optional. Description of the todolist</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| todolist | `Object` | <p>The created todolist</p> |
+
+### Success response example
+
+#### Success response example - `Success-Response:`
+
+```json
+{
+    "success": true,
+    "todolist": {
+        "owner": "621f6f49849ea9671627004e",
+        "contributors": [],
+        "title": "todolist title",
+        "description": "todolist description",
+        "active": true,
+        "comments": [],
+        "_id": "623b58dc2529210b39129903",
+        "checkboxes": [],
+        "__v": 0
+    }
+}
+```
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Get-all-todolists'></a> Get all todolists
+[Back to top](#top)
+
+```
+GET /user/todolist/getAllTodolists
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success |  | <p>true</p> |
+| todolists | `Object[]` | <p>List of all todolists.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success |  | <p>false</p> |
+| message |  | <p>Error message</p> |
 
