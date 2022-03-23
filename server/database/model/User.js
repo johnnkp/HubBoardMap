@@ -40,14 +40,6 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    friendRequestsSent: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'friendRequest'
-    }],
-    friendRequestsReceived: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'friendRequest'
-    }],
     notifications : [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Notification'

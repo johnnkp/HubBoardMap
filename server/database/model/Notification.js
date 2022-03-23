@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const option = { discriminatorKey: 'kind' };
 // Define the Notification schema
 const NotificationSchema = new mongoose.Schema({
     owner: {
@@ -7,14 +7,18 @@ const NotificationSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    time: {
+        type: Date,
+        default: Date.now
+    },
 })
 
 const Notification = mongoose.model('Notification', NotificationSchema);
 
 module.exports = Notification;
 
-const option = { discriminatorKey: 'kind' };
 
+// Inheritance FriendRequestNotification from Notification
 const FriendRequestNotification = Notification.discriminator('FriendRequestNotification', new mongoose.Schema({
     content :{
         type: mongoose.Schema.Types.ObjectId,
@@ -23,6 +27,18 @@ const FriendRequestNotification = Notification.discriminator('FriendRequestNotif
     }
 }, option));
 
+// Inheritance FriendRequestAcceptedNotification from Notification
+const FriendRequestResponseNotification = Notification.discriminator('FriendRequestResponseNotification', new mongoose.Schema({
+    content : {
+        fromUser: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+        isAccepted: Boolean
+    }
+}, option));
+
 module.exports = {
     FriendRequestNotification,
+    FriendRequestResponseNotification
 }

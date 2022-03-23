@@ -15,6 +15,8 @@
 
 const router = require('express').Router();
 const friendRequest = require('../../../database/model/FriendRequest');
+const { FriendRequestNotification, FriendRequestResponseNotification } = require("../../../database/model/Notification");
+const { emitNotification } = require('../../../socket');
 
 router.post('/',(req,res)=>{
     const {requestId,isAccepted} = req.body;
@@ -46,21 +48,55 @@ router.post('/',(req,res)=>{
                 request.populate('fromUser toUser')
                     .then(()=>{
                         const {fromUser, toUser} = request;
-                        // Pull the request from the friendRequest array and remove the request from database
-                        fromUser.friendRequestsSent.pull(requestId)
-                        toUser.friendRequestsReceived.pull(requestId)
-                        Promise.all([fromUser.save(),toUser.save,request.remove()])
-                            .then(()=>{
-                                // If isAccepted, add the user to the friend array of the other user
-                                if (isAccepted){
-                                    fromUser.friends.push(toUser._id);
-                                    toUser.friends.push(fromUser._id);
-                                    Promise.all([fromUser.save(),toUser.save()])
+                        FriendRequestNotification.findOne({requestId:requestId})
+                            .then(notification=>{
+                                if (notification){
+                                    toUser.notifications.pull(notification._id);
+                                    Promise.all([fromUser.save(),toUser.save(),request.remove(),notification.remove()])
                                         .then(()=>{
-                                            return res.status(200).json({
-                                                success:true,
-                                                message:'friend request accepted'
-                                            });
+                                            // create a friend request response notification
+                                            FriendRequestResponseNotification.create({
+                                                owner:fromUser._id,
+                                                time:Date.now(),
+                                                content:{
+                                                    fromUser:toUser._id,
+                                                    isAccepted:isAccepted
+                                                }
+                                            })
+                                                .then(notification=>{
+                                                    // push the notification to the user's notifications array and emit
+                                                    fromUser.notifications.push(notification._id);
+                                                    fromUser.save()
+                                                        .then(()=>{
+                                                            emitNotification(fromUser._id);
+                                                            // If isAccepted, add the user to the friend array of the other user
+                                                            if (isAccepted){
+                                                                fromUser.friends.push(toUser._id);
+                                                                toUser.friends.push(fromUser._id);
+                                                                Promise.all([fromUser.save(),toUser.save()])
+                                                                    .then(()=>{
+                                                                        return res.status(200).json({
+                                                                            success:true,
+                                                                            message:'friend request accepted'
+                                                                        });
+                                                                    })
+                                                                    .catch(err=>{
+                                                                        return res.status(500).json({
+                                                                            success:false,
+                                                                            message:'error while accepting friend request',
+                                                                            error:err
+                                                                        });
+                                                                    });
+                                                            }
+                                                            // If not isAccepted, do nothing
+                                                            else {
+                                                                return res.status(200).json({
+                                                                    success:true,
+                                                                    message:'friend request rejected'
+                                                                });
+                                                            }
+                                                        })
+                                                })
                                         })
                                         .catch(err=>{
                                             return res.status(500).json({
@@ -70,15 +106,9 @@ router.post('/',(req,res)=>{
                                             });
                                         });
                                 }
-                                // If not isAccepted, do nothing
-                                else {
-                                    return res.status(200).json({
-                                        success:true,
-                                        message:'friend request rejected'
-                                    });
-                                }
                             })
                             .catch(err=>{
+                                console.error(err);
                                 return res.status(500).json({
                                     success:false,
                                     message:'error while accepting friend request',
@@ -87,14 +117,12 @@ router.post('/',(req,res)=>{
                             });
                     })
                     .catch(err=>{
-                        console.log(err);
+                        console.error(err);
                         return res.status(500).json({
                             success:false,
                             message:'error in populating request'
                         });
                     });
-
-
             }
         })
 

@@ -13,7 +13,6 @@ const FriendRequestSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    time: Date,
 })
 
 

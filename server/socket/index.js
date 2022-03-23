@@ -7,10 +7,16 @@ const notificationPopulateOption = {
     path: 'notifications',
     populate: {
         path: 'content',
-        select: 'fromUser time',
+        select: 'fromUser',
         populate: {
             path: 'fromUser',
             select: 'username'
+        }
+    },
+    options:{
+        limit:10, // return only 10 notifications
+        sort:{
+            time: -1 // return the latest notification
         }
     }
 }
@@ -32,20 +38,22 @@ const notificationPopulateOption = {
  *     {
  *         "_id": "62289d1c7f3f8b9b913c7672", // Notification id
  *         "content": { // Notification content
- *             "_id": "62289d1c7f3f8b9b913c7670",
+ *             "_id": "62289d1c7f3f8b9b913c7670", // Friend request id
  *             "fromUser": {
  *                 "_id": "621f6f49849ea9671627004e",
- *                 "username": "user"
+ *                 "username": "username"
  *             },
- *             "time": "2022-03-09T12:49:41.321Z"
  *         },
  *         "owner": "621f6f49849ea9671627004e",
+ *         "time": "2022-03-09T12:49:41.321Z",
  *         "__t": "FriendRequestNotification", // Notification type
  *         "__v": 0
  *     }
  * ]
  *
  */
+
+
 module.exports.init = (server)=>{
     io = require('socket.io')(server);
     // wrap connect middleware to socket.io middleware
@@ -66,9 +74,7 @@ module.exports.init = (server)=>{
         const user = socket.request.user;
         const UserId = user._id.toString();
         // Using user id as socket room id
-        console.log(UserId)
         socket.join(UserId);
-        console.log(socket.rooms)
         socket.on('disconnect', ()=>{
             socket.leave(UserId);
         });
@@ -85,6 +91,7 @@ module.exports.init = (server)=>{
     });
 };
 
+// Emit notifications to user
 module.exports.emitNotification = (userId)=>{
     // Find user's notifications
     User.findOne({_id: userId},'notifications')

@@ -412,14 +412,14 @@ ws.on('notifications', (notifications) => {
     {
         "_id": "62289d1c7f3f8b9b913c7672", // Notification id
         "content": { // Notification content
-            "_id": "62289d1c7f3f8b9b913c7670",
+            "_id": "62289d1c7f3f8b9b913c7670", // Friend request id
             "fromUser": {
                 "_id": "621f6f49849ea9671627004e",
-                "username": "user"
+                "username": "username"
             },
-            "time": "2022-03-09T12:49:41.321Z"
         },
         "owner": "621f6f49849ea9671627004e",
+        "time": "2022-03-09T12:49:41.321Z",
         "__t": "FriendRequestNotification", // Notification type
         "__v": 0
     }
