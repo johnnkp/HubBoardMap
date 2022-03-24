@@ -1,5 +1,5 @@
 /**
- * @api {get} /user/todolist/getAllTodolists Get all todolists of current user
+ * @api {get} /api/user/todolist/getAllTodolists Get all todolists of current user
  * @apiName GetAllTodolists
  * @apiGroup User_Todolist
  *
@@ -13,6 +13,7 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
+    // Get all todolists of current user
     req.user.populate('todolists')
         .then(()=>{
             res.status(200).json({

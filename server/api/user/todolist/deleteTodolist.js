@@ -17,22 +17,25 @@ const Todolist = require('../../../database/model/Todolist');
 
 router.delete('/', (req, res) => {
     const { todolistId } = req.body;
+    // Check if todolistId is provided
     if (!todolistId) {
         return res.status(400).json({
             success: false,
             message: 'Missing todolistId'
         });
     }
+    // Find todolist by id
     Todolist.findById(todolistId)
         .then(todolist => {
+            // Check if current user is the owner of the todolist
             if (todolist.owner.toString() !== req.user._id.toString()) {
                 return res.status(403).json({
                     success: false,
                     message: 'You are not the owner of this todolist'
                 });
             } else {
-                req.user.todolists.pull(todolistId);
-                Promise.all([req.user.save(), todolist.remove()])
+                req.user.todolists.pull(todolistId); // Remove todolist from user's todolists
+                Promise.all([req.user.save(), todolist.remove()]) // Remove todolist from database
                     .then(() => {
                         res.status(200).json({
                             success: true,

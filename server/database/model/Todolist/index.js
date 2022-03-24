@@ -13,10 +13,13 @@ const TodolistSchema = new mongoose.Schema({
     },
     description: String,
     checkboxes: [{
-        active: Boolean,
+        isChecked: {
+            type: Boolean,
+            default: false
+        },
         content: String
     }],
-    active: {
+    isActive: {
         type: Boolean,
         default: true
     },

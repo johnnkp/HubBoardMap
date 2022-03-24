@@ -34,18 +34,21 @@ const Todolist = require('../../../database/model/Todolist');
 
 router.post('/', (req, res) => {
     const { title, description } = req.body;
+    // Check if title is provided
     if (!title) {
         return res.status(400).json({
             success: false,
             error: 'Title are required'
         });
     }
+    // Create todolist
     Todolist.create({
         owner: req.user._id,
         title:title,
         description:description || '',
     })
         .then(todolist => {
+            // Add todolist to user
             req.user.todolists.push(todolist._id);
             req.user.save()
                 .then(() => {
