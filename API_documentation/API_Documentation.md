@@ -40,6 +40,9 @@ HubBoard API
   - [Create Checkbox](#Create-Checkbox)
   - [Delete Checkbox](#Delete-Checkbox)
   - [Update checkbox](#Update-checkbox)
+- [User_Todolist_Contributor](#User_Todolist_Contributor)
+  - [Contributor Request](#Contributor-Request)
+  - [Response to contributor request](#Response-to-contributor-request)
 
 ___
 
@@ -935,4 +938,68 @@ PUT /api/user/todolist/checkbox/updateCheckbox
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false.</p> |
 | message | `String` | <p>Error message.</p> |
+
+# <a name='User_Todolist_Contributor'></a> User_Todolist_Contributor
+
+## <a name='Contributor-Request'></a> Contributor Request
+[Back to top](#top)
+
+```
+POST /api/user/todolist/contributor/contributorRequest
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| targetUsername | `String` | <p>Username of the target user</p> |
+| todolistId | `String` | <p>Id of the todolist</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Response-to-contributor-request'></a> Response to contributor request
+[Back to top](#top)
+
+```
+POST /api/user/todolist/contributor/contributorRequestResponse
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| requestId | `String` | <p>id of the contributor request</p> |
+| isAccepted | `Boolean` | <p>accept or not</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
 

@@ -38,7 +38,28 @@ const FriendRequestResponseNotification = Notification.discriminator('FriendRequ
     }
 }, option));
 
+// Inheritance FriendRequestAcceptedNotification from Notification
+const ContributorRequestNotification = Notification.discriminator('ContributorRequestNotification', new mongoose.Schema({
+    content :{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ContributorRequest',
+        required: true
+    }
+}, option));
+
+const ContributorRequestResponseNotification = Notification.discriminator('ContributorRequestResponseNotification', new mongoose.Schema({
+    content : {
+        fromUser: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+        isAccepted: Boolean
+    }
+}, option));
+
 module.exports = {
     FriendRequestNotification,
-    FriendRequestResponseNotification
+    FriendRequestResponseNotification,
+    ContributorRequestNotification,
+    ContributorRequestResponseNotification
 }

@@ -1,5 +1,5 @@
 /*
-    Handling /api/user/todolist requests
+    Handling /api/user/todolist/contributor requests
 */
 
 const router = require('express').Router();
@@ -9,8 +9,5 @@ const dir = require("require-dir")();
 for (let route in dir){
     router.use('/' + route, dir[route]);
 }
-
-router.use('/checkbox', require('./checkbox'));
-router.use('/contributor', require('./contributor'));
 
 module.exports = router;

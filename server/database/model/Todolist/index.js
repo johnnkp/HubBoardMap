@@ -47,12 +47,19 @@ TodolistSchema.pre('save', function(next) {
     next();
 });
 
+// Check if user is the owner of the Todolist
 TodolistSchema.methods.isOwner = function(userId){
     return this.owner.equals(userId);
 }
 
+// Check if user is a contributor of the Todolist
+TodolistSchema.methods.isContributor = function(userId){
+    return this.contributors.some(contributor=>contributor.toString() === userId.toString());
+}
+
+// Check if user is the owner or a contributor of the Todolist
 TodolistSchema.methods.isOwnerOrContributor = function(userId){
-    return this.owner.equals(userId) || this.contributors.some(contributor=>{contributor.equals(userId)});
+    return this.owner.equals(userId) || this.contributors.some(contributor=>contributor.toString() === userId.toString());
 }
 
 module.exports = mongoose.model('Todolist', TodolistSchema);
