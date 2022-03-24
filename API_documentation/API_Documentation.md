@@ -35,6 +35,7 @@ HubBoard API
   - [](#)
   - [Create todolist](#Create-todolist)
   - [Get all todolists of current user](#Get-all-todolists-of-current-user)
+  - [Update todolist](#Update-todolist)
 
 ___
 
@@ -777,7 +778,7 @@ POST /api/user/todolist/createTodolist
 [Back to top](#top)
 
 ```
-GET /user/todolist/getAllTodolists
+GET /api/user/todolist/getAllTodolists
 ```
 ### Success response
 
@@ -796,4 +797,38 @@ GET /user/todolist/getAllTodolists
 |----------|------------|---------------------------------------|
 | success |  | <p>false</p> |
 | message |  | <p>Error message</p> |
+
+## <a name='Update-todolist'></a> Update todolist
+[Back to top](#top)
+
+```
+PUT /api/user/todolist/updateTodolist/:id
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>id of the todolist to update</p> |
+| title | `String` | <p>Optional. Title to update</p> |
+| description | `String` | <p>Optional. Description to update</p> |
+| isActive | `Boolean` | <p>Optional. isActive to update</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+| todolist | `Object` | <p>Updated todolist</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
 
