@@ -26,6 +26,7 @@ router.delete('/',(req,res)=>{
             message: 'checkboxId is required'
         });
     }
+    // Find todolist
     Todolist.findById(todolistId)
         .then(todolist=>{
             if(!todolist){
@@ -34,12 +35,14 @@ router.delete('/',(req,res)=>{
                     message: 'todolist not found'
                 });
             }
+            // Check if current user is owner or contributor of todolist
             else if (!(todolist.isOwnerOrContributor(req.user._id))) {
                     return res.status(403).json({
                         success: false,
                         message: 'You do not have permission to update this todolist'
                     });
                 }
+            // Delete Checkbox
             const checkbox = todolist.checkboxes.id(checkboxId);
             if(!checkbox){
                 return res.status(404).json({

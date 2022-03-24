@@ -3,7 +3,7 @@
  * @apiName CreateCheckbox
  * @apiGroup User_Todolist_Checkbox
  *
- * @apiBody {String} todolistId Todolist Id
+ * @apiBody {String} todolistId Todolist id
  * @apiBody {String} checkboxContent Optional (default: ""). Checkbox Content
  *
  * @apiSuccess {Boolean} success true

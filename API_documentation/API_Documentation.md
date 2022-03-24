@@ -39,6 +39,7 @@ HubBoard API
 - [User_Todolist_Checkbox](#User_Todolist_Checkbox)
   - [Create Checkbox](#Create-Checkbox)
   - [Delete Checkbox](#Delete-Checkbox)
+  - [Update checkbox](#Update-checkbox)
 
 ___
 
@@ -848,7 +849,7 @@ POST /api/user/todolist/checkbox/createCheckbox
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| todolistId | `String` | <p>Todolist Id</p> |
+| todolistId | `String` | <p>Todolist id</p> |
 | checkboxContent | `String` | <p>Optional (default: &quot;&quot;). Checkbox Content</p> |
 ### Success response
 
@@ -900,4 +901,38 @@ DELETE /api/user/todolist/checkbox/deleteCheckbox
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>false</p> |
 | message | `String` | <p>Error message</p> |
+
+## <a name='Update-checkbox'></a> Update checkbox
+[Back to top](#top)
+
+```
+PUT /api/user/todolist/checkbox/updateCheckbox
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>Todolist id</p> |
+| checkboxId | `String` | <p>Checkbox id</p> |
+| isChecked | `Boolean` | <p>Optional. Checkbox is checked or not.</p> |
+| content | `String` | <p>Optional. Checkbox content.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true.</p> |
+| message | `String` | <p>Success message.</p> |
+| todolist | `Object` | <p>Updated todolist.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false.</p> |
+| message | `String` | <p>Error message.</p> |
 
