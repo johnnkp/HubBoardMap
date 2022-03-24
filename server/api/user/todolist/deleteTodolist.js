@@ -28,7 +28,7 @@ router.delete('/', (req, res) => {
     Todolist.findById(todolistId)
         .then(todolist => {
             // Check if current user is the owner of the todolist
-            if (todolist.owner.toString() !== req.user._id.toString()) {
+            if (!todolist.isOwner(req.user._id)) {
                 return res.status(403).json({
                     success: false,
                     message: 'You are not the owner of this todolist'

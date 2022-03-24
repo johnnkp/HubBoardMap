@@ -38,8 +38,7 @@ router.put('/', (req,res)=>{
                 });
             }
             // Check if current user is the owner or contributor of the todolist
-            else if (!(todolist.owner.equals(req.user._id) ||
-                todolist.contributors.some(contributor=>{contributor.equals(req.user._id)}))){
+            else if (!(todolist.isOwnerOrContributor(req.user._id))) {
                 return res.status(403).json({
                     success: false,
                     message: 'You do not have permission to update this todolist'

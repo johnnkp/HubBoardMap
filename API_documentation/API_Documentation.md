@@ -36,6 +36,9 @@ HubBoard API
   - [Create todolist](#Create-todolist)
   - [Get all todolists of current user](#Get-all-todolists-of-current-user)
   - [Update todolist](#Update-todolist)
+- [User_Todolist_Checkbox](#User_Todolist_Checkbox)
+  - [Create Checkbox](#Create-Checkbox)
+  - [Delete Checkbox](#Delete-Checkbox)
 
 ___
 
@@ -822,6 +825,72 @@ PUT /api/user/todolist/updateTodolist/:id
 | success | `Boolean` | <p>true</p> |
 | message | `String` | <p>Success message</p> |
 | todolist | `Object` | <p>Updated todolist</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
+
+# <a name='User_Todolist_Checkbox'></a> User_Todolist_Checkbox
+
+## <a name='Create-Checkbox'></a> Create Checkbox
+[Back to top](#top)
+
+```
+POST /api/user/todolist/checkbox/createCheckbox
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>Todolist Id</p> |
+| checkboxContent | `String` | <p>Optional (default: &quot;&quot;). Checkbox Content</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+| todolist | `Object` | <p>Todolist Object after creation</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Delete-Checkbox'></a> Delete Checkbox
+[Back to top](#top)
+
+```
+DELETE /api/user/todolist/checkbox/deleteCheckbox
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>Todolist id</p> |
+| checkboxId | `String` | <p>Checkbox id</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+| todolist | `Object` | <p>Todolist Object after creation</p> |
 
 ### Error response
 
