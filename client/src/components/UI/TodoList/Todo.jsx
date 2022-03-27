@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AddToDoList from "./AddToDoList";
 import TodoList from "./TodoList";
-
-// dummy TODO List
-const dummyTodoList = {
-  todoTitle: "This is Title",
-  todoDetails: "This is Details",
-};
+import axios from "axios";
+import { todoListActions } from "../../../store/slice/todo";
 
 const TodoItems = () => {
-  const { todoList } = useSelector((state) => state.todoList);
+  const dispatch = useDispatch();
+  const { todolists } = useSelector((state) => state.todolists);
+
+  // INFO: Fetch all todo list on mount
+  useEffect(() => {
+    const getAllTodolists = async () => {
+      try {
+        const res = await axios.get("/api/user/todolist/getAllTodolists");
+        dispatch(todoListActions.setTodoList(res.data.todolists));
+      } catch (err) {
+        // console.log(err.response);
+      }
+    };
+    getAllTodolists();
+  });
   return (
     <Grid container justifyContent="center" my={8}>
       <Grid item container xs={12} mb={8}>
@@ -22,7 +32,7 @@ const TodoItems = () => {
         <Grid item xs={0} sm={1} md={3} />
       </Grid>
       <Grid item container xs={12} justifyContent="center" width="100%">
-        <TodoList {...dummyTodoList} />
+        <TodoList todolists={todolists} />
       </Grid>
     </Grid>
   );

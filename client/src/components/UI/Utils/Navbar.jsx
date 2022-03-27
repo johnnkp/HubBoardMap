@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AppBar, Toolbar, Box, Typography, IconButton } from "@mui/material";
 import SearchBar from "./SearchBar";
+import Notification from "./Notification";
 import axios from "axios";
 import { DropDownMenu } from "../";
 import classes from "../../../styles/global.module.css";
@@ -78,6 +79,7 @@ const Navbar = (props) => {
               justifyContent="space-evenly"
               minWidth="150px"
             >
+              <Notification />
               <Typography>Toolbar</Typography>
               <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
             </Box>

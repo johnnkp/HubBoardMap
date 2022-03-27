@@ -6,26 +6,35 @@ import {
   Stack,
   TextField,
   IconButton,
-  CardContent,
 } from "@mui/material";
 import { useFormik } from "formik";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import axios from "axios";
+import { Title } from "@mui/icons-material";
 
 const AddToDoItem = () => {
   const formik = useFormik({
     initialValues: {
       todoTitle: "",
-      todoDeatils: "",
+      todoDetails: "",
       isPin: false,
       contributor: [],
       isTodoList: true,
     },
-    onSubmit: (values, action) => {
-      alert(JSON.stringify(values, null, 2));
-      action.resetForm();
+    onSubmit: async (values, action) => {
+      try {
+        const res = await axios.post("/api/user/todolist/createTodolist", {
+          title: values.todoTitle,
+          description: values.todoDetails,
+        });
+        console.log(res);
+        action.resetForm();
+      } catch (err) {
+        console.log(err.response);
+      }
     },
   });
 
@@ -67,15 +76,15 @@ const AddToDoItem = () => {
           />
         </Stack>
         <TextField
-          id="todoDeatils"
-          name="todoDeatils"
+          id="todoDetails"
+          name="todoDetails"
           type="text"
           color="hOrange"
           placeholder="details..."
           multiline
           rows={3}
           onChange={formik.handleChange}
-          value={formik.values.todoDeatils}
+          value={formik.values.todoDetails}
         />
         <Stack direction="row" display="flex" justifyContent="space-between">
           <Box>

@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-import {
-  InputBase,
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
-  Popover,
-  Portal,
-} from "@mui/material";
-import { styled, alpha, handleBreakpoints } from "@mui/system";
+import { InputBase } from "@mui/material";
+import { styled, alpha } from "@mui/system";
 import SearchIcon from "@mui/icons-material/Search";
+import SearchResultList from "./SearchResultList";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,7 +46,7 @@ const fakeUserList = [{ name: "Sam" }, { name: "John" }, { name: "Joseph" }];
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [userList, setUserList] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (e) => {
     setInput(e.target.value);
@@ -61,24 +54,31 @@ const SearchBar = () => {
     setUserList(fakeUserList);
   };
 
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
   const handleClose = () => {
-    setAnchorEl(null);
+    setIsOpen(false);
   };
 
   return (
     <React.Fragment>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <InputField
-          placeholder="Search friend here!!!"
-          id="input"
-          name="input"
-          onChange={handleChange}
-          value={input}
-        />
-      </Search>
+      <div onMouseOver={handleOpen} onMouseLeave={handleClose}>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <InputField
+            placeholder="Search friend here!!!"
+            id="input"
+            name="input"
+            onChange={handleChange}
+            value={input}
+          />
+          {isOpen && <SearchResultList results={fakeUserList} />}
+        </Search>
+      </div>
     </React.Fragment>
   );
 };

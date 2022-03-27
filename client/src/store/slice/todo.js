@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const todoListSlice = createSlice({
   name: "todoList",
-  initialState: { todoList: [] },
+  initialState: { todolists: [] },
   reducers: {
     setTodoList: (state, action) => {
-      state.todoList = action.payload;
+      state.todolists = action.payload;
     },
   },
 });
