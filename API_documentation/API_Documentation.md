@@ -22,6 +22,7 @@ HubBoard API
   - [Notifications of user](#Notifications-of-user)
 - [User](#User)
   - [Get profile photo](#Get-profile-photo)
+  - [Get username of current user](#Get-username-of-current-user)
   - [Logout](#Logout)
   - [Modify password](#Modify-password)
   - [Upload profile photo](#Upload-profile-photo)
@@ -469,6 +470,30 @@ GET /api/user/profilePhoto/:username
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Error message</p> |
+
+## <a name='Get-username-of-current-user'></a> Get username of current user
+[Back to top](#top)
+
+```
+GET /api/user/username
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| username | `String` | <p>Username of current user.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| error | `String` | <p>Error message.</p> |
 
 ## <a name='Logout'></a> Logout
 [Back to top](#top)
