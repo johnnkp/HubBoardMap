@@ -42,6 +42,7 @@ HubBoard API
   - [Update checkbox](#Update-checkbox)
 - [User_Todolist_Contributor](#User_Todolist_Contributor)
   - [Contributor Request](#Contributor-Request)
+  - [Remove contributor](#Remove-contributor)
   - [Response to contributor request](#Response-to-contributor-request)
 
 ___
@@ -946,6 +947,37 @@ PUT /api/user/todolist/checkbox/updateCheckbox
 
 ```
 POST /api/user/todolist/contributor/contributorRequest
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| targetUsername | `String` | <p>Username of the target user</p> |
+| todolistId | `String` | <p>Id of the todolist</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| message | `String` | <p>Success message</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Remove-contributor'></a> Remove contributor
+[Back to top](#top)
+
+```
+DELETE /api/user/todolist/contributor/removeContributor
 ```
 
 ### Request Body

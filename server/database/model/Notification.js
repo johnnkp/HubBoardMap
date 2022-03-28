@@ -47,6 +47,7 @@ const ContributorRequestNotification = Notification.discriminator('ContributorRe
     }
 }, option));
 
+// Inheritance FriendRequestAcceptedNotification from Notification
 const ContributorRequestResponseNotification = Notification.discriminator('ContributorRequestResponseNotification', new mongoose.Schema({
     content : {
         fromUser: {
