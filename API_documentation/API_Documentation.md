@@ -35,12 +35,15 @@ HubBoard API
 - [User_Todolist](#User_Todolist)
   - [](#)
   - [Create todolist](#Create-todolist)
+  - [Get all comments of a todolist](#Get-all-comments-of-a-todolist)
   - [Get all todolists of current user](#Get-all-todolists-of-current-user)
   - [Update todolist](#Update-todolist)
 - [User_Todolist_Checkbox](#User_Todolist_Checkbox)
   - [Create Checkbox](#Create-Checkbox)
   - [Delete Checkbox](#Delete-Checkbox)
   - [Update checkbox](#Update-checkbox)
+- [User_Todolist_Comment](#User_Todolist_Comment)
+  - [Add comment](#Add-comment)
 - [User_Todolist_Contributor](#User_Todolist_Contributor)
   - [Contributor Request](#Contributor-Request)
   - [Remove contributor](#Remove-contributor)
@@ -807,6 +810,36 @@ POST /api/user/todolist/createTodolist
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Error message</p> |
 
+## <a name='Get-all-comments-of-a-todolist'></a> Get all comments of a todolist
+[Back to top](#top)
+
+```
+GET /api/user/todolist/getAllComments/:todolistId
+```
+
+### Parameters - `Parameter`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>The id of the todolist</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| comments | `Object[]` | <p>The comments of the todolist</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>The error message</p> |
+
 ## <a name='Get-all-todolists-of-current-user'></a> Get all todolists of current user
 [Back to top](#top)
 
@@ -955,6 +988,40 @@ PUT /api/user/todolist/checkbox/updateCheckbox
 | success | `Boolean` | <p>true.</p> |
 | message | `String` | <p>Success message.</p> |
 | todolist | `Object` | <p>Updated todolist.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false.</p> |
+| message | `String` | <p>Error message.</p> |
+
+# <a name='User_Todolist_Comment'></a> User_Todolist_Comment
+
+## <a name='Add-comment'></a> Add comment
+[Back to top](#top)
+
+```
+POST /api/user/todolist/comment/addComment
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>Todolist id</p> |
+| content | `String` | <p>Comment content</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true.</p> |
+| comment | `Object` | <p>Created comment object.</p> |
+| todolist | `Object` | <p>Updated todolist object.</p> |
 
 ### Error response
 
