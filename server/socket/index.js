@@ -57,7 +57,7 @@ const notificationPopulateOption = {
 module.exports.init = (server)=>{
     io = require('socket.io')(server,{
         cors: {
-            origin: '*',
+            origin: 'http://localhost:3000',
             methods: ['GET', 'POST'],
         }
     });
