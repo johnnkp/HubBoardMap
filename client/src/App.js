@@ -15,7 +15,7 @@ import {
   Register,
   ResendEmailVerification,
 } from "./pages/auth/register";
-import { Mainpage } from "./pages/hubboard/main";
+import { Mainpage, Profilepage } from "./pages/hubboard/main";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const App = () => {
         element={<Hubboard isAuthenticated={isAuthenticated} />}
       >
         <Route path="" element={<Mainpage />} />
-        <Route path="profile" element={<h1>You in profile page</h1>} />
+        <Route path="profile" element={<Profilepage />} />
       </Route>
       <Route path="*" element={<h1>404 Not found</h1>} />
     </Routes>

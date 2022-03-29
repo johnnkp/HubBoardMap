@@ -43,7 +43,7 @@ const DropDownMenu = (props) => {
         onClose={handleCloseUserMenu}
       >
         {props.pages.map((page) => (
-          <MenuItem key={page} component={RouterLink} to={page}>
+          <MenuItem key={page} component={RouterLink} to={`/hubboard/${page}`}>
             <Typography textAlign="center">{page}</Typography>
           </MenuItem>
         ))}
