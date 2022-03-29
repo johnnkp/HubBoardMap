@@ -62,7 +62,6 @@ const Navbar = (props) => {
                 title="Menu"
               />
             </IconButton>
-
             <Box
               display="flex"
               alignItems="center"
