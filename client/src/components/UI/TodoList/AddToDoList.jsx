@@ -13,9 +13,11 @@ import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import axios from "axios";
-import { Title } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { todoListActions } from "../../../store/slice/todo";
 
 const AddToDoItem = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       todoTitle: "",
@@ -31,6 +33,9 @@ const AddToDoItem = () => {
           description: values.todoDetails,
         });
         console.log(res);
+        if (res.data.success) {
+          dispatch(todoListActions.pushOne(res.data.todolist));
+        }
         action.resetForm();
       } catch (err) {
         console.log(err.response);

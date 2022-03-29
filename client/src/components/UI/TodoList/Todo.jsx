@@ -8,7 +8,6 @@ import { todoListActions } from "../../../store/slice/todo";
 
 const TodoItems = () => {
   const dispatch = useDispatch();
-  const { todolists } = useSelector((state) => state.todolists);
 
   // INFO: Fetch all todo list on mount
   useEffect(() => {
@@ -21,7 +20,8 @@ const TodoItems = () => {
       }
     };
     getAllTodolists();
-  });
+  }, []);
+
   return (
     <Grid container justifyContent="center" my={8}>
       <Grid item container xs={12} mb={8}>
@@ -32,7 +32,7 @@ const TodoItems = () => {
         <Grid item xs={0} sm={1} md={3} />
       </Grid>
       <Grid item container xs={12} justifyContent="center" width="100%">
-        <TodoList todolists={todolists} />
+        <TodoList />
       </Grid>
     </Grid>
   );
