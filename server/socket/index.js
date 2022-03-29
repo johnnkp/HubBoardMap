@@ -55,7 +55,12 @@ const notificationPopulateOption = {
 
 
 module.exports.init = (server)=>{
-    io = require('socket.io')(server);
+    io = require('socket.io')(server,{
+        cors: {
+            origin: '*',
+            methods: ['GET', 'POST'],
+        }
+    });
     // wrap connect middleware to socket.io middleware
     const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
     io.use(wrap(sessionMiddleware));
