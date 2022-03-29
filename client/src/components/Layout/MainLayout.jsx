@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Wrapper } from "../Helpers";
-import { Navbar, SideBar } from "../UI";
-import { Box, CssBaseline } from "@mui/material";
+import React, {useState} from "react";
+import {Wrapper} from "../Helpers";
+import {Navbar, SideBar} from "../UI";
+import {Box, CssBaseline} from "@mui/material";
 
 // INFO: Mainpage layout
-const MainLayout = ({ children, profilepage }) => {
+const Layout = ({children}) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -13,15 +13,11 @@ const MainLayout = ({ children, profilepage }) => {
 
   return (
     <Wrapper>
-      <CssBaseline />
-      <Navbar handleDrawerToggle={handleDrawerToggle} ToolbarButton={true} />
+      <CssBaseline/>
+      <Navbar handleDrawerToggle={handleDrawerToggle} ToolbarButton={true}/>
       <Box display="flex">
-        <SideBar
-          drawerOpen={drawerOpen}
-          handleDrawerToggle={handleDrawerToggle}
-          profilepage={profilepage}
-        />
-        <Box component="main" sx={{ flexGrow: 1 }}>
+        <SideBar drawerOpen={drawerOpen} handleDrawerToggle={handleDrawerToggle}/>
+        <Box component="main" sx={{flexGrow: 1}}>
           {children}
         </Box>
       </Box>
@@ -29,4 +25,4 @@ const MainLayout = ({ children, profilepage }) => {
   );
 };
 
-export default MainLayout;
+export default Layout;

@@ -7,7 +7,6 @@ import { DropDownMenu } from "../";
 import classes from "../../../styles/global.module.css";
 import HuboardIcon from "../../../image/HubBoard.svg";
 import menuIcon from "../../../image/ic_menu_en.svg";
-import { Link } from "react-router-dom";
 
 // INFO: actual page need to set navigation
 const pages = ["Profile", "Dashboard", "Setting", "Logout"];
@@ -62,23 +61,13 @@ const Navbar = (props) => {
                 title="Menu"
               />
             </IconButton>
-            <Box
-              display="flex"
-              alignItems="center"
-              component={Link}
-              to="/hubboard"
-              sx={{ textDecoration: "none" }}
-            >
-              <img
-                src={HuboardIcon}
-                height="50px"
-                alt="HubBoard"
-                title="HubBoard"
-              />
-              <Typography variant="h5" sx={{ color: "white" }}>
-                HubBoard
-              </Typography>
-            </Box>
+            <img
+              src={HuboardIcon}
+              height="50px"
+              alt="HubBoard"
+              title="HubBoard"
+            />
+            <Typography variant="h5">HubBoard</Typography>
           </Box>
           <Box>
             <SearchBar />

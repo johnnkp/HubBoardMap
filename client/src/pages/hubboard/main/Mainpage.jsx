@@ -24,7 +24,7 @@ const Mainpage = () => {
     }
   };
   return (
-    <MainLayout profilepage={false}>
+    <MainLayout>
       <Todo />
       <button onClick={handleLogout}>logout</button>
     </MainLayout>
