@@ -25,7 +25,7 @@ CommentSchema.statics.addComment = function(todolistId, senderId, content) {
             content:content
         })
             .then(comment=>{
-                Todolist.findByIdAndUpdate(todolistId,{$push:{comments:comment._id}})
+                Todolist.findByIdAndUpdate(todolistId,{$push:{comments:comment._id}}, {new: true})
                     .then(todolist=>{
                         resolve({comment:comment, todolist:todolist});
                     })
