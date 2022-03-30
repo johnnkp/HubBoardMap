@@ -12,7 +12,7 @@ const notificationSlice = createSlice({
     },
     renewNotifications: (state, action) => {
       state.notifications = state.notifications.filter((notification) => {
-        if (notification._id != action.payload) {
+        if (notification._id !== action.payload) {
           return notification;
         }
       });

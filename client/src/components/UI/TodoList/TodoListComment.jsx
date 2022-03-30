@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import {
-  Avatar,
   Box,
   Button,
   TextField,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemText,
   Typography,
   Divider,
@@ -14,7 +12,6 @@ import {
 import { useFormik } from "formik";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { todoListActions } from "../../../store/slice/todo";
 import { commentActions } from "../../../store/slice/comment";
 
 const TodoListComment = (props) => {
@@ -38,7 +35,7 @@ const TodoListComment = (props) => {
       }
     };
     getAllComments();
-  }, []);
+  }, [todolistId]);
 
   const comments = useSelector((state) => state.commentLists.comments);
 

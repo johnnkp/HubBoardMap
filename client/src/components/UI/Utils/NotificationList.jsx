@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Box,
   IconButton,
@@ -20,9 +20,10 @@ const NotificationList = () => {
 
   const handleAcceptFriend = async (e) => {
     const requestId = e.currentTarget.getAttribute("data-requestid");
-    const isAccepted = e.currentTarget.getAttribute("data-isaccepted");
+    const isAccepted =
+      e.currentTarget.getAttribute("data-isaccepted") === "true";
     const notificationId = e.currentTarget.getAttribute("data-notificationid");
-    console.log(requestId, isAccepted);
+    console.log(requestId, typeof isAccepted);
     try {
       const res = await axios.post(
         "/api/user/interaction/friendRequestResponse",
@@ -43,15 +44,16 @@ const NotificationList = () => {
 
   const handleAcceptContributor = async (e) => {
     const requestId = e.currentTarget.getAttribute("data-requestid");
-    const isAccepted = e.currentTarget.getAttribute("data-isaccepted");
+    const isAccepted =
+      e.currentTarget.getAttribute("data-isaccepted") === "true";
     const notificationId = e.currentTarget.getAttribute("data-notificationid");
-    console.log(requestId, isAccepted);
+    console.log(requestId, typeof isAccepted);
     try {
       const res = await axios.post(
         "/api/user/todolist/contributor/contributorRequestResponse",
         {
           requestId,
-          isAccepted,
+          isAccepted: Boolean(isAccepted),
         }
       );
       console.log(res);
@@ -133,7 +135,10 @@ const NotificationList = () => {
                           {notification.content?.fromUser.username}
                         </Typography>
                         <Typography>
-                          &nbsp; checked the friend request
+                          &nbsp;
+                          {notification.content.isAccepted
+                            ? "accept the friend request"
+                            : "reject the friend request"}
                         </Typography>
                       </Box>
                       <Typography>{time.toLocaleString()}</Typography>
@@ -209,7 +214,10 @@ const NotificationList = () => {
                           {notification.content?.fromUser.username}
                         </Typography>
                         <Typography>
-                          &nbsp; checked the contributor request
+                          &nbsp;
+                          {notification.content.isAccepted
+                            ? "accept the contributor request"
+                            : "reject the contributor request"}
                         </Typography>
                       </Box>
                       <Typography>{time.toLocaleString()}</Typography>

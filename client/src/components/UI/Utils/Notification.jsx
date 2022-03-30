@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IconButton, Badge, Popover, List } from "@mui/material";
+import { IconButton, Badge, Popover } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import NotificationList from "./NotificationList";
 import { useDispatch, useSelector } from "react-redux";
