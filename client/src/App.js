@@ -24,6 +24,7 @@ import {
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate;
+
   useEffect(() => {
     const verify = async () => {
       try {
@@ -36,6 +37,7 @@ const App = () => {
     };
     verify();
   });
+
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   // console.log(isAuthenticated);
   // INFO: different routing path
