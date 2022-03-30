@@ -12,7 +12,8 @@
 const router = require('express').Router();
 
 router.get('/',(req,res)=>{
-    req.user.populate('friends',{
+    req.user.populate({
+        path: 'friends',
         select: 'username'
     })
         .then(()=>{
