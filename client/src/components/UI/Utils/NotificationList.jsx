@@ -15,7 +15,7 @@ import { notificationActions } from "../../../store/slice/notification";
 const NotificationList = () => {
   const dispatch = useDispatch();
   const notifications = useSelector(
-    (state) => state.notificationsLists.notifications
+    (state) => state.notificationLists.notifications
   );
 
   const handleClick = async (e) => {
@@ -87,7 +87,7 @@ const NotificationList = () => {
                       <Typography variant="h5" color="primary">
                         {notification.content?.fromUser.username}
                       </Typography>
-                      <Typography>{`${time}`}</Typography>
+                      <Typography>{time.toLocaleString()}</Typography>
                     </React.Fragment>
                   }
                 />

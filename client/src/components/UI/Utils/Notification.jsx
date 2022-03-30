@@ -9,7 +9,7 @@ const Notification = ({ socket }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const notifications = useSelector(
-    (state) => state.notificationsLists.notifications
+    (state) => state.notificationLists.notifications
   );
 
   const handleOpen = (e) => {

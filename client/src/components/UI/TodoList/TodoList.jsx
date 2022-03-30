@@ -13,6 +13,7 @@ import AddCheckBox from "./AddCheckBox";
 import CommentBox from "./CommentBox";
 import { useSelector } from "react-redux";
 import { Close } from "@mui/icons-material";
+import AddContributor from "./AddContributor";
 
 const TodoList = () => {
   const { todolists } = useSelector((state) => state.todolists);
@@ -55,6 +56,7 @@ const TodoList = () => {
         <CardActions>
           <AddCheckBox todolistId={todolist._id} />
           <CommentBox todolist={todolist} />
+          <AddContributor />
         </CardActions>
       </Card>
     ));
