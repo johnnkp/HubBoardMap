@@ -18,10 +18,11 @@ const NotificationList = () => {
     (state) => state.notificationLists.notifications
   );
 
-  const handleClick = async (e) => {
+  const handleAcceptFriend = async (e) => {
     const requestId = e.currentTarget.getAttribute("data-requestid");
     const isAccepted = e.currentTarget.getAttribute("data-isaccepted");
     const notificationId = e.currentTarget.getAttribute("data-notificationid");
+    console.log(requestId, isAccepted);
     try {
       const res = await axios.post(
         "/api/user/interaction/friendRequestResponse",
@@ -40,8 +41,30 @@ const NotificationList = () => {
   };
   console.log(notifications);
 
+  const handleAcceptContributor = async (e) => {
+    const requestId = e.currentTarget.getAttribute("data-requestid");
+    const isAccepted = e.currentTarget.getAttribute("data-isaccepted");
+    const notificationId = e.currentTarget.getAttribute("data-notificationid");
+    console.log(requestId, isAccepted);
+    try {
+      const res = await axios.post(
+        "/api/user/todolist/contributor/contributorRequestResponse",
+        {
+          requestId,
+          isAccepted,
+        }
+      );
+      console.log(res);
+      if (res.data.success) {
+        dispatch(notificationActions.renewNotifications(notificationId));
+      }
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
   return (
-    <List sx={{ minWidth: 300 }}>
+    <List sx={{ minWidth: 400 }}>
       {notifications.length > 0 ? (
         notifications.map((notification) => {
           const time = new Date(notification.time);
@@ -57,7 +80,7 @@ const NotificationList = () => {
                   <React.Fragment>
                     <Box>
                       <Box
-                        onClick={handleClick}
+                        onClick={handleAcceptFriend}
                         data-isaccepted={true}
                         data-requestid={notification.content?._id}
                         data-notificationid={notification._id}
@@ -67,7 +90,7 @@ const NotificationList = () => {
                         </IconButton>
                       </Box>
                       <Box
-                        onClick={handleClick}
+                        onClick={handleAcceptFriend}
                         data-isaccepted={false}
                         data-requestid={notification.content?._id}
                         data-notificationid={notification._id}
@@ -83,7 +106,7 @@ const NotificationList = () => {
                 <ListItemText
                   primary={
                     <React.Fragment>
-                      <Typography>A friend request from</Typography>
+                      <Typography>A friend invitation from</Typography>
                       <Typography variant="h5" color="primary">
                         {notification.content?.fromUser.username}
                       </Typography>
@@ -105,10 +128,91 @@ const NotificationList = () => {
                 <ListItemText
                   primary={
                     <React.Fragment>
-                      <Typography>
-                        {notification.content?.fromUser.username} checked the
-                        friend request
+                      <Box display="flex">
+                        <Typography color="primary">
+                          {notification.content?.fromUser.username}
+                        </Typography>
+                        <Typography>
+                          &nbsp; checked the friend request
+                        </Typography>
+                      </Box>
+                      <Typography>{time.toLocaleString()}</Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            );
+          } else if (notification.__t === "ContributorRequestNotification") {
+            return (
+              <ListItem
+                key={notification?._id}
+                sx={{
+                  borderBottom: (theme) =>
+                    `solid ${theme.palette.hOrange.main}`,
+                }}
+                secondaryAction={
+                  <React.Fragment>
+                    <Box>
+                      <Box
+                        onClick={handleAcceptContributor}
+                        data-isaccepted={false}
+                        data-requestid={notification.content?._id}
+                        data-notificationid={notification._id}
+                      >
+                        <IconButton edge="end" color="hOrange">
+                          <DoneRounded />
+                        </IconButton>
+                      </Box>
+                      <Box
+                        onClick={handleAcceptContributor}
+                        data-isaccepted={false}
+                        data-requestid={notification.content?._id}
+                        data-notificationid={notification._id}
+                      >
+                        <IconButton edge="end" color="hOrange">
+                          <CloseRounded />
+                        </IconButton>
+                      </Box>
+                    </Box>
+                  </React.Fragment>
+                }
+              >
+                <ListItemText
+                  primary={
+                    <React.Fragment>
+                      <Typography>A contributor invitaion from</Typography>
+                      <Typography variant="h5" color="primary">
+                        {notification.content?.fromUser.username}
                       </Typography>
+                      <Typography>{time.toLocaleString()}</Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            );
+          } else if (
+            notification.__t === "ContributorRequestResponseNotification"
+          ) {
+            return (
+              <ListItem
+                key={notification?._id}
+                sx={{
+                  borderBottom: (theme) =>
+                    `solid ${theme.palette.hOrange.main}`,
+                }}
+              >
+                <ListItemText
+                  primary={
+                    <React.Fragment>
+                      <Box display="flex">
+                        <Typography color="primary">
+                          {notification.content?.fromUser.username}
+                        </Typography>
+                        <Typography>
+                          &nbsp; checked the contributor request
+                        </Typography>
+                      </Box>
+                      <Typography>{time.toLocaleString()}</Typography>
                     </React.Fragment>
                   }
                 />

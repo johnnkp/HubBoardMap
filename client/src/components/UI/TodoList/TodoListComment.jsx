@@ -54,7 +54,8 @@ const TodoListComment = (props) => {
         });
         console.log(res);
         if (res.data.success) {
-          dispatch(commentActions.renewComment());
+          dispatch(commentActions.renewComment(res.data.comment));
+          action.resetForm();
         }
       } catch (err) {
         console.log(err.response);

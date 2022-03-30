@@ -14,13 +14,9 @@ import {
 import { PersonAddRounded } from "@mui/icons-material";
 import axios from "axios";
 
-const AddContributor = () => {
+const AddContributor = ({ todolistId }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [friendList, setFriendList] = useState([]);
-
-  const handleClick = (e) => {
-    console.log(e);
-  };
 
   const handleOpen = (e) => {
     setAnchorEl(e.currentTarget);
@@ -44,6 +40,23 @@ const AddContributor = () => {
     };
     getAllFriend();
   }, []);
+
+  const handleClick = async (e) => {
+    const targetUsername = e.target.getAttribute("data-targetusername");
+    console.log(targetUsername);
+    try {
+      const res = await axios.post(
+        "/api/user/todolist/contributor/contributorRequest",
+        {
+          targetUsername,
+          todolistId: todolistId,
+        }
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -70,18 +83,19 @@ const AddContributor = () => {
                       variant="contained"
                       color="hOrange"
                       onClick={handleClick}
+                      data-targetusername={friend.username}
                     >
                       Invite
                     </Button>
                   }
                 >
                   <ListItemAvatar>
-                    <Avatar>username</Avatar>
+                    <Avatar>{friend.username}</Avatar>
                   </ListItemAvatar>
                   <ListItemText
                     secondary={
                       <Typography fontSize="1.2em" color="primary">
-                        username
+                        {friend.username}
                       </Typography>
                     }
                   />

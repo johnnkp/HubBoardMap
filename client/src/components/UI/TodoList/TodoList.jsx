@@ -56,7 +56,7 @@ const TodoList = () => {
         <CardActions>
           <AddCheckBox todolistId={todolist._id} />
           <CommentBox todolist={todolist} />
-          <AddContributor />
+          <AddContributor todolistId={todolist._id} />
         </CardActions>
       </Card>
     ));
