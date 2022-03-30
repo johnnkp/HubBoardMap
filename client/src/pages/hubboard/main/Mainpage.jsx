@@ -26,7 +26,6 @@ const Mainpage = () => {
   return (
     <MainLayout profilepage={false}>
       <Todo />
-      <button onClick={handleLogout}>logout</button>
     </MainLayout>
   );
 };

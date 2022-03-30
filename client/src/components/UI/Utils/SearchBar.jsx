@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputBase } from "@mui/material";
 import { styled, alpha } from "@mui/system";
 import SearchIcon from "@mui/icons-material/Search";
 import SearchResultList from "./SearchResultList";
+import axios from "axios";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -41,17 +42,27 @@ const InputField = styled(InputBase)(({ theme }) => ({
 }));
 
 // dummy user list for testing
-const fakeUserList = [{ name: "Sam" }, { name: "John" }, { name: "Joseph" }];
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [userList, setUserList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    const getAllUser = async () => {
+      try {
+        const res = await axios.get("/api/user/interaction/getAllUser");
+        if (res.data.success) {
+          setUserList(res.data.users);
+        }
+      } catch (err) {}
+    };
+    getAllUser();
+  }, []);
+
   const handleChange = (e) => {
     setInput(e.target.value);
     // TODO: get request to retrieve user list
-    setUserList(fakeUserList);
   };
 
   const handleOpen = () => {
@@ -76,7 +87,19 @@ const SearchBar = () => {
             onChange={handleChange}
             value={input}
           />
-          {isOpen && <SearchResultList results={fakeUserList} />}
+          {isOpen && (
+            <SearchResultList
+              results={userList.filter((val) => {
+                if (input === "") {
+                  return [];
+                } else if (
+                  val.username.toLowerCase().includes(input.toLocaleLowerCase())
+                ) {
+                  return val;
+                }
+              })}
+            />
+          )}
         </Search>
       </div>
     </React.Fragment>

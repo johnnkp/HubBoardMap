@@ -8,13 +8,14 @@ import classes from "../../../styles/global.module.css";
 import HuboardIcon from "../../../image/HubBoard.svg";
 import menuIcon from "../../../image/ic_menu_en.svg";
 import { Link as RouterLink } from "react-router-dom";
+import { io } from "socket.io-client";
 
 // INFO: actual page need to set navigation
 const pages = ["Profile"];
 
 const Navbar = (props) => {
   const [profilePhoto, setProfilePhoto] = useState();
-
+  const [socket, setSocket] = useState(null);
   // INFO: get user profile photo on component mount
   useEffect(() => {
     const getUserProfilePic = async () => {
@@ -30,76 +31,82 @@ const Navbar = (props) => {
     getUserProfilePic();
   }, []);
 
+  useEffect(() => {
+    setSocket(io("http://localhost:3001", { transports: ["websocket"] }));
+  }, []);
+
   return (
-    <AppBar
-      position="sticky"
-      color="hOrange"
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-    >
-      <Toolbar sx={{ px: ["0.7%", "0.7%"] }}>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          width="100%"
-        >
+    socket && (
+      <AppBar
+        position="sticky"
+        color="hOrange"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <Toolbar sx={{ px: ["0.7%", "0.7%"] }}>
           <Box
             display="flex"
-            alignItems="center"
             justifyContent="space-between"
-            minWidth="230px"
+            alignItems="center"
+            width="100%"
           >
-            <IconButton
-              color="inherit"
-              onClick={props.handleDrawerToggle}
-              sx={{ display: "block" }}
-            >
-              <img
-                src={menuIcon}
-                className={classes.w3_svg_white}
-                height="45vw"
-                alt="Menu"
-                title="Menu"
-              />
-            </IconButton>
             <Box
               display="flex"
               alignItems="center"
-              component={RouterLink}
-              to="/hubboard"
-              sx={{ textDecoration: "none" }}
+              justifyContent="space-between"
+              minWidth="230px"
             >
-              <img
-                src={HuboardIcon}
-                height="50px"
-                alt="HubBoard"
-                title="HubBoard"
-              />
-              <Typography variant="h5" sx={{ color: "white" }}>
-                HubBoard
-              </Typography>
+              <IconButton
+                color="inherit"
+                onClick={props.handleDrawerToggle}
+                sx={{ display: "block" }}
+              >
+                <img
+                  src={menuIcon}
+                  className={classes.w3_svg_white}
+                  height="45vw"
+                  alt="Menu"
+                  title="Menu"
+                />
+              </IconButton>
+              <Box
+                display="flex"
+                alignItems="center"
+                component={RouterLink}
+                to="/hubboard"
+                sx={{ textDecoration: "none" }}
+              >
+                <img
+                  src={HuboardIcon}
+                  height="50px"
+                  alt="HubBoard"
+                  title="HubBoard"
+                />
+                <Typography variant="h5" sx={{ color: "white" }}>
+                  HubBoard
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-          <Box>
-            <SearchBar />
-          </Box>
-          {props.ToolbarButton ? (
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="space-evenly"
-              minWidth="150px"
-            >
-              <Notification />
-              <Typography>Toolbar</Typography>
+            <Box>
+              <SearchBar />
+            </Box>
+            {props.ToolbarButton ? (
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-evenly"
+                minWidth="150px"
+              >
+                <Notification socket={socket} />
+                <Typography>Toolbar</Typography>
+                <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
+              </Box>
+            ) : (
               <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
-            </Box>
-          ) : (
-            <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
-          )}
-        </Box>
-      </Toolbar>
-    </AppBar>
+            )}
+          </Box>
+        </Toolbar>
+      </AppBar>
+    )
   );
 };
 

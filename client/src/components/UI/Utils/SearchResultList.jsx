@@ -8,8 +8,21 @@ import {
   ListItemText,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import axios from "axios";
 
 const SearchResultList = ({ results }) => {
+  const sendFriendRequest = async (e) => {
+    console.log(e.currentTarget.value);
+    try {
+      const res = await axios.post("/api/user/interaction/friendRequest", {
+        targetUsername: e.currentTarget.value,
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
   return (
     <List
       sx={{
@@ -28,17 +41,21 @@ const SearchResultList = ({ results }) => {
       {results.length > 0 ? (
         results.map((result) => (
           <ListItem
-            key={result.name}
+            key={result._id}
             secondaryAction={
-              <IconButton edge="end">
+              <IconButton
+                edge="end"
+                onClick={sendFriendRequest}
+                value={result.username}
+              >
                 <AddIcon />
               </IconButton>
             }
           >
             <ListItemAvatar>
-              <Avatar>{result.name}</Avatar>
+              <Avatar>{result.username}</Avatar>
             </ListItemAvatar>
-            <ListItemText primary={result.name} />
+            <ListItemText primary={result.username} />
           </ListItem>
         ))
       ) : (
