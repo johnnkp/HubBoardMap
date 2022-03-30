@@ -10,7 +10,7 @@ import menuIcon from "../../../image/ic_menu_en.svg";
 import { Link as RouterLink } from "react-router-dom";
 
 // INFO: actual page need to set navigation
-const pages = ["Profile", "Dashboard", "Setting", "Logout"];
+const pages = ["Profile"];
 
 const Navbar = (props) => {
   const [profilePhoto, setProfilePhoto] = useState();

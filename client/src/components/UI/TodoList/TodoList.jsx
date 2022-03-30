@@ -16,7 +16,6 @@ import { Close } from "@mui/icons-material";
 
 const TodoList = () => {
   const { todolists } = useSelector((state) => state.todolists);
-  console.log(todolists);
   if (todolists.length > 0) {
     return todolists.map((todolist) => (
       <Card
