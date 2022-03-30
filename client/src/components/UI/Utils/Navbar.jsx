@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { AppBar, Toolbar, Box, Typography, IconButton } from "@mui/material";
+import React, {useEffect, useState} from "react";
+import {AppBar, Toolbar, Box, Typography, IconButton} from "@mui/material";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
 import axios from "axios";
-import { DropDownMenu } from "../";
+import {DropDownMenu} from "../";
 import classes from "../../../styles/global.module.css";
 import HuboardIcon from "../../../image/HubBoard.svg";
 import menuIcon from "../../../image/ic_menu_en.svg";
-import { Link as RouterLink } from "react-router-dom";
-import { io } from "socket.io-client";
+import {Link as RouterLink} from "react-router-dom";
+import {io} from "socket.io-client";
 
 // INFO: actual page need to set navigation
 const pages = ["Profile"];
@@ -32,7 +32,7 @@ const Navbar = (props) => {
   }, []);
 
   useEffect(() => {
-    setSocket(io("http://localhost:3001", { transports: ["websocket"] }));
+    setSocket(io("http://localhost:3001", {transports: ["websocket"]}));
   }, []);
 
   return (
@@ -40,9 +40,9 @@ const Navbar = (props) => {
       <AppBar
         position="sticky"
         color="hOrange"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}
       >
-        <Toolbar sx={{ px: ["0.7%", "0.7%"] }}>
+        <Toolbar sx={{px: ["0.7%", "0.7%"]}}>
           <Box
             display="flex"
             justifyContent="space-between"
@@ -58,7 +58,7 @@ const Navbar = (props) => {
               <IconButton
                 color="inherit"
                 onClick={props.handleDrawerToggle}
-                sx={{ display: "block" }}
+                sx={{display: "block"}}
               >
                 <img
                   src={menuIcon}
@@ -71,9 +71,11 @@ const Navbar = (props) => {
               <Box
                 display="flex"
                 alignItems="center"
+                justifyContent="space-between"
+                minWidth="165px"
                 component={RouterLink}
                 to="/hubboard"
-                sx={{ textDecoration: "none" }}
+                sx={{textDecoration: "none"}}
               >
                 <img
                   src={HuboardIcon}
@@ -81,13 +83,13 @@ const Navbar = (props) => {
                   alt="HubBoard"
                   title="HubBoard"
                 />
-                <Typography variant="h5" sx={{ color: "white" }}>
+                <Typography variant="h5" sx={{color: "white"}}>
                   HubBoard
                 </Typography>
               </Box>
             </Box>
             <Box>
-              <SearchBar />
+              <SearchBar/>
             </Box>
             {props.ToolbarButton ? (
               <Box
@@ -96,12 +98,12 @@ const Navbar = (props) => {
                 justifyContent="space-evenly"
                 minWidth="150px"
               >
-                <Notification socket={socket} />
+                <Notification socket={socket}/>
                 <Typography>Toolbar</Typography>
-                <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
+                <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
               </Box>
             ) : (
-              <DropDownMenu profilePhoto={profilePhoto} pages={pages} />
+              <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
             )}
           </Box>
         </Toolbar>
