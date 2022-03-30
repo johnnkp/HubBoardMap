@@ -30,6 +30,7 @@ HubBoard API
 - [User_Interaction](#User_Interaction)
   - [Friend request](#Friend-request)
   - [Friend Request Response](#Friend-Request-Response)
+  - [Get all user](#Get-all-user)
   - [Get friends list](#Get-friends-list)
   - [Unfriend](#Unfriend)
 - [User_Todolist](#User_Todolist)
@@ -672,6 +673,30 @@ POST /api/user/interaction/friendRequestResponse
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False.</p> |
 | message | `String` | <p>The error message.</p> |
+
+## <a name='Get-all-user'></a> Get all user
+[Back to top](#top)
+
+```
+GET /api/user/interaction/getAllUser
+```
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `String` | <p>true</p> |
+| users | `Object[]` | <p>List of user.</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `String` | <p>false</p> |
+| message | `String` | <p>Error message</p> |
 
 ## <a name='Get-friends-list'></a> Get friends list
 [Back to top](#top)
