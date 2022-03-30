@@ -23,7 +23,6 @@ const AddToDoItem = () => {
       todoTitle: "",
       todoDetails: "",
       isPin: false,
-      contributor: [],
       isTodoList: true,
     },
     onSubmit: async (values, action) => {
@@ -93,9 +92,6 @@ const AddToDoItem = () => {
         />
         <Stack direction="row" display="flex" justifyContent="space-between">
           <Box>
-            <IconButton color="hOrange">
-              <PersonAddIcon />
-            </IconButton>
             <Checkbox
               color="hOrange"
               id="isTodoList"

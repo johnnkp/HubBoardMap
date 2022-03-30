@@ -1,7 +1,12 @@
 import { configureStore /*createSlice*/ } from "@reduxjs/toolkit";
 
 // INFO: import reducers
-import { authReducer, todoListReducer, notificationReducer } from "./slice";
+import {
+  authReducer,
+  todoListReducer,
+  notificationReducer,
+  commentReducer,
+} from "./slice";
 
 // INFO: sample code to create slice
 // const sampleSlice = createSlice({
@@ -11,7 +16,6 @@ import { authReducer, todoListReducer, notificationReducer } from "./slice";
 //     test1(state, action) {},
 //     test2(state, action) {},
 //     test3(state, action) {},
-//     // ...
 //   },
 // });
 
@@ -19,7 +23,8 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     todolists: todoListReducer,
-    notificationsLists: notificationReducer,
+    notificationLists: notificationReducer,
+    commentLists: commentReducer,
   },
 });
 

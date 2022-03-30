@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Avatar,
   Box,
@@ -9,16 +9,38 @@ import {
   ListItemAvatar,
   ListItemText,
   Typography,
+  Divider,
 } from "@mui/material";
 import { useFormik } from "formik";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { todoListActions } from "../../../store/slice/todo";
+import { commentActions } from "../../../store/slice/comment";
 
 const TodoListComment = (props) => {
   const dispatch = useDispatch();
   const todolist = props.todolist;
-  const { comments } = todolist;
+
+  const { _id: todolistId } = todolist;
+  // console.log(todolistId);
+
+  useEffect(() => {
+    const getAllComments = async () => {
+      try {
+        const res = await axios.get(
+          `/api/user/todolist/getAllComments/${todolistId}`
+        );
+        if (res.data.success) {
+          dispatch(commentActions.setComments(res.data.comments));
+        }
+      } catch (err) {
+        console.log(err.response);
+      }
+    };
+    getAllComments();
+  }, []);
+
+  const comments = useSelector((state) => state.commentLists.comments);
 
   const formik = useFormik({
     initialValues: {
@@ -30,8 +52,9 @@ const TodoListComment = (props) => {
           todolistId: todolist._id,
           content: values.content,
         });
+        console.log(res);
         if (res.data.success) {
-          dispatch(todoListActions.renewCheckBox(res.data.todolist));
+          dispatch(commentActions.renewComment());
         }
       } catch (err) {
         console.log(err.response);
@@ -42,30 +65,33 @@ const TodoListComment = (props) => {
   return (
     <Box width="100%" p={2}>
       <Typography>Comments</Typography>
-      <List p={2}>
+      <List p={2} dense sx={{ maxHeight: 400, overflow: "auto" }}>
         {comments.length > 0 ? (
-          comments.map((comment) => (
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar alt={comment.sender.username}>
-                  {comment.sender.username}
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={comment.sender.username}
-                secondary={
-                  <React.Fragment>
-                    <Typography>{comment.content}</Typography>
-                    <Typography>{comment.time}</Typography>
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
-          ))
+          comments.map((comment) => {
+            const time = new Date(comment.time).toLocaleString();
+            return (
+              <Box key={comment._id}>
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Box display="flex" justifyContent="space-between">
+                          <Typography color="primary">
+                            {comment.sender.username}
+                          </Typography>
+                          <Typography>{time}</Typography>
+                        </Box>
+                        <Typography>{comment.content}</Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider />
+              </Box>
+            );
+          })
         ) : (
-          <Typography textAlign="center" color="grey.500">
-            No Comment yet...
-          </Typography>
+          <Typography>No comments yet...</Typography>
         )}
       </List>
       <Box
