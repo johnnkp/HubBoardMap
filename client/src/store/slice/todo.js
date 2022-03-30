@@ -11,7 +11,6 @@ const todoListSlice = createSlice({
       state.todolists = [...state.todolists, action.payload];
     },
     renewCheckBox: (state, action) => {
-      console.log(action.payload);
       state.todolists.forEach((todolist, i) => {
         if (todolist._id === action.payload._id) {
           state.todolists[i] = { ...action.payload };

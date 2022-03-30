@@ -16,7 +16,6 @@ import { Close } from "@mui/icons-material";
 
 const TodoList = () => {
   const { todolists } = useSelector((state) => state.todolists);
-  console.log(todolists);
   if (todolists.length > 0) {
     return todolists.map((todolist) => (
       <Card
@@ -43,10 +42,14 @@ const TodoList = () => {
             </IconButton>
           </Box>
           <Divider />
-          <Typography variant="h2" fontSize="1.25em" my={1}>
-            {todolist.description}
-          </Typography>
-          <Divider />
+          {todolist.description && (
+            <React.Fragment>
+              <Typography variant="h2" fontSize="1.25em" my={1}>
+                {todolist.description}
+              </Typography>
+              <Divider />
+            </React.Fragment>
+          )}
           <CheckBoxList todolist={todolist} />
         </CardContent>
         <CardActions>
