@@ -32,7 +32,13 @@ router.get('/:todolistId',(req,res)=>{
                         message: 'Todolist not found'
                     });
                 } else {
-                    todolist.populate('comments')
+                    todolist.populate({
+                        path: 'comments',
+                        populate: {
+                            path: 'sender',
+                            select: 'username',
+                        }
+                    })
                         .then(todolist => {
                             res.status(200).json({
                                 success: true,
