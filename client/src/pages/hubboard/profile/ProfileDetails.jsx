@@ -39,9 +39,14 @@ const ProfileDetails = () => {
   }, []);
 
   const uploadFile = async (e) => {
+    const fd = new FormData();
+    fd.append("profilePhoto", e.target.files[0]);
     try {
-      const res = await axios.put("/api/user/profilePhoto", {
-        profilePhoto: e.target.files[0],
+      const res = await axios.put("/api/user/profilePhoto", fd, {
+        headers: {
+          "Content-type":
+            "multipart/form-data; boundary=" + new Date().getTime(),
+        },
       });
       console.log(res);
     } catch (err) {
@@ -106,7 +111,7 @@ const ProfileDetails = () => {
       <Grid item xs={12}>
         <Box display="flex" alignItems="center" component="form">
           <Typography variant="h1" fontSize="2em">
-            Profile Picture
+            Profile Picture: &nbsp;
           </Typography>
           <Avatar
             src={userPic}

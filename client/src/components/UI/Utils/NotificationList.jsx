@@ -23,7 +23,6 @@ const NotificationList = () => {
     const isAccepted =
       e.currentTarget.getAttribute("data-isaccepted") === "true";
     const notificationId = e.currentTarget.getAttribute("data-notificationid");
-    console.log(requestId, typeof isAccepted);
     try {
       const res = await axios.post(
         "/api/user/interaction/friendRequestResponse",
@@ -40,20 +39,18 @@ const NotificationList = () => {
       console.log(err.response);
     }
   };
-  console.log(notifications);
 
   const handleAcceptContributor = async (e) => {
     const requestId = e.currentTarget.getAttribute("data-requestid");
     const isAccepted =
       e.currentTarget.getAttribute("data-isaccepted") === "true";
     const notificationId = e.currentTarget.getAttribute("data-notificationid");
-    console.log(requestId, typeof isAccepted);
     try {
       const res = await axios.post(
         "/api/user/todolist/contributor/contributorRequestResponse",
         {
           requestId,
-          isAccepted: Boolean(isAccepted),
+          isAccepted,
         }
       );
       console.log(res);
@@ -64,6 +61,8 @@ const NotificationList = () => {
       console.log(err.response);
     }
   };
+
+  console.log(notifications);
 
   return (
     <List sx={{ minWidth: 400 }}>
@@ -160,7 +159,7 @@ const NotificationList = () => {
                     <Box>
                       <Box
                         onClick={handleAcceptContributor}
-                        data-isaccepted={false}
+                        data-isaccepted={true}
                         data-requestid={notification.content?._id}
                         data-notificationid={notification._id}
                       >
