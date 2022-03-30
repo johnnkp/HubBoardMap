@@ -27,11 +27,16 @@ CommentSchema.statics.addComment = function(todolistId, senderId, content) {
             .then(comment=>{
                 Todolist.findByIdAndUpdate(todolistId,{$push:{comments:comment._id}}, {new: true})
                     .then(todolist=>{
-                        resolve({comment:comment, todolist:todolist});
+                        comment.populate({
+                            path: 'sender',
+                            select: 'username'
+                        })
+                            .then(comment=>{
+                                resolve({comment:comment, todolist:todolist});
+                            })
+                            .catch(reject);
                     })
-                    .catch(err=>{
-                        reject(err);
-                    })
+                    .catch(reject);
             })
             .catch(reject)
     })
