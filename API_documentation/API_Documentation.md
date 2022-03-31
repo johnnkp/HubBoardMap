@@ -800,7 +800,7 @@ POST /api/user/todolist/createTodolist
 | description | `String` | <p>Optional. Description of the todolist</p> |
 ### Success response
 
-#### Success response - `Success 200`
+#### Success response - `201`
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|

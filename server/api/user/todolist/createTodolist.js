@@ -6,8 +6,8 @@
  * @apiBody {String} title Title of the todolist
  * @apiBody {String} description Optional. Description of the todolist
  *
- * @apiSuccess {Boolean} success True
- * @apiSuccess {Object} todolist The created todolist
+ * @apiSuccess (201) {Boolean} success True
+ * @apiSuccess (201) {Object} todolist The created todolist
  *
  * @apiSuccessExample Success-Response:
  * {
