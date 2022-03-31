@@ -7,6 +7,7 @@ const expect = chai.expect;
 const login = require('../login');
 const User = require('../../../../server/database/model/User');
 const Todolist = require('../../../../server/database/model/Todolist');
+const Comment = require('../../../../server/database/model/Todolist/Comment');
 const {step} = require("mocha-steps");
 chai.use(chaiHttp);
 
@@ -28,7 +29,7 @@ before(done=>{
         });
 })
 
-describe('Basic todolist operations',()=>{
+describe('Todolist operations',()=>{
     let todolistId;
     step('Create todolist',done=> {
         const testTodolist = {
@@ -231,6 +232,56 @@ describe('Basic todolist operations',()=>{
             })
     })
 
+    let CommentId;
+    step('Add a comment',done=>{
+        const testComment = "test comment";
+        chai.request(server)
+            .post('/api/user/todolist/comment/addComment')
+            .set('Cookie', cookie)
+            .send({
+                todolistId: todolistId,
+                content: testComment
+            })
+            .end((err,res)=> {
+                expect(err).to.be.null;
+                expect(res).to.have.status(200);
+                expect(res.body).to.have.property('comment');
+                CommentId = res.body.comment._id;
+                expect(res.body).to.have.property('todolist');
+                Todolist.findById(todolistId)
+                    .then(todolist => {
+                        todolist.populate('comments')
+                            .then(todolist => {
+                                expect(todolist.comments).to.satisfy(comments => {
+                                    return comments.some(comment => {
+                                        return (comment.content === testComment && comment._id.toString() === CommentId.toString());
+                                    })
+                                });
+                                done();
+                            })
+                    })
+                    .catch(err => {
+                        done(new Error("Failed to find todolist: " + err));
+                    });
+            })
+    })
+    step('Get Comments of a todolist',done=>{
+        chai.request(server)
+            .get('/api/user/todolist/getAllComments/' + todolistId)
+            .set('Cookie', cookie)
+            .end((err,res)=>{
+                expect(err).to.be.null;
+                expect(res).to.have.status(200);
+                expect(res.body).to.have.property('comments');
+                expect(res.body.comments).to.satisfy(comments=>{
+                    return comments.some(comment=>{
+                        return comment._id.toString() === CommentId.toString();
+                    })
+                });
+                done();
+            })
+    })
+
     step('Delete a todolist',done=>{
         chai.request(server)
             .delete('/api/user/todolist/deleteTodolist')
@@ -264,7 +315,8 @@ after(done=>{
             user.todolists = [];
             Promise.all([
                 user.save(),
-                Todolist.deleteMany({owner: user._id})
+                Todolist.deleteMany({owner: user._id}),
+                Comment.deleteMany({sender: user._id})
             ])
                 .then(()=>{
                     done();
