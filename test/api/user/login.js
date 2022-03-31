@@ -3,15 +3,11 @@ const server = require("../../../app");
 
 
 // Login and return cookie if successfully logged in
-module.exports = ()=>{
-    const testUser = {
-        username: "testAccount",
-        password: "password"
-    };
+module.exports = (userLoginInfo)=>{
     return new Promise((resolve,reject)=>{
         chai.request(server)
             .post("/api/auth/login")
-            .send(testUser)
+            .send(userLoginInfo)
             .end((err,res)=>{
                 if (err){
                     reject(err);

@@ -12,7 +12,10 @@ let cookie;
 
 describe('Auth Verify', ()=>{
     before(done=>{
-        login()
+        login({
+            username: "testAccount",
+            password: "password"
+        })
             .then(returnedCookie=>{
                 cookie = returnedCookie;
                 done();
