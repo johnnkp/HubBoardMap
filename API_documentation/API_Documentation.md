@@ -32,6 +32,7 @@ HubBoard API
   - [Friend Request Response](#Friend-Request-Response)
   - [Get all user](#Get-all-user)
   - [Get friends list](#Get-friends-list)
+  - [Search for users](#Search-for-users)
   - [Unfriend](#Unfriend)
 - [User_Todolist](#User_Todolist)
   - [Create todolist](#Create-todolist)
@@ -721,6 +722,36 @@ GET /api/user/interaction/getFriendsList
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>False</p> |
 | message | `String` | <p>Error message</p> |
+
+## <a name='Search-for-users'></a> Search for users
+[Back to top](#top)
+
+```
+GET /user/search/:keyword
+```
+
+### Parameters - `Parameter`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| keyword | `String` | <p>The keyword to search for</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>true</p> |
+| users | `Object[]` | <p>The users that match the keyword, including their _id and username</p> |
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>false</p> |
+| message | `String` | <p>The error message</p> |
 
 ## <a name='Unfriend'></a> Unfriend
 [Back to top](#top)
