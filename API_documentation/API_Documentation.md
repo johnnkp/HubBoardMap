@@ -925,7 +925,7 @@ GET /api/user/todolist/getAllTodolists
 [Back to top](#top)
 
 ```
-PUT /api/user/todolist/updateTodolist/:id
+PUT /api/user/todolist/updateTodolist/
 ```
 
 ### Request Body
