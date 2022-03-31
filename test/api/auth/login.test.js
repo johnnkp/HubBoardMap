@@ -11,12 +11,13 @@ chai.use(chaiHttp);
 describe('User Login', ()=>{
     describe('Success',()=>{
         it('Case: correct password', function (done) {
+            const testUser = {
+                username: "testAccount",
+                password: "password"
+            };
             chai.request(server)
                 .post('/api/auth/login')
-                .send({
-                    username: "testAccount",
-                    password: "password"
-                })
+                .send(testUser)
                 .end((err, res) => {
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.a('object');
