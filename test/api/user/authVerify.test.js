@@ -13,8 +13,8 @@ let cookie;
 describe('Auth Verify', ()=>{
     before(done=>{
         login()
-            .then(result=>{
-                cookie = result;
+            .then(returnedCookie=>{
+                cookie = returnedCookie;
                 done();
             })
             .catch(err=>{
