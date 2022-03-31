@@ -34,8 +34,8 @@ HubBoard API
   - [Get friends list](#Get-friends-list)
   - [Unfriend](#Unfriend)
 - [User_Todolist](#User_Todolist)
-  - [](#)
   - [Create todolist](#Create-todolist)
+  - [Delete todolist](#Delete-todolist)
   - [Get all comments of a todolist](#Get-all-comments-of-a-todolist)
   - [Get all todolists of current user](#Get-all-todolists-of-current-user)
   - [Update todolist](#Update-todolist)
@@ -754,36 +754,6 @@ POST /api/user/interaction/unfriend
 
 # <a name='User_Todolist'></a> User_Todolist
 
-## <a name=''></a> 
-[Back to top](#top)
-
-```
-DELETE /api/user/todolist/deleteTodolist
-```
-
-### Request Body
-
-| Name     | Type       | Description                           |
-|----------|------------|---------------------------------------|
-| todolistId | `String` | <p>id of the todolist to delete.</p> |
-### Success response
-
-#### Success response - `Success 200`
-
-| Name     | Type       | Description                           |
-|----------|------------|---------------------------------------|
-| success | `Boolean` | <p>True</p> |
-| message | `String` | <p>Success message</p> |
-
-### Error response
-
-#### Error response - `Error 4xx`
-
-| Name     | Type       | Description                           |
-|----------|------------|---------------------------------------|
-| success | `Boolean` | <p>False</p> |
-| message | `String` | <p>Error message</p> |
-
 ## <a name='Create-todolist'></a> Create todolist
 [Back to top](#top)
 
@@ -826,6 +796,36 @@ POST /api/user/todolist/createTodolist
     }
 }
 ```
+
+### Error response
+
+#### Error response - `Error 4xx`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>False</p> |
+| message | `String` | <p>Error message</p> |
+
+## <a name='Delete-todolist'></a> Delete todolist
+[Back to top](#top)
+
+```
+DELETE /api/user/todolist/deleteTodolist
+```
+
+### Request Body
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| todolistId | `String` | <p>id of the todolist to delete.</p> |
+### Success response
+
+#### Success response - `Success 200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| success | `Boolean` | <p>True</p> |
+| message | `String` | <p>Success message</p> |
 
 ### Error response
 

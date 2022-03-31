@@ -1,5 +1,5 @@
 /**
- * @api {delete} /api/user/todolist/deleteTodolist
+ * @api {delete} /api/user/todolist/deleteTodolist Delete todolist
  * @apiName deleteTodolist
  * @apiGroup User_Todolist
  *
