@@ -7,7 +7,7 @@ import {
   Stack,
   CircularProgress,
 } from "@mui/material";
-import { ReturnToHome} from "../../components/UI";
+import { ReturnToHome } from "../../components/UI";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
@@ -17,7 +17,7 @@ import axios from "axios";
 const validationSchema = Yup.object({
   newPassword: Yup.string("Enter your new password")
     .min(6, "New password should be of minimum 6 character")
-    .required("new Password is required"),
+    .required("new password is required"),
 });
 
 const ResetPassword = () => {
@@ -31,10 +31,10 @@ const ResetPassword = () => {
       newPassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: async (values, action) => {
+    onSubmit: async (values, actions) => {
       setIsLoading(true);
       try {
-          await axios.post("/api/auth/resetPassword", {
+        await axios.post("/api/auth/resetPassword", {
           newPassword: values.newPassword,
           resetPasswordToken: params.token,
         });
@@ -43,7 +43,7 @@ const ResetPassword = () => {
         setIsLoading(false);
         const { message: errorMsg } = err.response.data;
         alert(errorMsg);
-        action.resetForm();
+        actions.resetForm();
       }
     },
   });
