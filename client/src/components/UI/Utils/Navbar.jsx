@@ -14,6 +14,11 @@ import {io} from "socket.io-client";
 const pages = ["Profile"];
 
 const Navbar = (props) => {
+  let tbar = {display: 'initial'};
+  if (props.ToolbarButton === false) {
+    tbar = {display: 'none'};
+  }
+
   const [profilePhoto, setProfilePhoto] = useState();
   const [socket, setSocket] = useState(null);
   // INFO: get user profile photo on component mount
@@ -91,20 +96,18 @@ const Navbar = (props) => {
             <Box>
               <SearchBar/>
             </Box>
-            {props.ToolbarButton ? (
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="space-evenly"
-                minWidth="150px"
-              >
-                <Notification socket={socket}/>
-                <Typography>Toolbar</Typography>
-                <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
-              </Box>
-            ) : (
+
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-evenly"
+              minWidth="150px"
+            >
+              <Notification socket={socket}/>
+
+              <Typography sx={tbar}>Toolbar</Typography>
               <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
-            )}
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>

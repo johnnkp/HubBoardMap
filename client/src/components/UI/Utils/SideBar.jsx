@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import {Link as RouterLink} from "react-router-dom";
 import {
   Box,
   Drawer,
@@ -18,9 +18,6 @@ import {
   SettingsRounded,
 } from "@mui/icons-material";
 import classes from "../../../styles/global.module.css";
-// KDE Breeze Icons 5.90
-// import userInfoIcon from "../../../image/user_info_100.svg";
-// import adminIcon from "../../../image/system-users-50.svg";
 
 // INFO: width for the sidebar
 const sidebarWidth = 240;
@@ -32,25 +29,11 @@ const SideBar = (props) => {
     : ["Note", "Tag", "Sync"];
   let icons = props.profilepage
     ? [
-        <AccountBoxRounded />,
-        <SettingsRounded />,
-        <AdminPanelSettingsRounded />,
-      ]
-    : [<EventNoteRounded />, <TagRounded />, <SyncRounded />];
-  let item = ["Note", "Tag", "Sync"];
-  let icon = [<EventNoteRounded />, <TagRounded />, <SyncRounded />];
-
-  // if (props.items === "account") {
-  //   item = ["Profile", "Change Password", "Admin Management"];
-  //   icon = [<Icon>
-  //     <img height="100%" src={userInfoIcon} alt="Profile" title="Profile"/>
-  //   </Icon>,
-  //     <Key/>,
-  //     <Icon>
-  //       <img height="100%" src={adminIcon} alt="Admin Management" title="Admin Management"/>
-  //     </Icon>
-  //   ];
-  // }
+      <AccountBoxRounded/>,
+      <SettingsRounded/>,
+      <AdminPanelSettingsRounded/>,
+    ]
+    : [<EventNoteRounded/>, <TagRounded/>, <SyncRounded/>];
 
   return (
     <Box>
@@ -64,26 +47,26 @@ const SideBar = (props) => {
             boxSizing: "border-box",
           },
         }}
-        ModalProps={{ keepMounted: true }}
+        ModalProps={{keepMounted: true}}
         open={props.drawerOpen}
         onClose={props.handleDrawerOpen}
         variant="temporary"
         anchor="left"
       >
-        <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
+        <Toolbar/>
+        <Box sx={{overflow: "auto"}}>
           <List>
             {items.map((text, index) => (
               <ListItemButton
                 key={text}
                 component={RouterLink}
                 to={`/hubboard/${text.replace(/\s/g, "").toLowerCase()}`}
-                sx={{ color: "hOrange.main" }}
+                sx={{color: "hOrange.main"}}
               >
-                <ListItemIcon sx={{ color: "hOrange.main" }}>
+                <ListItemIcon sx={{color: "hOrange.main"}}>
                   {icons[index]}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ color: "black" }} />
+                <ListItemText primary={text} sx={{color: "black"}}/>
               </ListItemButton>
             ))}
           </List>
@@ -99,26 +82,26 @@ const SideBar = (props) => {
             boxSizing: "border-box",
           },
         }}
-        ModalProps={{ keepMounted: true }}
+        ModalProps={{keepMounted: true}}
         open={props.drawerOpen}
         onClose={props.handleDrawerOpen}
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
+        <Toolbar/>
+        <Box sx={{overflow: "auto"}}>
           <List>
             {items.map((text, index) => (
               <ListItemButton
                 key={text}
                 component={RouterLink}
                 to={`/hubboard/${text.replace(/\s/g, "").toLowerCase()}`}
-                sx={{ color: "hOrange.main" }}
+                sx={{color: "hOrange.main"}}
               >
-                <ListItemIcon sx={{ color: "hOrange.main" }}>
+                <ListItemIcon sx={{color: "hOrange.main"}}>
                   {icons[index]}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ color: "black" }} />
+                <ListItemText primary={text} sx={{color: "black"}}/>
               </ListItemButton>
             ))}
           </List>

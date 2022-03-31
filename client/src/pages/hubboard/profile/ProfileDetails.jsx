@@ -1,15 +1,15 @@
-import { PhotoCamera } from "@mui/icons-material";
-import { Avatar, Grid, IconButton, Paper, Typography } from "@mui/material";
-import { Box, styled } from "@mui/system";
+import {PhotoCamera} from "@mui/icons-material";
+import {Avatar, Grid, IconButton, Paper, Typography} from "@mui/material";
+import {Box, styled} from "@mui/system";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 const Input = styled("input")({
   display: "none",
 });
 
 const ProfileDetails = () => {
-  const [userInfo, setUserInfo] = useState({ username: "", email: "" });
+  const [userInfo, setUserInfo] = useState({username: "", email: ""});
   const [userPic, setUserPic] = useState(null);
 
   useEffect(() => {
@@ -17,9 +17,10 @@ const ProfileDetails = () => {
       try {
         const res = await axios.get("/api/user/info");
         if (res.data.success) {
-          setUserInfo({ username: res.data.username, email: res.data.email });
+          setUserInfo({username: res.data.username, email: res.data.email});
         }
-      } catch (err) {}
+      } catch (err) {
+      }
     };
     getUserInfo();
   }, []);
@@ -65,18 +66,18 @@ const ProfileDetails = () => {
         spacing={2}
       >
         <Grid item>
-          <Typography variant="h1" fontSize="2em">
+          <Typography fontSize="1.5em">
             Account Name:
           </Typography>
         </Grid>
         <Grid item>
           <Paper
             sx={{
-              backgroundColor: (theme) => theme.palette.hOrange.main,
-              paddingX: 4,
+              backgroundColor: "orange",
+              paddingX: 1,
             }}
           >
-            <Typography variant="h1" fontSize="2em" color="white">
+            <Typography fontSize="1.5em" color="white">
               {userInfo.username}
             </Typography>
           </Paper>
@@ -91,18 +92,18 @@ const ProfileDetails = () => {
         spacing={3}
       >
         <Grid item>
-          <Typography variant="h1" fontSize="2em">
+          <Typography fontSize="1.5em">
             Email:
           </Typography>
         </Grid>
         <Grid item>
           <Paper
             sx={{
-              backgroundColor: (theme) => theme.palette.hOrange.main,
-              paddingX: 4,
+              backgroundColor: "orange",
+              paddingX: 1,
             }}
           >
-            <Typography variant="h1" fontSize="2em" color="white">
+            <Typography fontSize="1.5em" color="white">
               {userInfo.email}
             </Typography>
           </Paper>
@@ -110,13 +111,13 @@ const ProfileDetails = () => {
       </Grid>
       <Grid item xs={12}>
         <Box display="flex" alignItems="center" component="form">
-          <Typography variant="h1" fontSize="2em">
+          <Typography fontSize="1.5em">
             Profile Picture: &nbsp;
           </Typography>
           <Avatar
             src={userPic}
             alt="user profile picture"
-            sx={{ width: 50, height: 50 }}
+            sx={{width: 150, height: 150}}
           />
           <label htmlFor="icon-button-file">
             <Input
@@ -130,7 +131,7 @@ const ProfileDetails = () => {
               aria-label="upload picture"
               component="span"
             >
-              <PhotoCamera />
+              <PhotoCamera/>
             </IconButton>
           </label>
         </Box>
