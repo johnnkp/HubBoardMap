@@ -30,7 +30,7 @@ const AddToDoItem = () => {
           title: values.todoTitle,
           description: values.todoDetails,
         });
-        console.log(res);
+        // console.log(res);
         if (res.data.success) {
           dispatch(todoListActions.pushOne(res.data.todolist));
         }

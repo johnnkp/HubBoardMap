@@ -17,6 +17,13 @@ const todoListSlice = createSlice({
         }
       });
     },
+    deleteTodolist: (state, action) => {
+      state.todolists.forEach((todolist, i) => {
+        if (todolist._id === action.payload._id) {
+          state.todolists.splice(i, 1);
+        }
+      });
+    },
     updateComment: (state, action) => {},
   },
 });

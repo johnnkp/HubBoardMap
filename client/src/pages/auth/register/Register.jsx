@@ -51,7 +51,6 @@ const Register = () => {
       try {
         // INFO: axios post request
         const res = await axios.post("/api/auth/register", values);
-        console.log(res.data);
         // INFO: push the route if success
         setTimeout(() => {
           navigate("/auth/mailsuccess");
