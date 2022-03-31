@@ -7,7 +7,7 @@ const expect = chai.expect;
 const login = require('../login');
 const User = require('../../../../server/database/model/User');
 const FriendRequest = require('../../../../server/database/model/FriendRequest');
-const {FriendRequestResponseNotification} = require('../../../../server/database/model/Notification');
+const {FriendRequestNotification, FriendRequestResponseNotification} = require('../../../../server/database/model/Notification');
 
 const {step} = require("mocha-steps");
 
@@ -144,6 +144,9 @@ after(done=>{
                 users[1].save(),
                 FriendRequestResponseNotification.deleteMany({
                     owner: users[0]._id
+                }),
+                FriendRequestNotification.deleteMany({
+                    owner: users[1]._id
                 })
             ])
                 .then(()=>{
