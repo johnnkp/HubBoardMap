@@ -103,6 +103,16 @@ describe('friend request operations',()=>{
                     });
             });
     })
+    step('User1 friends include User2',done=>{
+        chai.request(server)
+            .get('/api/user/interaction/getFriendsList')
+            .set('Cookie',cookie[0])
+            .end((err,res)=>{
+                expect(res).to.have.status(200);
+                expect(res.body.friends[0]).to.include({username:testUser2.username});
+                done();
+            });
+    })
     step('Unfriend',done=>{
         chai.request(server)
             .post('/api/user/interaction/unfriend')
@@ -135,9 +145,9 @@ after(done=>{
         User.findOne({username: testUser2.username})
     ])
         .then(users=>{
-            users[0].friends.pull(users[1]._id);
+            users[0].friends = [];
             users[0].notifications = [];
-            users[1].friends.pull(users[0]._id);
+            users[1].friends = [];
             users[1].notifications = [];
             Promise.all([
                 users[0].save(),
