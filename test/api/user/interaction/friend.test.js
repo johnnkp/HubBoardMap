@@ -103,6 +103,29 @@ describe('friend request operations',()=>{
                     });
             });
     })
+    step('Unfriend',done=>{
+        chai.request(server)
+            .post('/api/user/interaction/unfriend')
+            .set('Cookie',cookie[0])
+            .send({
+                targetUsername: testUser2.username
+            })
+            .end((err,res)=>{
+                expect(res).to.have.status(200);
+                Promise.all([
+                    User.findOne({username: testUser1.username}),
+                    User.findOne({username: testUser2.username})
+                ])
+                    .then(users=>{
+                        expect(users[0].friends).to.not.include(users[1]._id);
+                        expect(users[1].friends).to.not.include(users[0]._id);
+                        done();
+                    })
+                    .catch(err=>{
+                        done(new Error("Failed to find users: " + err));
+                    });
+            });
+    })
 })
 
 // clean up test data
