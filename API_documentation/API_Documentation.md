@@ -712,7 +712,7 @@ GET /api/user/interaction/getFriendsList
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | success | `Boolean` | <p>True</p> |
-| friendsList | `Object[]` | <p>List of friends' username</p> |
+| friends | `Object[]` | <p>List of friends with username</p> |
 
 ### Error response
 

@@ -4,7 +4,7 @@
  * @apiGroup User Interaction
  *
  * @apiSuccess {Boolean} success True
- * @apiSuccess {Object[]} friendsList List of friends' username
+ * @apiSuccess {Object[]} friends List of friends with username
  *
  * @apiError {Boolean} success False
  * @apiError {String} message Error message
