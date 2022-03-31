@@ -103,7 +103,7 @@ describe('friend request operations',()=>{
                     });
             });
     })
-    step('User1 friends include User2',done=>{
+    step('User1\'s friends include User2',done=>{
         chai.request(server)
             .get('/api/user/interaction/getFriendsList')
             .set('Cookie',cookie[0])
