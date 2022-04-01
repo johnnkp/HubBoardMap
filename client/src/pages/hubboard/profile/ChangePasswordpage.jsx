@@ -1,17 +1,17 @@
 import React from "react";
-import { MainLayout } from "../../../components/Layout";
-import { Box, Stack, Typography, TextField, Button } from "@mui/material";
-import { useFormik } from "formik";
+import {useNavigate} from "react-router-dom";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import * as Yup from "yup";
+import {useFormik} from "formik";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import {MainLayout} from "../../../components/Layout";
 
 const validationSchema = Yup.object({
   oldPassword: Yup.string("Enter your old password")
-    .min(6, "old password should be of minimun 6 chacacter")
+    .min(6, "old password should be of minimum 6 characters")
     .required("old password is required"),
   newPassword: Yup.string("Enter your new password")
-    .min(6, "new password should be of minimun 6 chacacter")
+    .min(6, "new password should be of minimum 6 characters")
     .required("new password is required"),
 });
 
@@ -52,7 +52,7 @@ const ChangePasswordpage = () => {
       >
         <Box>
           <Typography color="hOrange.main" fontSize="1.5em">
-            Please Enter the old password
+            Please enter the old password
           </Typography>
           <TextField
             required
@@ -70,7 +70,7 @@ const ChangePasswordpage = () => {
         </Box>
         <Box>
           <Typography color="hOrange.main" fontSize="1.5em">
-            Please Enter the new password
+            Please enter the new password
           </Typography>
           <TextField
             required
