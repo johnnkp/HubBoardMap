@@ -8,7 +8,7 @@ const Syncpage = () => {
   return (
     <MainLayout profilepage={false}>
       <Grid container justifyContent="center">
-        <Stack height={window.innerHeight - 100} justifyContent="space-evenly" minWidth="50vw" maxWidth="60vw">
+        <Stack height="85vh" justifyContent="space-evenly" minWidth="50vw" maxWidth="60vw">
           <Button
             sx={{boxShadow: 1}}
             size="large"

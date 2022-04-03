@@ -56,7 +56,7 @@ const ProfileDetails = () => {
   };
 
   return (
-    <Grid container gap={2} m={4}>
+    <Grid container gap={2} m={4} maxWidth="75vw">
       <Grid
         container
         item
