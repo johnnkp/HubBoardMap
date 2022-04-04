@@ -69,6 +69,11 @@ const SignInButton = (props) => {
         if (errorCode === 2) navigate("/auth/resendemail");
         actions.resetForm();
       }
+
+      try {
+        const res = await axios.get("/api/admin/adminVerify");
+        dispatch(authActions.login(true));
+      } catch (err) {}
     },
   });
 

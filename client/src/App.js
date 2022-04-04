@@ -36,16 +36,23 @@ const App = () => {
           navigate("/hubboard");
         }
       } catch (err) {}
+      try {
+        const res = await axios.get("/api/admin/adminVerify");
+        dispatch(authActions.login(true));
+      } catch (err) {}
     };
     verify();
   });
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  // console.log(isAuthenticated);
+  const user = useSelector((state) => state.auth);
+  // console.log(user.isAuthenticated);
   // INFO: different routing path
   return (
     <Routes>
-      <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />
+      <Route
+        path="/"
+        element={<Home isAuthenticated={user.isAuthenticated} />}
+      />
       <Route path="signup" element={<Register />} />
       <Route path="forgotpw" element={<ForgotPassword />} />
       <Route path="/auth" element={<Auth />}>
@@ -58,14 +65,17 @@ const App = () => {
       <Route path="/googlecb" element={<GoogleOAuth />} />
       <Route
         path="/hubboard"
-        element={<Hubboard isAuthenticated={isAuthenticated} />}
+        element={<Hubboard isAuthenticated={user.isAuthenticated} />}
       >
         <Route path="" element={<Mainpage />} />
-        <Route path="note" element={<Mainpage/>}/>
-        <Route path="sync" element={<Syncpage/>}/>
+        <Route path="note" element={<Mainpage />} />
+        <Route path="sync" element={<Syncpage />} />
         <Route path="profile" element={<Profilepage />} />
         <Route path="changepassword" element={<ChangePasswordpage />} />
-        <Route path="adminmanagement" element={<Adminpage/>}/>
+        <Route
+          path="adminmanagement"
+          element={user.isAdmin ? <Adminpage /> : <h1>You are not admin</h1>}
+        />
       </Route>
       <Route path="*" element={<h1>404 Not found</h1>} />
     </Routes>

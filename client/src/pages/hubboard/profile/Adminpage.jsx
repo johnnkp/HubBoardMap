@@ -1,29 +1,42 @@
-import {Button, Grid, Stack} from "@mui/material";
-import {MainLayout} from "../../../components/Layout";
+import { SettingsRounded } from "@mui/icons-material";
+import { Box, Container, List, ListItem, ListItemText } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { MainLayout } from "../../../components/Layout";
+import SimplePopover from "../../../components/UI/Utils/SimplePopover";
 
 const Adminpage = () => {
+  const [users, setUsers] = useState(null);
+
+  useEffect(() => {
+    const getAllUser = async () => {
+      try {
+        const res = await axios.get("/api/admin/getAllUser");
+        setUsers(res.data.users);
+      } catch (err) {}
+    };
+    getAllUser();
+  }, []);
+
   return (
     <MainLayout profilepage={true}>
-      <Stack spacing={5} maxWidth="75vw">
-        <h2>User List</h2>
-        <select size="10">
-          <option value="test1">test1</option>
-          <option value="test2">test2</option>
-          <option value="test3">test3</option>
-          <option value="test4">test4</option>
-          <option value="test5">test5</option>
-          <option value="test6">test6</option>
-          <option value="test7">test7</option>
-          <option value="test8">test8</option>
-          <option value="test9">test9</option>
-          <option value="test10">test10</option>
-          <option value="test11">test11</option>
-        </select>
-        <Grid container justifyContent="space-evenly">
-          <Button variant="outlined">View user profile</Button>
-          <Button variant="outlined">Reset user password</Button>
-        </Grid>
-      </Stack>
+      <Container>
+        <List>
+          {users &&
+            users.map((user) => (
+              <ListItem
+                key={user._id}
+                secondaryAction={
+                  <Box>
+                    <SimplePopover user={user} />
+                  </Box>
+                }
+              >
+                <ListItemText primary={user.username} secondary={user.email} />
+              </ListItem>
+            ))}
+        </List>
+      </Container>
     </MainLayout>
   );
 };
