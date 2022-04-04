@@ -26,7 +26,6 @@ const ChangePasswordpage = () => {
     onSubmit: async (values, actions) => {
       try {
         const res = await axios.put("/api/user/passwordModify", values);
-        console.log(res);
         if (res.data.success) {
           alert("Password changed, please login again...");
           navigate("/");
