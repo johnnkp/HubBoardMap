@@ -30,7 +30,7 @@ const AddContributor = ({ todolistId }) => {
     const getAllFriend = async () => {
       try {
         const res = await axios.get("/api/user/interaction/getFriendsList");
-        console.log(res);
+        // console.log(res);
         if (res.data.success) {
           setFriendList(res.data.friends);
         }

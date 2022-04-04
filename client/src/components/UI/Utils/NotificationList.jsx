@@ -34,7 +34,7 @@ const NotificationList = () => {
       if (res.data.success) {
         dispatch(notificationActions.renewNotifications(notificationId));
       }
-      console.log(res);
+      // console.log(res);
     } catch (err) {
       console.log(err.response);
     }
@@ -53,7 +53,7 @@ const NotificationList = () => {
           isAccepted,
         }
       );
-      console.log(res);
+      // console.log(res);
       if (res.data.success) {
         dispatch(notificationActions.renewNotifications(notificationId));
       }
@@ -62,7 +62,7 @@ const NotificationList = () => {
     }
   };
 
-  console.log(notifications);
+  // console.log(notifications);
 
   return (
     <List sx={{ minWidth: 400 }}>
