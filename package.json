@@ -22,7 +22,6 @@
     "passport-local": "^1.0.0",
     "require-dir": "^1.2.0",
     "socket.io": "^4.4.1",
-    "socket.io-client": "^4.4.1"
   },
   "scripts": {
     "client-dev": "cd client && npm run start",
