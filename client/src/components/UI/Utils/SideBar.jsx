@@ -26,7 +26,7 @@ const SideBar = (props) => {
   // INFO: Icon array easy for index access
   let items = props.profilepage
     ? ["Profile", "Change Password", "Admin Management"]
-    : ["Note", "Tag", "Sync"];
+    : ["Note", "Tag", "Collaboration"];
   let icons = props.profilepage
     ? [
       <AccountBoxRounded/>,
