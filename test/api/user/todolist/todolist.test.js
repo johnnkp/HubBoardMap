@@ -9,27 +9,41 @@ const User = require('../../../../server/database/model/User');
 const Todolist = require('../../../../server/database/model/Todolist');
 const Comment = require('../../../../server/database/model/Todolist/Comment');
 const {step} = require("mocha-steps");
+const bcrypt = require("bcryptjs");
+
 chai.use(chaiHttp);
+let cookie;
 
 const testUser = {
     username: "testAccount",
+    email: "testemail@testemail.com",
     password: "password"
-}
-
-let cookie;
-// login as testUser
-before(done=>{
-    login(testUser)
-        .then(returnedCookie=>{
-            cookie = returnedCookie;
-            done();
-        })
-        .catch(err=>{
-            done(new Error("Login failed: " + err));
-        });
-})
+};
 
 describe('Todolist operations',()=>{
+    // create testUser and login as testUser
+    before(done=>{
+        User.create({
+            username: testUser.username,
+            email: testUser.email,
+            password: bcrypt.hashSync(testUser.password, Number(process.env.SALT)),
+            isEmailVerified: true
+        })
+            .then(()=>{
+                login(testUser)
+                    .then(returnedCookie=>{
+                        cookie = returnedCookie;
+                        done();
+                    })
+                    .catch(err=>{
+                        done(new Error("Login failed: " + err));
+                    });
+            })
+            .catch(err=>{
+                done(new Error("Could not create test user before test: " + err));
+            });
+    });
+
     let todolistId;
     step('Create todolist',done=> {
         const testTodolist = {
@@ -306,26 +320,25 @@ describe('Todolist operations',()=>{
                     });
             })
     })
-})
 
-// clean up
-after(done=>{
-    User.findOne({username: testUser.username})
-        .then(user=>{
-            user.todolists = [];
-            Promise.all([
-                user.save(),
-                Todolist.deleteMany({owner: user._id}),
-                Comment.deleteMany({sender: user._id})
-            ])
-                .then(()=>{
-                    done();
-                })
-                .catch(err=>{
-                    done(new Error("Failed to clean up data after test: " + err));
-                });
-        })
-        .catch(err=>{
-            done(new Error("Failed to find user: " + err));
-        });
+    // clean up
+    after(done=>{
+        User.findOne({username: testUser.username})
+            .then(user=>{
+                Promise.all([
+                    Todolist.deleteMany({owner: user._id}),
+                    Comment.deleteMany({sender: user._id}),
+                    user.remove()
+                ])
+                    .then(()=>{
+                        done();
+                    })
+                    .catch(err=>{
+                        done(new Error("Failed to clean up data after test: " + err));
+                    });
+            })
+            .catch(err=>{
+                done(new Error("Failed to find user: " + err));
+            });
+    })
 })

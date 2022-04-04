@@ -5,7 +5,7 @@ const chaiHttp = require('chai-http');
 const server = require('../../../app');
 const expect = chai.expect;
 const User = require('../../../server/database/model/User');
-
+const {step} = require('mocha-steps');
 
 chai.use(chaiHttp);
 

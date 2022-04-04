@@ -10,33 +10,55 @@ const FriendRequest = require('../../../../server/database/model/FriendRequest')
 const {FriendRequestNotification, FriendRequestResponseNotification} = require('../../../../server/database/model/Notification');
 
 const {step} = require("mocha-steps");
+const bcrypt = require("bcryptjs");
 
 chai.use(chaiHttp);
 let cookie;
 
 const testUser1 = {
-    username: "testAccount",
+    username: "testAccount1",
+    email: "testemail1@testemail.com",
     password: "password"
-}
+};
 const testUser2 = {
     username: "testAccount2",
+    email: "testemail2@testemail.com",
     password: "password"
-}
+};
 
-// login as testUser1 and testUser2
-before(done=>{
-    Promise.all([login(testUser1), login(testUser2)])
-        .then(returnedCookies=>{
-            cookie = returnedCookies;
-            done();
-        })
-        .catch(err=>{
-            done(new Error("Login failed: " + err));
-        });
-})
-
-let friendRequestId;
 describe('friend request operations',()=>{
+    // login as testUser1 and testUser2
+    before(done=>{
+        Promise.all([
+            User.create({
+                username: testUser1.username,
+                email: testUser1.email,
+                password: bcrypt.hashSync(testUser1.password, Number(process.env.SALT)),
+                isEmailVerified: true
+            }),
+            User.create({
+                username: testUser2.username,
+                email: testUser2.email,
+                password: bcrypt.hashSync(testUser2.password, Number(process.env.SALT)),
+                isEmailVerified: true
+            })
+        ])
+            .then(()=> {
+                Promise.all([login(testUser1), login(testUser2)])
+                    .then(returnedCookies => {
+                        cookie = returnedCookies;
+                        done();
+                    })
+                    .catch(err => {
+                        done(new Error("Login failed: " + err));
+                    });
+            })
+            .catch(err => {
+                done(new Error("Failed to create test users: " + err));
+            });
+    })
+
+    let friendRequestId;
     step('User1 send friend request to User2',done=>{
         chai.request(server)
             .post('/api/user/interaction/friendRequest')
@@ -136,37 +158,33 @@ describe('friend request operations',()=>{
                     });
             });
     })
-})
 
-// clean up test data
-after(done=>{
-    Promise.all([
-        User.findOne({username: testUser1.username}),
-        User.findOne({username: testUser2.username})
-    ])
-        .then(users=>{
-            users[0].friends = [];
-            users[0].notifications = [];
-            users[1].friends = [];
-            users[1].notifications = [];
-            Promise.all([
-                users[0].save(),
-                users[1].save(),
-                FriendRequestResponseNotification.deleteMany({
-                    owner: users[0]._id
-                }),
-                FriendRequestNotification.deleteMany({
-                    owner: users[1]._id
-                })
-            ])
-                .then(()=>{
-                    done();
-                })
-                .catch(err=>{
-                    done(new Error("Failed to save users: " + err));
-                });
-        })
-        .catch(err=>{
-            done(new Error("Failed to delete test users: " + err));
-        });
+    // clean up test data
+    after(done=>{
+        Promise.all([
+            User.findOne({username: testUser1.username}),
+            User.findOne({username: testUser2.username})
+        ])
+            .then(users=>{
+                Promise.all([
+                    FriendRequestResponseNotification.deleteMany({
+                        owner: users[0]._id
+                    }),
+                    FriendRequestNotification.deleteMany({
+                        owner: users[1]._id
+                    }),
+                    users[0].remove(),
+                    users[1].remove()
+                ])
+                    .then(()=>{
+                        done();
+                    })
+                    .catch(err=>{
+                        done(new Error("Failed to clear data after test: " + err));
+                    });
+            })
+            .catch(err=>{
+                done(new Error("Failed to find test users after test: " + err));
+            });
+    })
 })

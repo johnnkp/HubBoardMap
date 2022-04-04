@@ -4,17 +4,36 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../../../app');
 const expect = chai.expect;
+const User = require('../../../server/database/model/User');
+const bcrypt = require("bcryptjs");
 
 chai.use(chaiHttp);
 
+const testUser = {
+    username: "testAccount",
+    email: "testemail@testemail.com",
+    password: "password"
+};
+
 
 describe('User Login', ()=>{
+    before(done=>{
+        User.create({
+            username: testUser.username,
+            email: testUser.email,
+            password: bcrypt.hashSync(testUser.password, Number(process.env.SALT)),
+            isEmailVerified: true
+        })
+            .then(()=>{
+                done();
+            })
+            .catch(err=>{
+                done(new Error("Could not create test user before test: " + err));
+            });
+    })
+
     describe('Success',()=>{
         it('Case: correct password', function (done) {
-            const testUser = {
-                username: "testAccount",
-                password: "password"
-            };
             chai.request(server)
                 .post('/api/auth/login')
                 .send(testUser)
@@ -110,4 +129,14 @@ describe('User Login', ()=>{
         });
     });
 
+    after(done=>{
+        User.deleteOne({username: testUser.username})
+            .then(()=>{
+                done();
+            })
+            .catch(err=>{
+                done(new Error("Cannot remove test user after the test: " + err));
+            })
+    })
 })
+
