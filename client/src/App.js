@@ -20,6 +20,8 @@ import {
   Profilepage,
   ChangePasswordpage,
 } from "./pages/hubboard/main";
+import Syncpage from "./pages/hubboard/main/Syncpage";
+import Adminpage from "./pages/hubboard/profile/Adminpage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,8 +61,11 @@ const App = () => {
         element={<Hubboard isAuthenticated={isAuthenticated} />}
       >
         <Route path="" element={<Mainpage />} />
+        <Route path="note" element={<Mainpage/>}/>
+        <Route path="sync" element={<Syncpage/>}/>
         <Route path="profile" element={<Profilepage />} />
         <Route path="changepassword" element={<ChangePasswordpage />} />
+        <Route path="adminmanagement" element={<Adminpage/>}/>
       </Route>
       <Route path="*" element={<h1>404 Not found</h1>} />
     </Routes>

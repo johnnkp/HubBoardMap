@@ -5,14 +5,6 @@
 }
 
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
-.w3_display_bottommiddle {
-    position: fixed;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 0%);
-    -ms-transform: translate(-50%, 0%)
-}
-
 /* import Slide from '@mui/material/Slide'; */
 .w3_slide_bottom {
     position: relative;

@@ -1,5 +1,5 @@
 /**
- * @api {put} /api/user/todolist/updateTodolist/:id Update todolist
+ * @api {put} /api/user/todolist/updateTodolist/ Update todolist
  * @apiName UpdateTodolist
  * @apiGroup User_Todolist
  *
