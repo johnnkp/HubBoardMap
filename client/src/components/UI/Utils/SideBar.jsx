@@ -16,6 +16,7 @@ import {
   AccountBoxRounded,
   AdminPanelSettingsRounded,
   SettingsRounded,
+  CommentRounded,
 } from "@mui/icons-material";
 import classes from "../../../styles/global.module.css";
 
@@ -26,14 +27,14 @@ const SideBar = (props) => {
   // INFO: Icon array easy for index access
   let items = props.profilepage
     ? ["Profile", "Change Password", "Admin Management"]
-    : ["Note", "Tag", "Collaboration"];
+    : ["Note", "Tag", "Private Message"];
   let icons = props.profilepage
     ? [
       <AccountBoxRounded/>,
       <SettingsRounded/>,
       <AdminPanelSettingsRounded/>,
     ]
-    : [<EventNoteRounded/>, <TagRounded/>, <SyncRounded/>];
+    : [<EventNoteRounded/>, <TagRounded/>, <CommentRounded/>];
 
   return (
     <Box>

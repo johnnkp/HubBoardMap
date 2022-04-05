@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {authActions} from "./store/slice/auth";
 
 // INFO: import Pages
+import {MainLayout} from "./components/Layout";
 import Home from "./pages/home/Home";
 import {Auth, ForgotPassword, GoogleOAuth, ResetPassword} from "./pages/auth";
 import Hubboard from "./pages/hubboard/Hubboard";
@@ -19,10 +20,10 @@ import {
   Mainpage,
   Profilepage,
   ChangePasswordpage,
+  Syncpage,
+  PMpage,
+  Adminpage,
 } from "./pages/hubboard/main";
-import Syncpage from "./pages/hubboard/main/Syncpage";
-import Adminpage from "./pages/hubboard/profile/Adminpage";
-import {MainLayout} from "./components/Layout";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -71,6 +72,7 @@ const App = () => {
         <Route path="" element={<Mainpage/>}/>
         <Route path="note" element={<Mainpage/>}/>
         <Route path="sync" element={<Syncpage/>}/>
+        <Route path="privatemessage" element={<PMpage/>}/>
         <Route path="profile" element={<Profilepage/>}/>
         <Route path="changepassword" element={<ChangePasswordpage/>}/>
         <Route
