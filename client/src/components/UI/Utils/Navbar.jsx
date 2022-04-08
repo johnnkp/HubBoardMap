@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from "react";
+import {Link as RouterLink} from "react-router-dom";
 import {AppBar, Toolbar, Box, Typography, IconButton} from "@mui/material";
+import {AddBoxRounded} from "@mui/icons-material";
+import axios from "axios";
+import {io} from "socket.io-client";
 import SearchBar from "./SearchBar";
 import Notification from "./Notification";
-import axios from "axios";
 import {DropDownMenu} from "../";
 import classes from "../../../styles/global.module.css";
 import HuboardIcon from "../../../image/HubBoard.svg";
 import menuIcon from "../../../image/ic_menu_en.svg";
-import {Link as RouterLink} from "react-router-dom";
-import {io} from "socket.io-client";
 
 // INFO: actual page need to set navigation
 const pages = ["Profile"];
 
 const Navbar = (props) => {
-  let tbar = {display: 'initial'};
+  let tbar = {display: 'initial', color: "white"};
   if (props.ToolbarButton === false) {
     tbar = {display: 'none'};
   }
@@ -39,6 +40,12 @@ const Navbar = (props) => {
   useEffect(() => {
     setSocket(io("http://localhost:3001", {transports: ["websocket"]}));
   }, []);
+
+// When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
 
   return (
     socket && (
@@ -105,7 +112,9 @@ const Navbar = (props) => {
             >
               <Notification socket={socket}/>
 
-              <Typography sx={tbar}>Toolbar</Typography>
+              <IconButton onClick={topFunction} sx={tbar}>
+                <AddBoxRounded/>
+              </IconButton>
               <DropDownMenu profilePhoto={profilePhoto} pages={pages}/>
             </Box>
           </Box>
