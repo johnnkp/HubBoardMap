@@ -7,15 +7,19 @@ import {authActions} from "./store/slice/auth";
 
 // INFO: import Pages
 import {MainLayout} from "./components/Layout";
-import Home from "./pages/home/Home";
-import {Auth, ForgotPassword, GoogleOAuth, ResetPassword} from "./pages/auth";
-import Hubboard from "./pages/hubboard/Hubboard";
+import {Auth,
+  ForgotPassword,
+  GoogleOAuth,
+  ResetPassword
+} from "./pages/auth";
 import {
   MailSuccess,
   MailVerification,
   Register,
   ResendEmailVerification,
 } from "./pages/auth/register";
+import Home from "./pages/home/Home";
+import Hubboard from "./pages/hubboard/Hubboard";
 import {
   Mainpage,
   Profilepage,
