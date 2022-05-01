@@ -5,7 +5,8 @@
 }
 
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
-/* import Slide from '@mui/material/Slide'; */
+/* import { Slide } from '@mui/material'; */
+/* Not Slider */
 .w3_slide_bottom {
     position: relative;
     animation: animatebottom 0.5s

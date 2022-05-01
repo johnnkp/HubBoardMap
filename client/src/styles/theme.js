@@ -1,9 +1,30 @@
-import { createTheme } from "@mui/material/styles";
-import { orange } from "@mui/material/colors";
-/* Apple San Francisco Pro font */
+/* PROGRAM theme.js - Global MUI theme configuration
+ * PROGRAMMER: johnnkp and SzelamC
+ * VERSION 1: written 22-03-2022
+ * Revision 1.1: 01-05-2022 code clean up
+ * PURPOSE: Create default theme in addition to
+ *          global.module.css for global style use.
+ * DATA STRUCTURE:
+ * import createTheme, orange - @mui/material
+ * import SFProDisplayRegular - Apple San Francisco Pro font
+ * Variable theme - export default const
+ *
+ * CONFIGURATION:
+ * button font: weight = 600, size = 1em
+ * font: add sf_pro_display_regular
+ * MuiCheckbox: use hOrange color
+ * MuiTextField: use hOrange color
+ * palette: add hOrange color
+ * responsive width breakpoints:
+ *  xs: <600px (pixel)
+ *  sm: <785px
+ *  md (Mobile): <870px
+ *  lg (FHD): <1300px
+ *  xl (QHD): 1300px+ */
+
+import {createTheme} from "@mui/material/styles";
+import {orange} from "@mui/material/colors";
 import SFProDisplayRegular from "./fonts/SF-Pro-Display-Regular.woff2";
-// import SFProDisplayMedium from "./fonts/SF-Pro-Display-Medium.woff2";
-// import FilsonSoftRegular from "./fonts/Filson-Soft-W03-Regular.woff2";
 
 const theme = createTheme({
   typography: {
