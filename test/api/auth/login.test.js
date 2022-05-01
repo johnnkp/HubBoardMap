@@ -15,16 +15,28 @@ const testUser = {
     password: "password"
 };
 
+const testUser2 = {
+    username: "testAccount2",
+    email: "testemail2@testemail.com",
+    password: "password2"
+};
 
 describe('User Login', ()=>{
     before(done=>{
-        User.create({
-            username: testUser.username,
-            email: testUser.email,
-            password: bcrypt.hashSync(testUser.password, Number(process.env.SALT)),
-            isEmailVerified: true
-        })
-            .then(()=>{
+        Promise.all([
+            User.create({
+                username: testUser.username,
+                email: testUser.email,
+                password: bcrypt.hashSync(testUser.password, Number(process.env.SALT)),
+                isEmailVerified: true
+            }),
+            User.create({
+                username: testUser2.username,
+                email: testUser2.email,
+                password: bcrypt.hashSync(testUser2.password, Number(process.env.SALT)),
+                isEmailVerified: false
+            })
+        ]).then(()=>{
                 done();
             })
             .catch(err=>{
@@ -83,10 +95,7 @@ describe('User Login', ()=>{
         it("Case: user's email is not verified", function (done) {
             chai.request(server)
                 .post('/api/auth/login')
-                .send({
-                    username: "testAccount00", // testAccount00 's email is not verified
-                    password: "password"
-                })
+                .send(testUser2)// testUser2's email is not verified
                 .end((err, res) => {
                     expect(res).to.have.status(400);
                     expect(res.body).to.be.a('object');
@@ -130,7 +139,7 @@ describe('User Login', ()=>{
     });
 
     after(done=>{
-        User.deleteOne({username: testUser.username})
+        Promise.all([User.deleteOne({username: testUser.username}), User.deleteOne({username: testUser2.username})])
             .then(()=>{
                 done();
             })
