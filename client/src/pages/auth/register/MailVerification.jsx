@@ -1,3 +1,4 @@
+// Verification page: waiting, verify
 import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import {
