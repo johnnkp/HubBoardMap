@@ -1,6 +1,11 @@
 /* PROGRAM Redux Store Slice Driver - Centralise export of Redux Store Slice
  * PROGRAMMER: SzelamC
- * USAGE: import {authReducer, commentReducer, notificationReducer, todoListReducer} from "<relative directory>/store/slice";
+ * USAGE: import {
+ *          authReducer,
+ *          commentReducer,
+ *          notificationReducer,
+ *          todoListReducer
+ *        } from "<relative directory>/store/slice";
  * VERSION 1: written 30-03-2022
  * Revision 1.1: 02-05-2022 add code comment
  * PURPOSE: Centralise Redux Store Slice function to simplify import package.

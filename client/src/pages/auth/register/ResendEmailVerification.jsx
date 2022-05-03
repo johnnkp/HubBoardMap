@@ -1,6 +1,7 @@
+// Resend verification email page
 import React from "react";
-import ResendEmail from "../../../components/Helpers/ResendEmail";
 import axios from "axios";
+import ResendEmail from "../../../components/Helpers/ResendEmail";
 
 const ResendEmailVerification = () => {
   const resendVerificationEmail = async (values, action) => {
