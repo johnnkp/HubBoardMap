@@ -1,6 +1,35 @@
-// Responsive homepage
+/* PROGRAM Home.jsx - Responsive home page
+ * PROGRAMMER: johnnkp and SzelamC
+ * VERSION 1: written 01-04-2022
+ * Revision 1.1: 03-05-2022 code clean up
+ * PURPOSE: Create home page and related design configuration.
+ * DATA STRUCTURE:
+ * import React, useState - react
+ * import Link - react-router-dom
+ * import Box, Button, Grid, Link,
+ *        Typography, useMediaQuery, useTheme - @mui/material
+ * import styled - @mui/system
+ * import CloudOutlined - @mui/icons-material
+ * import classes - global style css
+ * import Wrapper - TypeScript no border stub
+ * import Copyright, SignInButton - user interface module
+ * import HubBoardIcon - HubBoard icon
+ * import MessageIcon - Google Messages icon
+ * import TodoIcon - iOS Notes icon
+ * Variable OrangeText - const
+ * Variable logoAnimation - MUI sx css
+ * Variable isQHD - useMediaQuery Boolean
+ * Variable isHD - useMediaQuery Boolean
+ * Variable isMobile - useMediaQuery Boolean
+ * Variable Home - export default const
+ *
+ * TEST CODE:
+ * const intViewportWidth = window.innerWidth; - get window width
+ * <p>intViewportWidth: {intViewportWidth}</p> - output window width to page
+ * useMediaQuery: min-width = window.innerWidth
+*/
+
 import React from "react";
-import {Wrapper} from "../../components/Helpers";
 import {Link as RouterLink} from "react-router-dom";
 import {
   Box,
@@ -12,14 +41,13 @@ import {
   useTheme,
 } from "@mui/material";
 import {styled} from "@mui/system";
-import {SignInButton, Copyright} from "../../components/UI";
-import HubBoardIcon from "../../image/HubBoard.svg";
-// https://play-lh.googleusercontent.com/OY4rxeNTPaHwyOTZ-RUooqJvPnO5QUYmQcw0dhD90Mu6UWItOSZfQv7ks_FscbBow0M
-import MessageIcon from "../../image/message_google.svg";
-// https://support.apple.com/library/content/dam/edam/applecare/images/en_US/ios/ios11-notes-app-icon.png
-import TodoIcon from "../../image/to-do-iOS.svg";
 import {CloudOutlined} from "@mui/icons-material";
 import classes from "../../styles/global.module.css";
+import {Wrapper} from "../../components/Helpers";
+import {Copyright, SignInButton} from "../../components/UI";
+import HubBoardIcon from "../../image/HubBoard.svg";
+import MessageIcon from "../../image/message_google.svg";
+import TodoIcon from "../../image/to-do-iOS.svg";
 
 const OrangeText = styled("span")(({theme}) => ({
   color: theme.palette.hOrange.main,
