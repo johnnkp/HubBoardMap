@@ -1,6 +1,6 @@
 // Verification page: waiting, verify
-import React, { useEffect, useState } from "react";
-import { Link as RouterLink, useParams } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link as RouterLink, useParams} from "react-router-dom";
 import {
   Box,
   Stack,
@@ -13,7 +13,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import axios from "axios";
 
 const MailVerification = () => {
-  const { token } = useParams();
+  const {token} = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
   const [isFailed, setIsFailed] = useState(false);
@@ -50,7 +50,7 @@ const MailVerification = () => {
           <Typography variant="h1" fontSize="2em">
             Waiting for verification
           </Typography>
-          <CircularProgress color="hOrange" sx={{ fontSize: "3em" }} />
+          <CircularProgress color="hOrange" sx={{fontSize: "3em"}}/>
         </Box>
 
         <Box
@@ -61,13 +61,13 @@ const MailVerification = () => {
           <Typography variant="h1" fontSize="2em">
             Email verification token not found!
           </Typography>
-          <CancelIcon color="hOrange" sx={{ fontSize: "3em", my: 3 }} />
+          <CancelIcon color="hOrange" sx={{fontSize: "3em", my: 3}}/>
           <Button
             to="/auth/resendemail"
             LinkComponent={RouterLink}
             variant="outlined"
             color="hOrange"
-            sx={{ my: 2 }}
+            sx={{my: 2}}
             fullWidth
           >
             Resend verification
@@ -81,7 +81,7 @@ const MailVerification = () => {
           <Typography variant="h1" fontSize="2em">
             Verification success
           </Typography>
-          <CheckCircleIcon color="hOrange" sx={{ fontSize: "3em" }} />
+          <CheckCircleIcon color="hOrange" sx={{fontSize: "3em"}}/>
         </Box>
         <Button to="/" LinkComponent={RouterLink} color="hOrange">
           Return to homepage

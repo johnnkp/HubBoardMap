@@ -1,22 +1,50 @@
-import React, { useState } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+/* PROGRAM Register.jsx - Register page
+ * PROGRAMMER: johnnkp and SzelamC
+ * VERSION 1: written 31-03-2022
+ * Revision 1.1: 03-05-2022 code clean up
+ * PURPOSE: Create Yup input field and register page.
+ * DATA STRUCTURE:
+ * import React, useState - react
+ * import Link, useNavigate - react-router-dom
+ * import useSelector - react-redux
+ * import Box, Button, CircularProgress, Container, Grid, Link,
+ *        TextField, Typography - @mui/material
+ * import SendIcon - @mui/icons-material/Send
+ * import GoogleIcon - @mui/icons-material/Google
+ * import axios
+ * import useFormik - formik
+ * import yup
+ * import Copyright - copyright module
+ * import classes - global style css
+ * Variable validationSchema - yup.object
+ * Variable Register - export default const
+ *
+ * TEST CODE:
+ * console.log(useremail); - output user email to web console
+ * const intViewportWidth = window.innerWidth; - get window width
+ * <p>intViewportWidth: {intViewportWidth}</p> - output window width to page
+ * useMediaQuery: min-width = window.innerWidth
+*/
+
+import React, {useState} from "react";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 import {
-  Container,
-  Button,
   Box,
-  TextField,
-  Grid,
-  Typography,
-  Link,
+  Button,
   CircularProgress,
+  Container,
+  Grid,
+  Link,
+  TextField,
+  Typography
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import GoogleIcon from "@mui/icons-material/Google";
-import * as Yup from "yup";
-import { useFormik } from "formik";
 import axios from "axios";
-import { Copyright } from "../../../components/UI";
+import {useFormik} from "formik";
+import * as Yup from "yup";
+import {Copyright} from "../../../components/UI";
 import classes from "../../../styles/global.module.css";
 
 // create validation schema
@@ -64,10 +92,6 @@ const Register = () => {
     },
   });
 
-  // console.log(useremail);
-  // useMediaQuery: min-width = window.innerWidth
-  // const intViewportWidth = window.innerWidth;
-
   return (
     <Container
       component="main"
@@ -82,11 +106,11 @@ const Register = () => {
           alignItems: "center",
         }}
       >
-        <Typography sx={{ color: "hOrange.main" }} variant="h4">
+        <Typography sx={{color: "hOrange.main"}} variant="h4">
           Sign up
         </Typography>
 
-        <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={formik.handleSubmit} sx={{mt: 3}}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -137,17 +161,17 @@ const Register = () => {
             </Grid>
           </Grid>
 
-          <Grid item container spacing={2} sx={{ mt: 2, mb: 2 }}>
+          <Grid item container spacing={2} sx={{mt: 2, mb: 2}}>
             <Grid item xs={12} md={6}>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="hOrange"
-                endIcon={isLoading ? null : <SendIcon />}
+                endIcon={isLoading ? null : <SendIcon/>}
               >
                 {isLoading ? (
-                  <CircularProgress color="grey" size="1.5em" />
+                  <CircularProgress color="grey" size="1.5em"/>
                 ) : (
                   "Sign up"
                 )}
@@ -158,7 +182,7 @@ const Register = () => {
                 fullWidth
                 variant="contained"
                 color="hOrange"
-                endIcon={<GoogleIcon />}
+                endIcon={<GoogleIcon/>}
                 href="http://localhost:3001/api/auth/google"
               >
                 Google Login
@@ -172,10 +196,9 @@ const Register = () => {
           Back To Home Page
         </Link>
       </Typography>
-      <Copyright className={classes.w3_slide_bottom_07s} sx={{ mt: 5 }} />
+      <Copyright className={classes.w3_slide_bottom_07s} sx={{mt: 5}}/>
     </Container>
   );
-  // <p>intViewportWidth: {intViewportWidth}</p>
 };
 
 export default Register;
