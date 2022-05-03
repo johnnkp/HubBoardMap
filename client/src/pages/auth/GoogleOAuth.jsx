@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { Box, CircularProgress } from "@mui/material";
+// Google OAuth process page
+import React, {useEffect, useMemo} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {Box, CircularProgress} from "@mui/material";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../store/slice/auth";
+import {authActions} from "../../store/slice/auth";
 
 const GoogleOAuth = () => {
   const navigate = useNavigate();

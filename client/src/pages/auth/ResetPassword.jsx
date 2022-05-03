@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+// Reset password page
+import React, {useState} from "react";
+import {Link as RouterLink, useParams} from "react-router-dom";
 import {
   Box,
   Button,
-  Typography,
-  TextField,
-  Stack,
   CircularProgress,
+  Stack,
+  TextField,
+  Typography
 } from "@mui/material";
-import { ReturnToHome } from "../../components/UI";
-import { Link as RouterLink, useParams } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
+import {useFormik} from "formik";
+import * as Yup from "yup";
+import {ReturnToHome} from "../../components/UI";
 
 const validationSchema = Yup.object({
   newPassword: Yup.string("Enter your new password")
@@ -41,7 +42,7 @@ const ResetPassword = () => {
         setIsSuccess(true);
       } catch (err) {
         setIsLoading(false);
-        const { message: errorMsg } = err.response.data;
+        const {message: errorMsg} = err.response.data;
         alert(errorMsg);
         actions.resetForm();
       }
@@ -90,10 +91,10 @@ const ResetPassword = () => {
             fullWidth
             variant="contained"
             color="hOrange"
-            endIcon={isLoading ? null : <SendIcon />}
+            endIcon={isLoading ? null : <SendIcon/>}
           >
             {isLoading ? (
-              <CircularProgress color="grey" size="1.5em" />
+              <CircularProgress color="grey" size="1.5em"/>
             ) : (
               "Send"
             )}

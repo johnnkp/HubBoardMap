@@ -1,6 +1,7 @@
+// Forgot password email sent page
 import React from "react";
-import { ResendEmail } from "../../components/Helpers";
 import axios from "axios";
+import { ResendEmail } from "../../components/Helpers";
 
 const ForgotPassword = () => {
   // INFO: custom submit handler
