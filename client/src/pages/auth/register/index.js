@@ -17,7 +17,7 @@
  * export { default as Register } - Register.jsx
  * export { default as ResendEmailVerification } - ResendEmailVerification.jsx */
 
-export { default as MailSuccess } from "./MailSuccess";
-export { default as MailVerification } from "./MailVerification";
-export { default as Register } from "./Register";
-export { default as ResendEmailVerification } from "./ResendEmailVerification";
+export {default as MailSuccess} from "./MailSuccess";
+export {default as MailVerification} from "./MailVerification";
+export {default as Register} from "./Register";
+export {default as ResendEmailVerification} from "./ResendEmailVerification";
