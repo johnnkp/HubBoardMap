@@ -11,7 +11,6 @@
  * Variable drawerOpen, setDrawerOpen - React State Hook
  * Variable handleDrawerToggle - drawer onclick handler
  * Variable MainLayout - export default const
- *
 */
 
 import React, {useState} from "react";

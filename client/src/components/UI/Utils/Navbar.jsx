@@ -1,3 +1,4 @@
+// navigation bar module
 import React, {useEffect, useState} from "react";
 import {Link as RouterLink} from "react-router-dom";
 import {AppBar, Toolbar, Box, Typography, IconButton} from "@mui/material";
