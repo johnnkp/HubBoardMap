@@ -1,13 +1,14 @@
+// resend verification email module
 import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Button,
-  Typography,
-  TextField,
-  Stack,
   CircularProgress,
+  Stack,
+  TextField,
+  Typography
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
 import { useFormik } from "formik";
 import * as Yup from "yup";
