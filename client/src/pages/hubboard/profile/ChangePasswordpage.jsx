@@ -1,9 +1,10 @@
+// change password page
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import {Box, Button, TextField, Typography} from "@mui/material";
-import * as Yup from "yup";
-import {useFormik} from "formik";
 import axios from "axios";
+import {useFormik} from "formik";
+import * as Yup from "yup";
 import {MainLayout} from "../../../components/Layout";
 
 const validationSchema = Yup.object({

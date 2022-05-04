@@ -1,8 +1,8 @@
-import { SettingsRounded } from "@mui/icons-material";
-import { Box, Container, List, ListItem, ListItemText } from "@mui/material";
+// admin page
+import {useEffect, useState} from "react";
+import {Box, Container, List, ListItem, ListItemText} from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { MainLayout } from "../../../components/Layout";
+import {MainLayout} from "../../../components/Layout";
 import SimplePopover from "../../../components/UI/Utils/SimplePopover";
 
 const Adminpage = () => {
@@ -28,11 +28,11 @@ const Adminpage = () => {
                 key={user._id}
                 secondaryAction={
                   <Box>
-                    <SimplePopover user={user} />
+                    <SimplePopover user={user}/>
                   </Box>
                 }
               >
-                <ListItemText primary={user.username} secondary={user.email} />
+                <ListItemText primary={user.username} secondary={user.email}/>
               </ListItem>
             ))}
         </List>

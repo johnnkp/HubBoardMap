@@ -1,8 +1,9 @@
-import {PhotoCamera} from "@mui/icons-material";
+// profile detail page
+import React, {useEffect, useState} from "react";
 import {Avatar, Grid, IconButton, Paper, Typography} from "@mui/material";
 import {Box, styled} from "@mui/system";
+import {PhotoCamera} from "@mui/icons-material";
 import axios from "axios";
-import React, {useEffect, useState} from "react";
 
 const Input = styled("input")({
   display: "none",

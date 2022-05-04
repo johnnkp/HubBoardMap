@@ -6,6 +6,7 @@
  * DATA STRUCTURE:
  * import React
  * import MainLayout - main interface module
+ * import Todo - to-do list interface module
  * Variable Mainpage - export default const */
 
 import React from "react";
