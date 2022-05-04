@@ -1,3 +1,4 @@
+// sync page prototype
 import React from "react";
 import {MainLayout} from "../../../components/Layout";
 import {Button, Grid, Stack} from "@mui/material";

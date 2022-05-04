@@ -1,3 +1,4 @@
+// private message prototype
 import {MainLayout} from "../../../components/Layout";
 import {Box, Button, Grid, List, ListItem, Stack, TextField} from "@mui/material";
 import {SendRounded} from "@mui/icons-material";
