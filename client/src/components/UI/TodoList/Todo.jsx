@@ -1,4 +1,4 @@
-// add to-do list module
+// to-do list item module
 import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {Grid} from "@mui/material";
