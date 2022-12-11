@@ -1,7 +1,15 @@
 /* PROGRAM Home.jsx - Responsive home page
- * PROGRAMMER: johnnkp and SzelamC
+ * PROGRAMMER: SzelamC
+ * Mok Chau Wing (1155142763)
+ * Chan Shi Leung Jonathan (1155142863)
+ * Li Tsz Yeung (1155144367)
+ * Ng Kai Pong (1155144829)
+ * Lee Yat Him (1155176301)
+ * Lin Chun Man (1155177065)
+ *
  * VERSION 1: written 01-04-2022
- * Revision 1.1: 03-05-2022 code clean up
+ * REVISION 1.1: 03-05-2022 code clean up
+ * REVISION 1.2: 11-12-2022 change wording for web application project
  * PURPOSE: Create home page and related design configuration.
  * DATA STRUCTURE:
  * import React, useState - react
@@ -101,9 +109,9 @@ const Home = () => {
               alignItems="center"
               sx={logoAnimation}
             >
-              <img src={HubBoardIcon} height="75px" alt="HubBoard Icon"/>
+              <img src={HubBoardIcon} height="75px" alt="HubBoardMap Icon"/>
               <Typography fontSize="1.7em" ml={isQHD ? 4 : 2}>
-                HubBoard
+                HubBoardMap
               </Typography>
             </Box>
             <SignInButton sx={{mr: [2, 2, 0]}}/>
@@ -129,7 +137,7 @@ const Home = () => {
           >
             <Grid item xs={12}>
               <Typography variant="h1" fontSize="4em">
-                Welcome to <OrangeText>HubBoard</OrangeText>
+                Welcome to <OrangeText>HubBoardMap</OrangeText>
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -179,12 +187,12 @@ const Home = () => {
 
         <Copyright className={classes.w3_slide_bottom_07s}/>
         <Link
-          href="https://www.cse.cuhk.edu.hk/academics/ug-course-list/csci3100/"
+          href="https://www.cse.cuhk.edu.hk/academics/ug-course-list/csci2720/"
           target="_blank"
           className={classes.w3_slide_bottom_07s}
         >
           <Typography textAlign="center" color="silver" fontSize="0.875em">
-            CSCI3100 Software Engineering Group Project
+            CSCI2720 Web Application Group Project
           </Typography>
         </Link>
       </Box>
